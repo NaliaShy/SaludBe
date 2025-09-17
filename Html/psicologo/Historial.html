@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial Clínico - SaludBE</title>
+  <link rel="stylesheet" href="/Css/Psicologo/Historial.css" />
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+
+</head>
+
+<body>
+  <nav>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="logo">SaludBE</div>
+  </nav>
+
+
+  <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="Lista.html"> Lista De
+          Pacientes</a></li>
+      <li><a href="Historial.html">
+          Historial Clinico</a></li>
+      <li><a href="calendario.html">
+          Calendario</a></li>
+      <li><a href="chat.html">Chat</a></li>
+      <li><a href="#"> Configuración</a></li>
+      <li><a href="/Html/Login/Login.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+
+  <!-- Fondo oscuro -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <h2>Historial Clínico</h2>
+
+    <div class="card">
+      <div class="patient-info">
+        <div class="profile-icon">👤</div>
+        <div class="info-text">
+          <strong>Paciente</strong>
+          <span>Natalia Perez</span>
+          <span>Fecha<br>27/06/2025</span>
+        </div>
+      </div>
+      <div>
+        <button id="btn-descargar" class="btn">Descargar</button>
+        <button id="btn-editar" class="btn">Editar</button>
+      </div>
+    </div>
+
+    <div class="observacion-title">Observación</div>
+    <textarea class="observacion-input" placeholder="Escribe aquí las observaciones del paciente..."></textarea>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        overlay.style.display = 'none';
+      } else {
+        sidebar.style.left = '0px';
+        overlay.style.display = 'block';
+      }
+    }
+
+    // Botón Descargar
+    document.getElementById('btn-descargar').addEventListener('click', function () {
+      alert('El historial clínico ha sido descargado.');
+    });
+
+    // Botón Editar
+    document.getElementById('btn-editar').addEventListener('click', function () {
+      alert('El historial clínico ha sido editado.');
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+ /* Reset básico */
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: var(--font-sena);
+ }
+
+ /* Contenedor principal */
+ .container {
+   padding: 20px;
+ }
+
+ .content-grid {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-top: 20px;
+ }
+
+ .calendar,
+ .appointments {
+   width: 48%;
+   background-color: #e0e0e0;
+   padding: 15px;
+   border-radius: 8px;
+ }
+
+ .calendar-box {
+   background-color: white;
+   padding: 60px 20px;
+   border-radius: 5px;
+   text-align: center;
+ }
+
+ .day-names {
+   margin-bottom: 10px;
+ }
+
+ .days span {
+   display: inline-block;
+   width: 30px;
+   margin: 2px;
+ }
+
+ .appointments .appointment {
+   margin: 10px 0;
+   background-color: white;
+   padding: 10px;
+   border-radius: 5px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ .remove {
+   background: #ff4d4d;
+   border: none;
+   color: white;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+
+ .reminder {
+   margin-top: 40px;
+   background-color: #e0e0e0;
+   padding: 15px;
+   border-radius: 8px;
+ }
+
+ .reminder-box>div {
+   margin-bottom: 10px;
+ }
+
+ .reminder-box input[type="text"] {
+   width: 80%;
+   padding: 5px;
+ }

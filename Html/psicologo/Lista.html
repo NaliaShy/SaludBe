@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Aprendiz - SaludBE</title>
+  <link rel="stylesheet" href="/Css/Psicologo/Lista.css">
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="menu-icon" id="menu-btn">&#9776;</div>
+    <div class="logo">SaludBE</div>
+  </nav>
+
+  <!-- MENÚ LATERAL -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="Lista.html"> Lista De
+          Pacientes</a></li>
+      <li><a href="Historial.html">
+          Historial Clinico</a></li>
+      <li><a href="calendario.html">
+          Calendario</a></li>
+      <li><a href="chat.html">Chat</a></li>
+      <li><a href="#"> Configuración</a></li>
+      <li><a href="/Html/Login/Login.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+  <!-- FONDO OSCURO -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container">
+    <h2>Lista de Aprendiz</h2>
+
+    <div class="search-bar">
+      <span class="icon">🔍</span>
+      <input type="text" placeholder="Buscar aprendiz...">
+      <button>Buscar</button>
+      <button>Filtro</button>
+      <button>Fecha</button>
+    </div>
+
+    <div class="cards-container">
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('show');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+    });
+
+  </script>
+</body>
+
+</html>

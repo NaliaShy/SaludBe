@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sena);
+  background-color: #fff;
+  color: #111;
+}
+
+
+.header {
+  background-color: #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.menu-icon {
+  position: absolute;
+  left: 20px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #6cb52d; 
+}
+
+
+.titulo {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.tabla-citas {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ddd;
+  padding: 20px;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  font-size: 32px;
+}
+
+.nombre {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.acciones {
+  display: flex;
+  gap: 10px;
+}
+
+
+.btn {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+}
+
+.aceptar {
+  background-color: #4a90e2;
+}
+
+.rechazar {
+  background-color: #8b0000;
+}
+
+.editar {
+  background-color: #3fa34d; 
+}

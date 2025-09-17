@@ -1,0 +1,197 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      color: #2c3e50;
+      min-height: 100vh;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #34495e;
+    }
+
+    /* ===== Barra superior ===== */
+    nav {
+      background: #1b7d4f;
+      color: white;
+      display: flex;
+      justify-content: center; /* Centrar contenido */
+      align-items: center;
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+
+    nav .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-align: center;
+      flex-grow: 1; /* Ocupa espacio para quedar centrado */
+    }
+
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      position: absolute;
+      left: 20px; /* Lo mandamos a la izquierda */
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 260px;
+      height: 100%;
+      background: #34495e;
+      color: white;
+      padding-top: 60px;
+      transition: 0.3s;
+      z-index: 2000;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar ul li a:hover {
+      color: #1abc9c;
+      margin-left: 8px;
+    }
+
+    /* Fondo oscuro */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 1500;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* ===== Contenedor ===== */
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== Tarjeta Paciente ===== */
+    .card {
+      background: #ecf0f1;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .patient-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .profile-icon {
+      font-size: 40px;
+      background: #1abc9c;
+      color: white;
+      border-radius: 50%;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .info-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    /* ===== Botones ===== */
+    .btn {
+      background: #1abc9c;
+      border: none;
+      padding: 10px 16px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    .btn:hover {
+      background: #16a085;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* ===== Observaciones ===== */
+    .observacion-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .observacion-input {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+      transition: 0.2s;
+    }
+
+    .observacion-input:focus {
+      border-color: #1abc9c;
+      box-shadow: 0 0 6px rgba(26, 188, 156, 0.4);
+      outline: none;
+    }
+ 

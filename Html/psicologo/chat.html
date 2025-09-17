@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaludBE</title>
+  <link rel="stylesheet" href="/Css/Psicologo/chats.css">
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">SaludBE</div>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+  </nav>
+
+  <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="Lista.html"> Lista De
+          Pacientes</a></li>
+      <li><a href="Historial.html">
+          Historial Clinico</a></li>
+      <li><a href="calendario.html">
+          Calendario</a></li>
+      <li><a href="chat.html">Chat</a></li>
+      <li><a href="#"> Configuración</a></li>
+      <li><a href="/Html/Login/Login.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+
+  <!-- Fondo oscuro -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Menú desplegable -->
+  <div class="dropdown-menu" id="dropdown">
+    <a href="/psicologo/chat/HTML/">🏠 Inicio</a>
+    <a href="#">⚙️ Configuración</a>
+    <a href="#">👤 Perfil</a>
+    <a href="#">🚪 Cerrar sesión</a>
+  </div>
+  </aside>
+
+  <!-- Panel de mensajes -->
+  <section class="messages-panel" id="chatPanel">
+    <div class="messages-header">
+      <h2>Messages</h2>
+      <button class="add-button" onclick="toggleChat()">−</button>
+    </div>
+    <input type="text" class="search" placeholder="Search messages">
+    <ul class="message-list">
+      <li><strong>Laura Mendez</strong><br><small>Hola! ¿Cómo te has
+          sentido?</small></li>
+      <li><strong>Chatbot</strong><br><small>Hola, ¿qué tal tu
+          día?</small></li>
+    </ul>
+  </section>
+
+  <!-- Contenido principal -->
+  <section class="main-content">
+    <div class="overlay">
+      <h1>SaludBE</h1>
+    </div>
+  </section>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        overlay.style.display = 'none';
+      } else {
+        sidebar.style.left = '0px';
+        overlay.style.display = 'block';
+      }
+    }
+
+    // Mostrar/ocultar el chat
+    function toggleChat() {
+      const chat = document.getElementById('chatPanel');
+      chat.classList.toggle('hidden');
+    }
+
+    // Cerrar menú desplegable si haces clic fuera
+    window.addEventListener('click', function (e) {
+      const dropdown = document.getElementById('dropdown');
+      const menuButton = document.querySelector('.hamburger');
+      if (!dropdown.contains(e.target) && !menuButton.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

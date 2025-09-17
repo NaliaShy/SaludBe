@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> SaludBE</title>
+  <link rel="stylesheet" href="../CSS/style8.css">
+</head>
+<body>
+    
+  <!-- Header -->
+  <header class="header">
+    <div class="menu">&#9776;</div>
+    <h1 class="logo">SaludBE</h1>
+  </header>
+
+  <!-- Contenedor principal -->
+  <main>
+    <section class="formulario">
+      <form>
+        <div class="fila">
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="campo">
+            <label for="fecha">Selecciona la fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" required>
+          </div>
+          <div class="campo">
+            <label for="celular">Celular</label>
+            <input type="tel" id="celular" name="celular" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required>
+        </div>
+
+        <div class="campo">
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+        </div>
+
+        <div class="campo-check">
+          <input type="checkbox" id="confirmar" required>
+          <label for="confirmar">Confirmo que los datos ingresados en este formulario son verdaderos</label>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" class="btn-enviar">Solicitar cita</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

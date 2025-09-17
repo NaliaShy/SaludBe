@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaludBE </title>
+  <link rel="stylesheet" href="/Css/Psicologo/editarCita.css">
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="menu">&#9776;</div>
+    <h1 class="logo">SaludBE</h1>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="formulario">
+      <div class="usuario">
+        <span class="nombre">Moises Saavedra</span>
+      </div>
+
+      <div class="campo">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha">
+      </div>
+
+      <div class="campo">
+        <label for="motivo">Motivo: <small>(No editable )</small></label>
+        <textarea id="motivo" name="motivo" rows="4" readonly></textarea>
+      </div>
+
+      <div class="acciones">
+        <button class="btn-guardar">Guardar</button>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

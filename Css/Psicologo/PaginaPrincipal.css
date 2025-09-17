@@ -1,0 +1,38 @@
+ /* Reset básico */
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+
+ body {
+   font-family: var(--font-sena);
+   background: #f9f9f9;
+   overflow-x: hidden;
+ }
+
+
+
+ /* Contenido principal centrado */
+ .main-content {
+   height: calc(100vh - 60px);
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   padding: 20px;
+ }
+
+ .main-content h1 {
+   font-weight: bold;
+   margin-bottom: 20px;
+   font-size: 32px;
+   color: #222;
+ }
+
+ .main-content img {
+   max-width: 300px;
+   width: 100%;
+   height: auto;
+ }

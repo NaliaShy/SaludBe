@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sena);
+  background-color: #fff;
+  color: #111;
+}
+
+.header {
+  background-color: #e6e6e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.menu {
+  position: absolute;
+  left: 20px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: #66BB33;
+}
+
+.formulario {
+  background-color: #ddd;
+  width: 80%;
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  font-size: 28px;
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+small {
+  font-weight: normal;
+  font-size: 12px;
+  color: #444;
+}
+
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+
+.acciones {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-guardar {
+  background-color: #2f7dd6;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}

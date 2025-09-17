@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Georgia', serif;
+  background-color: #fff;
+}
+
+.header {
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.menu {
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.logo {
+  color: #66BB33;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.formulario {
+  max-width: 600px;
+  margin: 30px auto;
+  background-color: #98c8ff;
+  padding: 30px;
+  border-radius: 8px;
+  color: black;
+}
+
+.fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.campo label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.campo input,
+.campo textarea {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 20px;
+  outline:none;
+  font-size: 14px;
+}
+
+.campo-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.campo-check input {
+  margin-right: 8px;
+}
+
+.acciones {
+  text-align: center;
+}
+
+.btn-enviar {
+  background-color: #3a1ac7;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-enviar:hover {
+  background-color: #417bbd;
+}
