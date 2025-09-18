@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Principal</title>
-  <link rel="stylesheet" href="/Css/Aprendiz/PaginaPrincipal.css"/>
-  <link rel="stylesheet" href="/Css/Repetivos/root.css">
-  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="/Css/Aprendiz/PaginaPrincipal.css" />
+    <link rel="stylesheet" href="/Css/Repetivos/root.css">
+    <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
 </head>
-
 <body>
   <!-- NAV superior -->
   <nav>
@@ -20,17 +18,15 @@
   <!-- Menú lateral -->
   <div class="sidebar" id="sidebar">
     <ul>
-      <li><a href="/Html/Aprendiz/PaginaPrincipal.html">
-          Inicio</a></li>
-      <li><a href="/Html/Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
-      <li><a href="/Html/Aprendiz/Historial.html">
-          Historial Clinico</a></li>
-      <li><a href="/Html/Aprendiz/calendario.html">
-          Calendario</a></li>
+      <li><a href="/Html/Aprendiz/PaginaPrincipal.html">Inicio</a></li>
+      <li><a href="/Html/Aprendiz/solicitarCitaApr.html">Agendar citas</a></li>
+      <li><a href="/Html/Aprendiz/Historial.html">Historial Clínico</a></li>
+      <li><a href="/Html/Aprendiz/calendario.html">Calendario</a></li>
       <li><a href="">Chat</a></li>
-      <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
-      <li><a href="#"> Configuración</a></li>
-      <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+      <li><a href="/Html/Aprendiz/test.html">Test</a></li>
+      <li><a href="#">Configuración</a></li>
+      <li><a href="/Html/aprendiz/notificacion_a.html">Notificaciones</a></li>
+      <li><a href="/Html/Login/Loginaprendiz.html">Cerrar Sesión</a></li>
     </ul>
   </div>
 
@@ -41,21 +37,38 @@
   <div class="main-content">
     <h1>SaludBE</h1>
     <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Saludbe Logo" />
-  </div>
-
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      if (sidebar.style.left === '0px') {
-        sidebar.style.left = '-250px';
-        overlay.style.display = 'none';
-      } else {
-        sidebar.style.left = '0px';
-        overlay.style.display = 'block';
+    
+    <script>
+      // Función para cargar el archivo HTML de notificaciones
+      function cargarNotificaciones() {
+        fetch('/Html/Aprendiz/notificacion_a.html')
+          .then(response => response.text())
+          .then(data => {
+            // Insertar el contenido de las notificaciones al final del body
+            document.body.insertAdjacentHTML('beforeend', data);
+            
+            // Asociar los eventos de los botones después de que el contenido haya sido cargado
+            document.getElementById('mostrarBtn').addEventListener('click', mostrarCentro);
+            document.getElementById('cerrarBtn').addEventListener('click', cerrarCentro);
+          })
+          .catch(error => console.log('Error al cargar las notificaciones:', error));
       }
-    }
-  </script>
-</body>
 
+      // Llamar a la función para cargar las notificaciones cuando se cargue la página
+      window.onload = cargarNotificaciones;
+
+      function toggleMenu() {
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        if (sidebar.style.left === '0px') {
+          sidebar.style.left = '-250px';
+          overlay.style.display = 'none';
+        } else {
+          sidebar.style.left = '0px';
+          overlay.style.display = 'block';
+        }
+      }
+    </script>
+  </div>
+</body>
 </html>

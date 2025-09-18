@@ -6,7 +6,7 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
+      font-family: var(--font-sena);
       background: #f9f9f9;
       overflow-x: hidden;
     }

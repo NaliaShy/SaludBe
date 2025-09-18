@@ -7,15 +7,44 @@
  }
 
  /* Contenedor principal */
- .container {
-   padding: 20px;
- }
 
  .content-grid {
    display: flex;
    justify-content: space-between;
    flex-wrap: wrap;
    margin-top: 20px;
+ }
+
+ .calendar {
+   width: 50%;
+ }
+
+ .calendar h2 {
+   font-size: 20px;
+   margin-bottom: 10px;
+   font-style: italic;
+   text-align: center;
+ }
+
+ .calendar-box {
+   background-color: #e0e0e0;
+   padding: 20px;
+   border-radius: 10px;
+ }
+
+ .day-names {
+   font-weight: bold;
+   text-align: center;
+   margin-bottom: 10px;
+ }
+
+ .days {
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 10px;
+   text-align: center;
+   font-size: 14px;
+   font-family: Arial;
  }
 
  .calendar,
