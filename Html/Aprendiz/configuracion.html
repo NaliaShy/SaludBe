@@ -4,18 +4,44 @@
     <meta charset="UTF-8">
     <title>Centro de Configuraciones</title>
     <link rel="stylesheet" href="/Css/Aprendiz/configuracion_A.css">
+    <link rel="stylesheet" href="/Css/Repetivos/root.css">
+    <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
 </head>
 <body>
+    <!-- NAV superior -->
+  <nav>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="logo">SaludBE</div>
+  </nav>
+   <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="/Html/Aprendiz/PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="/Html/Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
+      <li><a href="/Html/Aprendiz/Historial.html">
+          Historial Clinico</a></li>
+      <li><a href="/Html/Aprendiz/calendario.html">
+          Calendario</a></li>
+      <li><a href="">Chat</a></li>
+      <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
+      <li><a href="#"> Configuración</a></li>
+      <li><a href="/Html/Aprendiz/configuracion.html"> Configuraciones</a></li>
+      <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
     <div class="config-container">
         <div class="tabs">
             <div class="tab active" onclick="showSection('general')">General</div>
             <div class="tab" onclick="showSection('actualizar')">Actualizar Datos</div>
         </div>
-        <div id="general" class="section active">
-            <button class="config-btn secondary">Cambiar Cuenta</button>
-            <button class="config-btn">Cerrar Sesión</button>
-            <button class="config-btn danger">Eliminar Cuenta</button>
-        </div>
+          <div id="general" class="section active">
+    <button class="config-btn secondary">Cambiar Cuenta</button>
+        <button class="config-btn" onclick="window.location.href='../Login/Loginaprendiz.html'">Cerrar Sesión</button>
+    <button class="config-btn danger">Eliminar Cuenta</button>
+    <button class="config-btn" style="margin-top: 20px;" onclick="window.location.href='../Aprendiz/PaginaPrincipal.html'">Volver</button>
+</div>
+       
       
 <div id="actualizar" class="section">
     <form>
