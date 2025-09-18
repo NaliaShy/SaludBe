@@ -28,10 +28,11 @@ button:hover {
 /* Estilo para el centro de notificaciones */
 #notificacionCentro {
     display: none;
+    gap: 10px;
     position: fixed;
-    top: 20%;
+    top: 15%;
     right: 10px;
-    width: 300px;
+    width: 500px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -91,6 +92,10 @@ button:hover {
 }
 
 /* Estilo para el título del centro de notificaciones */
+.Head{
+    display: flex;
+    justify-content: space-around;
+}
 h2 {
     font-size: 18px;
     color: #4CAF50;

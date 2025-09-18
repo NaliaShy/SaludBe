@@ -39,26 +39,9 @@
   <div class="main-content">
     <h1>SaludBE</h1>
     <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Saludbe Logo" />
-    
+    <iframe src="/Html/Aprendiz/notificacion_a.html" frameborder="0" id="Notificaciones"></iframe>
     <script>
       // Función para cargar el archivo HTML de notificaciones
-      function cargarNotificaciones() {
-        fetch('/Html/Aprendiz/notificacion_a.html')
-          .then(response => response.text())
-          .then(data => {
-            // Insertar el contenido de las notificaciones al final del body
-            document.body.insertAdjacentHTML('beforeend', data);
-            
-            // Asociar los eventos de los botones después de que el contenido haya sido cargado
-            document.getElementById('mostrarBtn').addEventListener('click', mostrarCentro);
-            document.getElementById('cerrarBtn').addEventListener('click', cerrarCentro);
-          })
-          .catch(error => console.log('Error al cargar las notificaciones:', error));
-      }
-
-      // Llamar a la función para cargar las notificaciones cuando se cargue la página
-      window.onload = cargarNotificaciones;
-
       function toggleMenu() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
