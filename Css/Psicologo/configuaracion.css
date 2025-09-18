@@ -1,0 +1,71 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .config-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 24px;
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 16px;
+        }
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            background: #eee;
+            border-radius: 8px 8px 0 0;
+            margin-right: 4px;
+            transition: background 0.2s;
+        }
+        .tab.active {
+            background: #fff;
+            border-bottom: 2px solid #007bff;
+            font-weight: bold;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .config-btn {
+            display: block;
+            width: 100%;
+            margin: 12px 0;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            background: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .config-btn.danger {
+            background: #dc3545;
+        }
+        .config-btn.secondary {
+            background: #6c757d;
+        }
+        label {
+            display: block;
+            margin: 10px 0 4px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
