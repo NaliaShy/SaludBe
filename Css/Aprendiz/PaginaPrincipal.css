@@ -1,0 +1,111 @@
+ /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    /* NAV superior */
+    nav {
+      position: relative;
+      background-color: #458a1d;
+      padding: 15px 20px;
+      height: 60px;
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .menu-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      cursor: pointer;
+      color: #fffdfd;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100vh;
+      background-color: #458a1d;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      padding: 15px 20px;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 18px;
+      display: block;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #69e674;
+      border-radius: 5px;
+    }
+
+    /* Fondo oscuro overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 500;
+    }
+
+    /* Contenido principal centrado */
+    .main-content {
+      height: calc(100vh - 60px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .main-content h1 {
+      font-weight: bold;
+      margin-bottom: 20px;
+      font-size: 32px;
+      color: #222;
+    }
+
+    .main-content img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }

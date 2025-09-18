@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SaludBE</title>
-  <link rel="stylesheet" href="../css/style4.css">
+  <link rel="stylesheet" href="/Css/Aprendiz/Calendario.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
 </head>
+
 <body>
   <div class="container">
 
@@ -20,19 +24,37 @@
 
     <main class="main-content">
 
-      <header class="top-header">
-        <h1>SaludBE</h1>
-        <div class="menu">☰</div>
-      </header>
+      <!-- NAV superior -->
+      <nav>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <div class="logo">SaludBE</div>
+      </nav>
+
+      <!-- Menú lateral -->
+      <div class="sidebar" id="sidebar">
+        <ul>
+          <li><a href="/Html/Aprendiz/PaginaPrincipal.html">
+              Inicio</a></li>
+          <li><a href="/Html/Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
+          <li><a href="/Html/Aprendiz/Historial.html">
+              Historial Clinico</a></li>
+          <li><a href="/Html/Aprendiz/calendario.html">
+              Calendario</a></li>
+          <li><a href="">Chat</a></li>
+          <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
+          <li><a href="#"> Configuración</a></li>
+          <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+        </ul>
+      </div>
 
       <div class="content-grid">
-       
+
         <section class="calendar">
           <h2>Calendarios</h2>
           <div class="calendar-box">
             <div class="day-names">D L M X J V S</div>
             <div class="days">
-        
+
               <span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>1</span><span>2</span>
               <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
               <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
@@ -63,5 +85,19 @@
 
     </main>
   </div>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        overlay.style.display = 'none';
+      } else {
+        sidebar.style.left = '0px';
+        overlay.style.display = 'block';
+      }
+    }
+  </script>
 </body>
+
 </html>

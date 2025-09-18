@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> SaludBE</title>
-  <link rel="stylesheet" href="../CSS/style8.css">
+  <link rel="stylesheet" href="/Css/Aprendiz/solicitarcitaApren.css">
+  <link rel="stylesheet" href="/Css/Repetivos/root.css">
+  <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
 </head>
-<body>
-    
-  <!-- Header -->
-  <header class="header">
-    <div class="menu">&#9776;</div>
-    <h1 class="logo">SaludBE</h1>
-  </header>
 
+<body>
+
+  <!-- NAV superior -->
+  <nav>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="logo">SaludBE</div>
+  </nav>
+
+  <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="/Html/Aprendiz/PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="/Html/Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
+      <li><a href="/Html/Aprendiz/Historial.html">
+          Historial Clinico</a></li>
+      <li><a href="/Html/Aprendiz/calendario.html">
+          Calendario</a></li>
+      <li><a href="">Chat</a></li>
+      <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
+      <li><a href="#"> Configuración</a></li>
+      <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
   <!-- Contenedor principal -->
   <main>
     <section class="formulario">
@@ -61,5 +81,19 @@
       </form>
     </section>
   </main>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('overlay');
+      if (sidebar.style.left === '0px') {
+        sidebar.style.left = '-250px';
+        overlay.style.display = 'none';
+      } else {
+        sidebar.style.left = '0px';
+        overlay.style.display = 'block';
+      }
+    }
+  </script>
 </body>
+
 </html>

@@ -1,16 +1,29 @@
-:root{
-    --Sena-verde:  #458a1d;
-    --Sena-Azul:   #00909E;
-    --Sena-Verde-Hover:  #69e674;
-    --transparencia: rgba(0, 0, 0, 0.6);
-    --Sena-Contraste: #000;
-    --font-sena: 'Sena';
+:root {
+  --Sena-verde: #458a1d;
+  --Sena-Azul: #00909E;
+  --Sena-Verde-Hover: #69e674;
+  --transparencia: rgba(0, 0, 0, 0.6);
+  --Sena-Contraste: #000;
+  --font-sena: 'Sena';
 }
 
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 @font-face {
-  font-family: 'Sena'; /* Un nombre único para tu fuente */
-  src: url('/fonts/WOFF2/VictorMono-Regular.woff2') format('woff2'), /* Ruta al archivo de la fuente (woff2 es un buen formato) */
-       url('/fonts/WOFF/VictorMono-Regular.woff') format('woff');  /* Otra opción de formato si es necesario */
-  font-weight: normal; /* Especifica el peso de la fuente (normal, bold, 400, 700, etc.) */
-  font-style: italic;  /* Especifica el estilo (normal, italic) */
+  font-family: 'Sena';
+  /* Un nombre único para tu fuente */
+  src: url('/fonts/WOFF2/VictorMono-Regular.woff2') format('woff2'),
+    /* Ruta al archivo de la fuente (woff2 es un buen formato) */
+    url('/fonts/WOFF/VictorMono-Regular.woff') format('woff');
+  /* Otra opción de formato si es necesario */
+  font-weight: normal;
+  /* Especifica el peso de la fuente (normal, bold, 400, 700, etc.) */
+  font-style: italic;
+  /* Especifica el estilo (normal, italic) */
 }
