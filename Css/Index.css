@@ -1,0 +1,150 @@
+* {
+    font-family: var(--font-sena);
+}
+
+nav {
+    width: 100%;
+    height: 175px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px 5px 50px;
+    background-color: var(--Sena-Blanco);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.logo {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    color: var(--Sena-verde);
+}
+
+#logo {
+    width: 100px;
+    margin: 15px 0 0 0;
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.menu>li {
+    list-style: none;
+    padding: 0 30px 0 30px;
+    transition: 100ms;
+}
+
+.menu>li:hover {
+    transition: 100ms;
+    transform: scale(1.1, 1.1);
+    padding: 12px;
+    background-color: var(--Sena-Blanco);
+    color: var(--Sena-verde);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.Cuenta {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.Cuenta>button {
+    padding: 12px;
+    background-color: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: 100ms;
+}
+
+.Cuenta>button:hover {
+    transition: 100ms;
+    transform: scale(1.1, 1.1);
+    padding: 12px;
+    background-color: var(--Sena-Blanco);
+    color: var(--Sena-verde);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/*CONTENIDO AQUÍ*/
+
+/*ROLES*/
+.roles {
+    padding: 60px 20px;
+    background: #f9f9f9;
+}
+
+.roles h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #00796b;
+}
+
+/* Contenedor fila */
+.rol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rol img {
+    width: 220px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.rol-texto {
+    flex: 1;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.rol-texto h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #004d40;
+}
+
+/* Invertir orden */
+.invertida {
+    flex-direction: row-reverse;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .rol,
+    .invertida {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .rol-texto {
+        text-align: center;
+    }
+}
