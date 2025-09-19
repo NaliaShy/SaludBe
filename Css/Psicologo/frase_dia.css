@@ -19,7 +19,7 @@ body {
 
 .logo {
   font-size: 36px;
-  color: #66BB33;
+  color: #458a1d;
   font-weight: bold;
 }
 
@@ -46,32 +46,26 @@ body {
   color: #2c3e50;
 }
 
-
 @media (max-width: 500px) {
   body {
     padding: 60px;
   }
-
   .header {
     flex-direction: column;
     gap: 10px;
     align-items: flex-start;
   }
-
   .logo {
     font-size: 28px;
     text-align: left;
   }
-
   .skip {
     font-size: 13px;
     align-self: flex-end;
   }
-
   .phrase-box {
     padding: 150px 20px;
   }
-
   .phrase {
     font-size: 24px;
   }
