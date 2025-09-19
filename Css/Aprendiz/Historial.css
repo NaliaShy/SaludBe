@@ -147,7 +147,7 @@ nav .logo {
 
 .profile-icon {
   font-size: 40px;
-  background: #458a1d;
+  background: var(--Sena-Azul);
   color: white;
   border-radius: 50%;
   padding: 10px;
@@ -165,7 +165,7 @@ nav .logo {
 /* ===== Botones ===== */
 
 .btn {
-  background: #458a1d;
+  background: var(--Sena-Azul);
   border: none;
   padding: 10px 16px;
   color: white;
@@ -177,7 +177,7 @@ nav .logo {
 }
 
 .btn:hover {
-  background: #a7ff96;
+  background: #7bdce3;
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -200,7 +200,7 @@ nav .logo {
 }
 
 .observacion-input:focus {
-  border-color: #458a1d;
-  box-shadow: 0 0 6px #458a1d;
+  border-color: var(--Sena-Azul);
+  box-shadow: 0 0 6px #7dc7de;
   outline: none;
 }
