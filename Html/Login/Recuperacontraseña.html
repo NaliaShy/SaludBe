@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="/Css/Login/Recuperacontraseña.css">
+    <link rel="stylesheet" href="/Css/Repetivos/root.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recupera tu contraseña</h1>
+        <div class="form">
+            <p>A tu correo llegará un código de verificación, ¡ingrésalo!</p>
+            <div class="input-codigo">
+                <input type="text" maxlength="1" id="codigo1" class="codigo" />
+                <input type="text" maxlength="1" id="codigo2" class="codigo" />
+                <input type="text" maxlength="1" id="codigo3" class="codigo" />
+                <input type="text" maxlength="1" id="codigo4" class="codigo" />
+                <input type="text" maxlength="1" id="codigo5" class="codigo" />
+                <input type="text" maxlength="1" id="codigo6" class="codigo" />
+            </div>
+            <p id="timer">Tu código vencerá en <span id="time">3:50</span> minutos</p>
+            <p><a href="#" id="problema-codigo">¿Tienes problema con el código?</a></p>
+            <button class="btn-siguiente" onclick="window.location.href=''">Siguiente</button>
+            <button class="btn-volver" onclick="window.location.href='/HTML/Login/Loginaprendiz.html'">Volver a inicio de sesion</button>
+
+        </div>
+    </div>
+
+    <script>
+        let countdown = 230; // 3 minutes and 50 seconds in seconds
+let timerElement = document.getElementById('time');
+
+function updateTimer() {
+    let minutes = Math.floor(countdown / 60);
+    let seconds = countdown % 60;
+    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+    countdown--;
+    if (countdown < 0) {
+        clearInterval(timerInterval);
+        alert('El código ha expirado.');
+    }
+}
+
+let timerInterval = setInterval(updateTimer, 1000);
+
+// Handle input focus for each field
+const inputs = document.querySelectorAll('.codigo');
+inputs.forEach((input, index) => {
+    input.addEventListener('input', function () {
+        if (this.value.length == 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    });
+});
+
+// Handle the 'Siguiente' button click
+document.getElementById('siguiente').addEventListener('click', () => {
+    let code = '';
+    inputs.forEach(input => {
+        code += input.value;
+    });
+    if (code.length === 6) {
+        alert('Código ingresado correctamente: ' + code);
+    } else {
+        alert('Por favor, ingresa el código completo.');
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro - SENA</title>
+    <link rel="stylesheet" href="/Css/Login/Olvidocontraseña.css" />
+    <link rel="stylesheet" href="/Css/Repetivos/root.css">
+</head>
+
+<body>
+
+    <div class="registro-container">
+          <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
+        <center>
+            <h1>Recupera tu cuenta</h1>
+        </center>
+        <br>
+        <form action="/LOGIN/PHP/Olvidocontraseña.php" method="post">
+            <label for="correo">Ingresa tu correo electrónico con el que te registrate:</label>
+            <input type="email" id="correo" placeholder="example@example.com" required>
+
+            <button class="btn-siguiente" onclick="window.location.href='/HTML/Login/Recuperacontraseña.html'">Siguiente</button>
+            <button class="btn-volver" onclick="window.location.href='/HTML/Login/Loginaprendiz.html'">Volver a inicio de sesion</button>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

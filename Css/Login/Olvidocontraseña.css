@@ -109,3 +109,8 @@ input::placeholder {
         padding: 30px 20px;
     }
 }
+.logo {
+  width: 100px;
+  margin-left: 110px;
+  animation: fadeIn 1s ease forwards;
+}

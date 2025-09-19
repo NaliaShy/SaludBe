@@ -134,6 +134,45 @@ input:focus {
 .btn-aprendiz:hover {
   background-color: #1fa370;
 }
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-login {
+  background-color: #258f10;
+  color: white;
+}
+
+.btn-Index {
+  background-color: #279111;
+  color: white;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-login:hover {
+  background-color: #146c4a;
+}
+
+.btn-Index:hover {
+  background-color: #1fa370;
+}
 
 /* -------- Register Link -------- */
 
