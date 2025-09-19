@@ -12,55 +12,76 @@
 <body>
     <nav>
         <div class="logo">
-            <img id="logo" src="/Img/Logo.png" alt="Logo de SaludBe">
+            <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
+                alt="Logo de SaludBe">
             <h1>SaludBe</h1>
         </div>
         <div class="option">
             <div class="menu">
-                <a href="/Html/Index.html"><li>Inicio</li></a>
-                <a href="/Html/Ayuda.html"><li>¿Necesitas ayuda?</li></a>
-                <a href="/Html/Nosotros.html"><li>¿Quienes somos?</li></a>
+                <a href="/Html/Index.html">
+                    <li>Inicio</li>
+                </a>
+                <a href="/Html/Ayuda.html">
+                    <li>¿Necesitas ayuda?</li>
+                </a>
+                <a href="/Html/Nosotros.html">
+                    <li>¿Quienes somos?</li>
+                </a>
             </div>
             <div class="Cuenta">
-                <button>Inicia seccion</button>
-                <button>Registrate</button>
+                <button onclick="window.location.href='/Html/Login/Loginaprendiz.html'">
+                        Inicia Seccion
+                    </button>
+                <button onclick="window.location.href='/Html/Login/Registrate.html'">
+                        Registrate
+                    </button>
             </div>
         </div>
     </nav>
-
+    <!--Contenido-->
     <div class="container">
         <section class="gancho">
-            <div class="gancho--contenido">
-                <h2>SaludBE</h2>
-                <h3>Tu salud importa, y aquí la cuidamos contigo.</h3>
-                <p>
-                    En <strong>SaludBE</strong> encuentras apoyo psicológico, orientación profesional
-                    y herramientas de autocuidado diseñadas para acompañarte durante tu proceso
-                    formativo en el SENA. Aquí podrás agendar citas con especialistas, acceder a
-                    tu historial clínico, realizar test de bienestar y mantener un contacto directo
-                    con psicólogos en un entorno seguro y confidencial. Porque tu salud mental y
-                    emocional es tan importante como tu desarrollo académico, SaludBE está contigo
-                    en cada paso de tu aprendizaje.
-                </p>
-                <button onclick="window.location.href='/Html/Login/Loginaprendiz.html'">
-                    Empieza ahora
-                </button>
+            <div class="gancho-contenido">
+                <div class="titulo">
+                    <h2>SaludBE</h2>
+                    <h3>Tu salud importa, y aquí la cuidamos contigo.</h3>
+                </div>
+                <div class="contenido">
+                    <p>
+                        En <strong>SaludBE</strong> encuentras apoyo psicológico, orientación profesional
+                        y herramientas de autocuidado diseñadas para acompañarte durante tu proceso
+                        formativo en el SENA. Aquí podrás agendar citas con especialistas, acceder a
+                        tu historial clínico, realizar test de bienestar y mantener un contacto directo
+                        con psicólogos en un entorno seguro y confidencial. Porque tu salud mental y
+                        emocional es tan importante como tu desarrollo académico, SaludBE está contigo
+                        en cada paso de tu aprendizaje.
+                    </p>
+                </div>
+                <div class="empieza-ahora">
+                    <button onclick="window.location.href='/Html/Login/Loginaprendiz.html'">
+                        Empieza ahora
+                    </button>
+                </div>
             </div>
         </section>
         <!-- Sección: Enfoque breve para el inicio -->
-        <section class="inicio-enfoque">
-            <div class="inicio-contenido">
-                <h2>¿Por qué SaludBe?</h2>
-                <p>
-                    Porque cuidar tu salud mental y emocional es tan importante como tu formación.
-                    Con <strong>SaludBe</strong> tienes un espacio digital seguro para agendar citas,
-                    recibir apoyo psicológico, acceder a recursos de autocuidado y mantener el control
-                    de tu bienestar en todo momento.
-                </p>
-                <p>
-                    Nuestra meta es crear comunidades más saludables, mejorar el rendimiento académico
-                    y laboral, y acompañarte en cada paso de tu proceso en el SENA.
-                </p>
+        <section class="gancho">
+            <div class="gancho-contenido">
+                <div class="titulo">
+                    <h2>¿Por qué SaludBe?</h2>
+                </div>
+                <div class="contenido">
+                    <p>
+                        Porque cuidar tu salud mental y emocional es tan importante como tu formación.
+                        Con <strong>SaludBe</strong> tienes un espacio digital seguro para agendar citas,
+                        recibir apoyo psicológico, acceder a recursos de autocuidado y mantener el control
+                        de tu bienestar en todo momento.
+                    </p>
+                    <p>
+                        Nuestra meta es crear comunidades más saludables, mejorar el rendimiento académico
+                        y laboral, y acompañarte en cada paso de tu proceso en el SENA.
+                    </p>
+                </div>
             </div>
         </section>
 
