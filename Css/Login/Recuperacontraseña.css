@@ -80,3 +80,7 @@ h1 {
     background-color: #2cc288;
     transform: translateY(-2px);
 }
+.logo {
+  width: 100px;
+  animation: fadeIn 1s ease forwards;
+}
