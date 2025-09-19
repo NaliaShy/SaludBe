@@ -10,8 +10,12 @@ nav {
     padding: 5px 50px 5px 50px;
     background-color: var(--Sena-Blanco);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0px;
 }
-
+.container{
+    margin: 200px 0 0 0 ;
+}
 .logo {
     display: flex;
     justify-content: space-around;
@@ -86,17 +90,20 @@ a{
 /*CONTENIDO AQUÍ*/
 /*Container*/
 .container{
-    margin: 100px;
+    margin: 250px 100px 100px 100px;
     display: flex;
     justify-content: space-evenly;
     gap: 100px;
     flex-direction: column;
-    background: #f9f9f9;
+
 }
 
 /*Gancho*/
 .gancho{
+    background-color: var(--transparencia-blanco);
+    border-radius: 20px;
     gap: 30px;
+    padding: 20px;
 }
 button {
     padding: 12px;
@@ -116,10 +123,24 @@ button:hover {
     border-radius: 5px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
+.gancho-contenido{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+}
+
+.contenido{
+    display: flex;
+    flex-direction: column;
+    justify-content: justify;
+    gap: 20px;
+}
 /*ROLES*/
 .roles {
-    padding: 60px 20px;
-    background: #f9f9f9;
+    padding: 20px;
+    background: var(--transparencia-blanco);
+    border-radius: 20px;
 }
 
 .roles h2 {
