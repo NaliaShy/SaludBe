@@ -14,7 +14,7 @@
     /* NAV superior */
     nav {
       position: relative;
-      background-color: #458a1d;
+      background:var(--Sena-Azul);
       padding: 15px 20px;
       height: 60px;
     }
@@ -46,7 +46,7 @@
       left: -250px;
       width: 250px;
       height: 100vh;
-      background-color: #458a1d;
+      background-color:var(--Sena-Azul);
       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
       padding-top: 60px;
       transition: left 0.3s ease;
@@ -70,7 +70,7 @@
     }
 
     .sidebar ul li a:hover {
-      background-color: #69e674;
+      background-color: #3cbce3;
       border-radius: 5px;
     }
 

@@ -32,7 +32,7 @@
   .loading-dots span {
       width: 15px;
       height: 15px;
-      background-color: #5fa802;
+      background-color:var(--Sena-Azul);
       border-radius: 50%;
       opacity: 0.3;
       animation: blink 1.4s infinite;

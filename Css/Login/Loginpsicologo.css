@@ -132,7 +132,7 @@ input:focus {
 }
 
 .btn-aprendiz:hover {
-  background-color: #1fa370;
+  background-color:var(--Sena-Azul);
 }
 .btn {
   width: 100%;

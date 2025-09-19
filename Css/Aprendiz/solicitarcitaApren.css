@@ -6,7 +6,7 @@
 
 body, html {
   height: 100%;
-  font-family: 'Georgia', serif;
+  font-family: var(--font-sena);
   background-color: #fff;
 }
 
@@ -25,20 +25,26 @@ body, html {
 }
 
 .logo {
-  color: #66BB33;
+  color:var(--Sena-Azul);
   font-size: 36px;
   font-weight: bold;
   margin: 0 auto;
 }
 
 .formulario {
-  max-width: 600px;
+  width: 1750px;
   margin: 30px auto;
-  background-color: #98c8ff;
-  padding: 30px;
+  height: 600px;
+  background-color:rgb(144, 216, 224);
+  padding: 50px 50px 50px 50px;
   border-radius: 8px;
   color: black;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 40px;
 }
+
 
 .fila {
   display: flex;
@@ -84,7 +90,7 @@ body, html {
 }
 
 .btn-enviar {
-  background-color: #3a1ac7;
+  background-color:var(--Sena-Azul);
   color: white;
   border: none;
   padding: 12px 20px;

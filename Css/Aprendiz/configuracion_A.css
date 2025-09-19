@@ -5,12 +5,20 @@
             padding: 0;
         }
         .config-container {
-            max-width: 500px;
+            max-width: 1000px;
+        
             margin: 40px auto;
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             padding: 24px;
+        }
+        .a{
+            margin-left:25% ;
+            margin-right:25% ;
+        }
+        .contenedor{
+            margin-top: 20;
         }
         .tabs {
             display: flex;

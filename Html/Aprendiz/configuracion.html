@@ -6,7 +6,7 @@
     <title>Centro de Configuraciones</title>
     <link rel="stylesheet" href="/Css/Aprendiz/configuracion_A.css">
     <link rel="stylesheet" href="/Css/Repetivos/root.css">
-    <link rel="stylesheet" href="/Css/Repetivos/sidebar.css">
+    <link rel="stylesheet" href="/Css/Repetivos/Aprendis.css">
 </head>
 
 <body>
@@ -27,7 +27,6 @@
                     Calendario</a></li>
             <li><a href="">Chat</a></li>
             <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
-            <li><a href="#"> Configuración</a></li>
             <li><a href="/Html/Aprendiz/configuracion.html"> Configuraciones</a></li>
             <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
         </ul>
@@ -40,13 +39,13 @@
             <div class="tab active" onclick="showSection('general')">General</div>
             <div class="tab" onclick="showSection('actualizar')">Actualizar Datos</div>
         </div>
-        <div id="general" class="section active">
-            <button class="config-btn secondary">Cambiar Cuenta</button>
-            <button class="config-btn" onclick="window.location.href='../Login/Loginaprendiz.html'">Cerrar
-                Sesión</button>
-            <button class="config-btn danger">Eliminar Cuenta</button>
-            <button class="config-btn" style="margin-top: 20px;"
-                onclick="window.location.href='../Aprendiz/PaginaPrincipal.html'">Volver</button>
+        <div class="contenedor">
+            <div id="general" class="section active">
+            <button class="config-btn secondary" class="a">Cambiar Cuenta</button>
+            <button class="config-btn" onclick="window.location.href='../Login/Loginaprendiz.html'" class="a">Cerrar Sesión</button>
+            <button class="config-btn danger" class="a">Eliminar Cuenta</button>
+            <button class="config-btn" style="margin-top: 20px;" onclick="window.location.href='../Aprendiz/PaginaPrincipal.html'" class="a">Volver</button>
+        </div>
         </div>
 
 
