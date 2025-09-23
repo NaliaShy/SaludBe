@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Psicólogo</title>
+  <link rel="stylesheet" href="../../Css/Aprendiz/chats_A.css">
+  <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
+  <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <nav>
+    <div class="logo">SaludBE</div>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+  </nav>
+
+  <!-- Sidebar del menú general -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li><a href="../../Html/Aprendiz/PaginaPrincipal.html">
+          Inicio</a></li>
+      <li><a href="../../Html/Aprendiz/citasApr.html"> Agendar citas</a></li>
+      <li><a href="../../Html/Aprendiz/Historial.html"> Historial Clinico</a></li>
+      <li><a href="/Html/Aprendiz/calendario.html">
+          Calendario</a></li>
+      <li><a href="../../Html/Aprendiz/chats_a.html">Chat</a></li>
+      <li><a href="../../Html/Aprendiz/test.html"> Test</a></li>
+      <li><a href="../Aprendiz/configuracion.html"> Configuraciones</a></li>
+      <li><a href="../Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+    </ul>
+  </div>
+
+  <!-- Fondo oscuro para cuando se abre el menú -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+  <!-- Contenedor del chat -->
+  <div class="chat-container">
+    <!-- Sidebar de mensajes -->
+    <div class="chat-sidebar">
+      <h2>Messages</h2>
+      <ul>
+        <li class="active" data-user="Aprendis-1">Aprendis-1 <span class="time">24m</span></li>
+        <li data-user="Psicologo-2">Psicologo-2 <span class="time">5h</span></li>
+        <li data-user="Chatbot">Chatbot <span class="time">15m</span></li>
+      </ul>
+    </div>
+
+    <!-- Chat principal -->
+    <div class="chat-box">
+      <div class="chat-header">
+        <h3 id="chatUser">Aprendis-1</h3>
+        <span class="status">● Online</span>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- Aquí se cargan los mensajes dinámicamente con chat.js -->
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
+    }
+  </script>
+
+  <script src="../../js/chat.js"></script>
+</body>
+</html>
