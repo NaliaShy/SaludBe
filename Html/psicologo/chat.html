@@ -1,103 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SaludBE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Psicólogo</title>
   <link rel="stylesheet" href="../../Css/Psicologo/chats.css">
   <link rel="stylesheet" href="../../Css/Repetivos/sidebar.css">
   <link rel="stylesheet" href="../../Css/Repetivos/root.css">
 </head>
-
 <body>
 
+  <!-- Barra superior -->
   <nav>
     <div class="logo">SaludBE</div>
     <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
   </nav>
 
-  <!-- Menú lateral -->
+  <!-- Sidebar del menú general -->
   <div class="sidebar" id="sidebar">
     <ul>
-      <li><a href="PaginaPrincipal.html">
-          Inicio</a></li>
-      <li><a href="Lista.html"> Lista De
-          Pacientes</a></li>
-      <li><a href="Historial.html">
-          Historial Clinico</a></li>
-      <li><a href="calendario.html">
-          Calendario</a></li>
+      <li><a href="PaginaPrincipal.html">Inicio</a></li>
+      <li><a href="Lista.html">Lista De Pacientes</a></li>
+      <li><a href="Historial.html">Historial Clínico</a></li>
+      <li><a href="calendario.html">Calendario</a></li>
       <li><a href="chat.html">Chat</a></li>
-      <li><a href="/Html/psicologo/configuracion.html"> Configuración</a></li>
-      <li><a href="/Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>
+      <li><a href="/Html/psicologo/configuracion.html">Configuración</a></li>
+      <li><a href="/Html/Login/Loginpsicologo.html">Cerrar Sesión</a></li>
     </ul>
   </div>
 
-  <!-- Fondo oscuro -->
+  <!-- Fondo oscuro para cuando se abre el menú -->
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-  <!-- Menú desplegable -->
-  <div class="dropdown-menu" id="dropdown">
-    <a href="/psicologo/chat/HTML/">🏠 Inicio</a>
-    <a href="#">⚙️ Configuración</a>
-    <a href="#">👤 Perfil</a>
-    <a href="#">🚪 Cerrar sesión</a>
-  </div>
-  </aside>
-
-  <!-- Panel de mensajes -->
-  <section class="messages-panel" id="chatPanel">
-    <div class="messages-header">
+  <!-- Contenedor del chat -->
+  <div class="chat-container">
+    <!-- Sidebar de mensajes -->
+    <div class="chat-sidebar">
       <h2>Messages</h2>
-      <button class="add-button" onclick="toggleChat()">−</button>
+      <ul>
+        <li class="active" data-user="Aprendis-1">Aprendis-1 <span class="time">24m</span></li>
+        <li data-user="Psicologo-2">Psicologo-2 <span class="time">5h</span></li>
+        <li data-user="Chatbot">Chatbot <span class="time">15m</span></li>
+      </ul>
     </div>
-    <input type="text" class="search" placeholder="Search messages">
-    <ul class="message-list">
-      <li><strong>Laura Mendez</strong><br><small>Hola! ¿Cómo te has
-          sentido?</small></li>
-      <li><strong>Chatbot</strong><br><small>Hola, ¿qué tal tu
-          día?</small></li>
-    </ul>
-  </section>
 
-  <!-- Contenido principal -->
-  <section class="main-content">
-    <div class="overlay">
-      <h1>SaludBE</h1>
+    <!-- Chat principal -->
+    <div class="chat-box">
+      <div class="chat-header">
+        <h3 id="chatUser">Aprendis-1</h3>
+        <span class="status">● Online</span>
+      </div>
+
+      <div class="chat-messages" id="chat-messages">
+        <!-- Aquí se cargan los mensajes dinámicamente con chat.js -->
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
+        <button onclick="sendMessage()">➤</button>
+      </div>
     </div>
-  </section>
   </div>
 
   <script>
     function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      if (sidebar.style.left === '0px') {
-        sidebar.style.left = '-250px';
-        overlay.style.display = 'none';
-      } else {
-        sidebar.style.left = '0px';
-        overlay.style.display = 'block';
-      }
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      sidebar.classList.toggle("open");
+      overlay.classList.toggle("show");
     }
-
-    // Mostrar/ocultar el chat
-    function toggleChat() {
-      const chat = document.getElementById('chatPanel');
-      chat.classList.toggle('hidden');
-    }
-
-    // Cerrar menú desplegable si haces clic fuera
-    window.addEventListener('click', function (e) {
-      const dropdown = document.getElementById('dropdown');
-      const menuButton = document.querySelector('.hamburger');
-      if (!dropdown.contains(e.target) && !menuButton.contains(e.target)) {
-        dropdown.style.display = 'none';
-      }
-    });
   </script>
 
+  <script src="../../js/chat.js"></script>
 </body>
-
 </html>
