@@ -32,6 +32,9 @@
     </ul>
   </div>
 
+    <!-- Fondo oscuro para cuando se abre el menú -->
+  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
   <!-- Fondo oscuro -->
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
@@ -43,15 +46,10 @@
     <script>
       // Función para cargar el archivo HTML de notificaciones
       function toggleMenu() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        if (sidebar.style.left === '0px') {
-          sidebar.style.left = '-250px';
-          overlay.style.display = 'none';
-        } else {
-          sidebar.style.left = '0px';
-          overlay.style.display = 'block';
-        }
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
+        sidebar.classList.toggle("active");
+        overlay.classList.toggle("show");
       }
     </script>
   </div>
