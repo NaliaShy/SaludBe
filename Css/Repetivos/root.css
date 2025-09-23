@@ -41,3 +41,6 @@
   border-radius: 8px;
   z-index: 10000; /* Asegura que esté por encima de otros elementos */
 }
+body {
+  font-family: var(--font-sena), sans-serif;
+}
