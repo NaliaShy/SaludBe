@@ -10,7 +10,7 @@
 </head>
 
 <body>
-     <nav>
+    <nav>
         <div class="logo">
             <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
                 alt="Logo de SaludBe">
@@ -30,11 +30,20 @@
             </div>
             <div class="Cuenta">
                 <button onclick="window.location.href='/Html/Login/Loginaprendiz.html'">
-                        Inicia Seccion
-                    </button>
+                    Inicia Seccion
+                </button>
                 <button onclick="window.location.href='/Html/Login/Registrate.html'">
-                        Registrate
-                    </button>
+                    Registrate
+                </button>
+            </div>
+            <div class="perfil-contenedor">
+                <div class="perfil-icono">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2c-3.3 0-9.9 1.7-9.9 5v2h19.8v-2c0-3.3-6.6-5-9.9-5z" />
+                    </svg>
+                </div>
+                <p class="perfil-texto">Perfil</p>
             </div>
         </div>
     </nav>
@@ -49,7 +58,8 @@
                 <li>Haz clic en el botón <strong>Iniciar sesión</strong>.</li>
                 <li>Si los datos son correctos, accederás a tu cuenta.</li>
             </ol>
-            <p>¿No tienes cuenta? Haz clic en <strong>Registrate</strong> para crear una nueva.</p>
+            <p>¿No tienes cuenta? Haz clic en <a href="/Html/Login/Registrate.html"><strong>Registrate</strong></a> para
+                crear una nueva.</p>
             <p>¿Olvidaste tu contraseña? Busca la opción de recuperación en la página de inicio de sesión.</p>
         </section>
     </main>
