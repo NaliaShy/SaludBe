@@ -27,60 +27,63 @@ nav {
     color: #fffdfd;
 }
 
-/* Sidebar */
+/* ===== Sidebar ===== */
+
 .sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100vh;
-    padding: 5px;
-    background-color:var(--Sena-Azul);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    padding-top: 60px;
-    transition: left 0.3s ease;
-    z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100%;
+  background: var(--Sena-Azul);
+  color: white;
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 2000;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.sidebar.open {
-    left: 0;
+.sidebar.active {
+  left: 0;
 }
 
 .sidebar ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .sidebar ul li {
-    padding: 15px 20px;
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar ul li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 18px;
-    display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  display: block;
+  transition: 0.3s;
 }
 
 .sidebar ul li a:hover {
-    padding: 5px;
-    background-color:var(--Sena-Azul-Hover);
-    border-radius: 5px;
-    color: var(--Sena-Contraste);
+  color: var(--Sena-Verde-Hover);
+  margin-left: 8px;
 }
-
-/* Fondo oscuro */
+/* Fondo oscuro cuando se abre el sidebar */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--transparencia);
-    display: none;
-    z-index: 1500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* oscuro semi-transparente */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1500; /* debajo del sidebar (que está en 2000) */
 }
 
 .overlay.show {
-    display: block;
+  opacity: 1;
+  visibility: visible;
 }
