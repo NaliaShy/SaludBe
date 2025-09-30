@@ -203,5 +203,9 @@ button:hover {
         text-align: center;
     }
 }
-
-
+body {
+    margin-top: 175px;
+}
+.ayuda-contenido {
+    
+}
