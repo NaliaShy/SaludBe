@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,47 +7,39 @@
     <link rel="stylesheet" href="../../Css/Login/Registrarte.css" />
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
 </head>
-
 <body>
-
     <div class="registro-container">
-        <center>
-            <h1>Registrate</h1>
-        </center>
+        <center><h1>Regístrate</h1></center>
         <br>
-        <form action="/LOGIN/PHP/registrarte.php" method="post">
-            <label for="correo">Ingresa tu correo electrónico:</label>
-            <input type="email" id="correo" placeholder="example@example.com" required>
 
-            <label for="contrasena">Crea tu contraseña (6+ caracteres):</label>
-            <input type="password" id="contrasena" placeholder="Contraseña" minlength="6" required>
+        <form action="/Login/php/registro.php" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
 
-            <label for="tipo-doc">Ingresa tu tipo de documento:</label>
-            <select id="tipo-doc" required>
+            <label for="apellios">Apellios:</label>
+            <input type="text" id="apellios" name="apellios" placeholder="Tus apellios" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" placeholder="3001234567" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="example@example.com" required>
+
+            <label for="contrasena">Contraseña (mínimo 6 caracteres):</label>
+            <input type="password" id="contrasena" name="contrasena" minlength="6" required>
+
+            <label for="tipo-doc">Tipo de documento:</label>
+            <select id="tipo-doc" name="tipo-doc" required>
                 <option value="" disabled selected>Selecciona</option>
-                <option value="cc">Cédula de ciudadanía</option>
-                <option value="ti">Tarjeta de identidad</option>
-                <option value="ce">Cédula de extranjería</option>
-                <option value="pa">Pasaporte</option>
+                <option value="1">Cédula de ciudadanía</option>
+                <option value="2">Tarjeta de identidad</option>
+                <option value="3">Cédula de extranjería</option>
+                <option value="4">Pasaporte</option>
             </select>
 
-
-
-            <label for="num-doc">Ingresa tu número de documento:</label>
-            <input type="text" id="num-doc" placeholder="123456789" required>
-
-            <label for="nombre">Ingresa tu nombre completo:</label>
-            <input type="text" id="nombre" placeholder="Ingresa tu nombre completo" required>
-
-            <label for="ficha">Ingresa tu número de ficha:</label>
-            <input type="text" id="ficha" placeholder="3148345" required>
-
-            <button type="submit" class="btn-siguiente">Siguiente</button>
-            <button class="btn-volver" onclick="window.location.href='/HTML/Login/Loginaprendiz.html'">Volver a inicio de sesion</button>
-
+            <button type="submit" class="btn-siguiente">Registrar</button>
+            <button type="button" class="btn-volver" onclick="window.location.href='/Html/Login/Loginaprendiz.html'">Volver al inicio</button>
         </form>
     </div>
-
 </body>
-
 </html>
