@@ -50,12 +50,14 @@ body {
 }
 
 .fila {
+  width: 70%; /* o el tamaño que prefieras */
+  margin: 0 auto 15px; /* auto centra el bloque */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ddd;
   padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 8px; /* opcional */
 }
 
 .info {

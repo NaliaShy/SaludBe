@@ -3,47 +3,37 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaludBE</title>
+    <title>Centro de Configuraciones</title>
     <link rel="stylesheet" href="../../Css/Psicologo/ResulTest.css">
-    <link rel="stylesheet" href="../../Css/psicologo/sidebar.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/sidebar.css">
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
 </head>
 
 <body>
-
-    <header class="header">
-        <div class="menu-icon">&#9776;</div>
-        <h1 class="logo">SaludBE</h1>
-    </header>
-
-
-    <main>
-        <nav>
-           <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-           <div class="logo">SaludBE</div>
-        </nav>
+    <nav>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <div class="logo">SaludBE</div>
+    </nav>
 
 
-  <!-- Menú lateral -->
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="PaginaPrincipal.html">
-          Inicio</a></li>
-      <li><a href="Lista.html"> Lista De
-          Pacientes</a></li>
-      <li><a href="Historial.html">
-          Historial Clinico</a></li>
-      <li><a href="calendario.html">
-          Calendario</a></li>
-      <li><a href="chat.html">Chat</a></li>
-        <li><a href="ResulTest.html">Resultado Test</a></li>
-      <li><a href="/Html/psicologo/configuracion.html"> Configuración</a></li>
-      <li><a href="/Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>
-    </ul>
-  </div>
-
-  <!-- Fondo oscuro -->
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="PaginaPrincipal.html">
+                    Inicio</a></li>
+            <li><a href="Lista.html"> Lista De
+                    Pacientes</a></li>
+            <li><a href="Historial.html">
+                    Historial Clinico</a></li>
+            <li><a href="calendario.html">
+                    Calendario</a></li>
+            <li><a href="chat.html">Chat</a></li>
+            <li><a href="ResulTest.html">Resultado Test</a></li>
+            <li><a href="/Html/psicologo/configuracion.html"> Configuración</a></li>
+            <li><a href="/Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    <!-- Fondo oscuro -->
   <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
         <h2 class="titulo">Ver Resutado </h2>
@@ -69,21 +59,31 @@
 
                 </div>
             </div>
-        </section>
-    </main>
     <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('overlay');
-      if (sidebar.style.left === '0px') {
-        sidebar.style.left = '-250px';
-        overlay.style.display = 'none';
-      } else {
-        sidebar.style.left = '0px';
-        overlay.style.display = 'block';
-      }
-    }
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            if (sidebar.style.left === '0px') {
+                sidebar.style.left = '-250px';
+                overlay.style.display = 'none';
+            } else {
+                sidebar.style.left = '0px';
+                overlay.style.display = 'block';
+            }
+        }
+        function showSection(section) {
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            if (section === 'general') {
+                document.querySelector('.tab:nth-child(1)').classList.add('active');
+                document.getElementById('general').classList.add('active');
+            } else {
+                document.querySelector('.tab:nth-child(2)').classList.add('active');
+                document.getElementById('actualizar').classList.add('active');
+            }
+        }
     </script>
+
 </body>
 
 </html>
