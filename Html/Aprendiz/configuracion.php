@@ -10,30 +10,7 @@
 </head>
 
 <body>
-    <!-- NAV superior -->
-    <nav>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <div class="logo">SaludBE</div>
-    </nav>
-    <!-- Menú lateral -->
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="../Aprendiz/PaginaPrincipal.html">
-          Inicio</a></li>
-            <li><a href="../Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
-            <li><a href="../Aprendiz/Historial.html">
-          Historial Clinico</a></li>
-            <li><a href="../Aprendiz/calendario.html">
-          Calendario</a></li>
-            <li><a href="../Aprendiz/chats_a.html">Chat</a></li>
-            <li><a href="../Aprendiz/test.html"> Test</a></li>
-            <li><a href="../Aprendiz/configuracion.html"> Configuraciones</a></li>
-            <li><a href="../Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
-        </ul>
-    </div>
-
-    <!-- Fondo oscuro para cuando se abre el menú -->
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <?php include '../../php/Components/Sidebar_a.php'; ?>
 
     <div class="config-container">
         <div class="tabs">
@@ -93,14 +70,10 @@
 
 
     </div>
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
-            sidebar.classList.toggle("active");
-            overlay.classList.toggle("show");
-        }
 
+    <?php include '../../php/Components/notificaciones_a.php'; ?>
+
+    <script>
         function showSection(section) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));

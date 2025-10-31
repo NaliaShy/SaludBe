@@ -13,7 +13,7 @@
 <body>
     <div class="header">
         <h1 class="logo">SaludBE</h1>
-        <a href="../Aprendiz/PaginaPrincipal.html" class="skip">SALTAR</a>
+        <a href="../Aprendiz/PaginaPrincipal.php" class="skip">SALTAR</a>
     </div>
 
     <div class="phrase-box">
@@ -23,7 +23,7 @@
     <script>
         // Espera 3 segundos (3000 ms) y redirige a la página principal
         setTimeout(() => {
-            window.location.href = "PaginaPrincipal.html"; // Cambia aquí la URL de destino
+            window.location.href = "PaginaPrincipal.php"; // Cambia aquí la URL de destino
         }, 3000);
     </script>
 

@@ -5,38 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> SaludBE</title>
-    <link rel="stylesheet" href="../../Css/Aprendiz/solicitarcitaApren.css">
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
+    <link rel="stylesheet" href="../../Css/Aprendiz/solicitarcitaApren.css">
 </head>
 
 <body>
 
-    <!-- NAV superior -->
-    <nav>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <div class="logo">SaludBE</div>
-    </nav>
+    <?php include '../../php/Components/Sidebar_a.php'; ?>
 
-    <!-- Menú lateral -->
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="../Aprendiz/PaginaPrincipal.html">
-          Inicio</a></li>
-            <li><a href="../Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
-            <li><a href="../Aprendiz/Historial.html">
-          Historial Clinico</a></li>
-            <li><a href="../Aprendiz/calendario.html">
-          Calendario</a></li>
-            <li><a href="../Aprendiz/chats_a.html">Chat</a></li>
-            <li><a href="../Aprendiz/test.html"> Test</a></li>
-            <li><a href="../Aprendiz/configuracion.html"> Configuraciones</a></li>
-            <li><a href="../Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
-        </ul>
-    </div>
-
-    <!-- Fondo oscuro para cuando se abre el menú -->
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
     <!-- Contenedor principal -->
     <main>
         <section class="formulario">
@@ -92,28 +69,7 @@
             </div>
         </section>
     </main>
-    <div class="main-content">
-        <h1>SaludBE</h1>
-        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Saludbe Logo" />
-        <iframe src="../Aprendiz/notificacion_a.html" frameborder="0" id="Notificaciones"></iframe>
-        <script>
-            // Función para cargar el archivo HTML de notificaciones
-            function toggleMenu() {
-                const sidebar = document.getElementById("sidebar");
-                const overlay = document.getElementById("overlay");
-                sidebar.classList.toggle("active");
-                overlay.classList.toggle("show");
-            }
-        </script>
-    </div>
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
-            sidebar.classList.toggle("active");
-            overlay.classList.toggle("show");
-        }
-    </script>
+    <?php include '../../php/Components/notificaciones_a.php'; ?>
 </body>
 
 </html>

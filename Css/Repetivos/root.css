@@ -3,11 +3,10 @@
   --Sena-Azul: #00909E;
   --Sena-Verde-Hover: #76dc85;
   --Sena-Azul-Hover: #76b8dc;
-  --transparencia: rgba(0, 0, 0, 0.6);
   --Sena-Contraste: #000;
-  --font-sena: 'Sena';
   --Sena-Blanco: #fffdfd;
-  --transparencia-blanco: rgba(186, 255, 223, 0.6);
+  --transparencia: rgba(0, 0, 0, 0.6);
+  --font-sena: 'Sena', sans-serif;
 }
 
 /* Reset básico */
@@ -17,31 +16,29 @@
   box-sizing: border-box;
 }
 
-
 @font-face {
   font-family: 'Sena';
-  /* Un nombre único para tu fuente */
-  src: url('/fonts/WOFF2//VictorMono-Bold.woff2') format('woff2'),
-    /* Ruta al archivo de la fuente (woff2 es un buen formato) */
-    url('/fonts/WOFF/VictorMono-Regular.woff') format('woff');
-  /* Otra opción de formato si es necesario */
+  src: url('/fonts/WOFF2/VictorMono-Bold.woff2') format('woff2'),
+       url('/fonts/WOFF/VictorMono-Regular.woff') format('woff');
   font-weight: normal;
-  /* Especifica el peso de la fuente (normal, bold, 400, 700, etc.) */
-  font-style: italic;
-  /* Especifica el estilo (normal, italic) */
+  font-style: normal;
 }
 
-#Notificaciones{
+body {
+  font-family: var(--font-sena);
+  background-color: #f9f9f9;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#Notificaciones {
   width: 700px;
   height: 400px;
   position: absolute;
   bottom: 20px;
   right: 20px;
   border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  z-index: 10000; /* Asegura que esté por encima de otros elementos */
-}
-body {
-  font-family: var(--font-sena), sans-serif;
+  z-index: 10000;
 }

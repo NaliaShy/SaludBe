@@ -30,10 +30,10 @@ button:hover {
     display: none;
     gap: 10px;
     position: fixed;
-    top: 15%;
+    top: 60%;
     right: 10px;
     width: 500px;
-    background-color: #ffffff;
+    background-color: #ffffff00;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);

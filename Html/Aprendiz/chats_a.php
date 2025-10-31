@@ -12,31 +12,7 @@
 
 <body>
 
-    <!-- Barra superior -->
-    <nav>
-        <div class="logo">SaludBE</div>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    </nav>
-
-    <!-- Sidebar del menú general -->
-    <div class="sidebar" id="sidebar">
-        <ul>
-            <li><a href="../Aprendiz/PaginaPrincipal.html">
-          Inicio</a></li>
-            <li><a href="../Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
-            <li><a href="../Aprendiz/Historial.html">
-          Historial Clinico</a></li>
-            <li><a href="../Aprendiz/calendario.html">
-          Calendario</a></li>
-            <li><a href="../Aprendiz/chats_a.html">Chat</a></li>
-            <li><a href="../Aprendiz/test.html"> Test</a></li>
-            <li><a href="../Aprendiz/configuracion.html"> Configuraciones</a></li>
-            <li><a href="../Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
-        </ul>
-    </div>
-
-    <!-- Fondo oscuro para cuando se abre el menú -->
-    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <?php include '../../php/Components/Sidebar_a.php'; ?>
 
     <!-- Contenedor del chat -->
     <div class="chat-container">
@@ -68,14 +44,7 @@
         </div>
     </div>
 
-    <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById("sidebar");
-            const overlay = document.getElementById("overlay");
-            sidebar.classList.toggle("active");
-            overlay.classList.toggle("show");
-        }
-    </script>
+    <?php include '../../php/Components/notificaciones_a.php'; ?>
 
     <script src="../../js/chat.js"></script>
 </body>

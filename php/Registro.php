@@ -1,51 +1,51 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['nombre'];
-    $apellios = $_POST['apellios'];
-    $telefono = $_POST['telefono'];
-    $correo = $_POST['correo'];
-    $contrasena = $_POST['contrasena'];
-    $tipo_doc = $_POST['tipo-doc']; // ID del tipo de documento
-    $num_document = $_POST['num_document'];
-    $estado = "activo"; // por defecto
+    $nombre = $_POST['nombre'] ?? '';
+    $apellios = $_POST['apellios'] ?? '';
+    $telefono = $_POST['telefono'] ?? '';
+    $correo = $_POST['correo'] ?? '';
+    $contrasena = $_POST['contrasena'] ?? '';
+    $tipo_doc = isset($_POST['tipo-doc']) ? (int)$_POST['tipo-doc'] : null; // ID del tipo de documento
+    $num_document = $_POST['num_document'] ?? '';
+    $estado = "activo";
 
-    // Cifrar la contraseña
+    if (!$nombre || !$correo || !$contrasena) {
+        die("Faltan datos obligatorios.");
+    }
+
     $contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    // Conexión a la base de datos
-    $conn = new mysqli("localhost", "root", "", "saludBE");
+    include 'Conexion.php';
 
-     // Verificar la conexión
+    try {
+        // Instancia de la clase Conexion (debe devolver un objeto PDO)
+        $db = new Conexion();
+        $pdo = $db->getConnect();
 
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
-    }
+        // 1) Verificar si el correo ya existe
+        $check = $pdo->prepare("SELECT Us_id FROM usuarios WHERE Us_correo = ?");
+        $check->execute([$correo]);
+        if ($check->fetch()) {
+            echo "<script>alert('El correo ya está registrado.'); window.location.href='/Html/Login/Registrate.html';</script>";
+            exit;
+        }
 
-    // Verificar si el correo ya existe
-    $check = $conn->prepare("SELECT Us_id FROM usuarios WHERE Us_correo = ?");
-    $check->bind_param("s", $correo);
-    $check->execute();
-    $check->store_result();
+        // 2) Insertar nuevo usuario (usando parámetros posicionados)
+        $sql = "INSERT INTO usuarios 
+            (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id, Us_documento)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        // Si num_document es numérico, podes castear a int. Aquí lo dejamos como string.
+        $stmt->execute([$nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document]);
 
-    if ($check->num_rows > 0) {
-        echo "<script>alert('El correo ya está registrado.'); window.location.href='/Html/Login/Registrate.html';</script>";
-        $check->close();
-        $conn->close();
+        echo "<script>alert('Registro exitoso'); window.location.href='../Html/Login/Loginaprendiz.html';</script>";
+        exit;
+
+    } catch (PDOException $e) {
+        // En producción no muestres $e->getMessage() directamente
+        error_log("Registro error: " . $e->getMessage());
+        echo "Ocurrió un error al registrar. Intentá nuevamente.";
         exit;
     }
-    $check->close();
-
-    // Insertar nuevo usuario
-    $stmt = $conn->prepare("INSERT INTO usuarios (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id, Us_documento) VALUES (?, ?, ?, ?, ?, ?, ?,?)");
-    $stmt->bind_param("ssssssii", $nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Registro exitoso'); window.location.href='../Html/Login/Loginaprendiz.html';</script>";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    $stmt->close();
-    $conn->close();
 }
 ?>
