@@ -40,7 +40,7 @@ if (!isset($_SESSION['id_usuario'])) {
         <script>
             // Espera 3 segundos (3000 ms) y redirige a la página principal
             setTimeout(() => {
-                window.location.href = "../Html/Aprendiz/frase_dia.html"; // Cambia aquí la URL de destino
+                window.location.href = "../Html/Aprendiz/frase_dia.php"; // Cambia aquí la URL de destino
             }, 3000);
         </script>
 

@@ -5,65 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SaludBE</title>
-    <link rel="stylesheet" href="../../Css/Aprendiz/Calendario.css">
-    <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+    <link rel="stylesheet" href="../../Css/Aprendiz/Calendario.css">
 </head>
 
 <body>
     <?php include '../../php/Components/Sidebar_a.php'; ?>
 
-    <div class="container">
-
-        <aside class="sidebar">
-            <div class="icon"></div>
-            <div class="icon"></div>
-            <div class="icon"></div>
-            <div class="icon"></div>
-            <div class="icon"></div>
-            <div class="icon"></div>
-        </aside>
-        <main class="main-content">
-
-            <div class="content-grid">
-
-                <section class="calendar">
-                    <h2>Calendarios</h2>
-                    <div class="calendar-box">
-                        <div class="day-names">D L M X J V S</div>
-                        <div class="days">
-
-                            <span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span>1</span><span>2</span>
-                            <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
-                            <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
-                            <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
-                            <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="appointments">
-                    <h2>Citas agendadas</h2>
-                    <div class="appointment">Cita 1 <button class="remove">x</button></div>
-                    <div class="appointment">Cita 2 <button class="remove">x</button></div>
-                    <div class="appointment">Cita 3 <button class="remove">x</button></div>
-                    <div class="appointment">Cita 4 <button class="remove">x</button></div>
-                </section>
-            </div>
-            <section class="reminder">
-                <h2>Recordatorio</h2>
-                <div class="reminder-box">
-                    <div><input type="checkbox"> <input type="text" placeholder="Escribe aquí..."></div>
-                    <div><input type="checkbox"> <input type="text" placeholder="Escribe aquí..."></div>
-                    <div><input type="checkbox"> <input type="text" placeholder="Escribe aquí..."></div>
-                    <div><input type="checkbox"> <input type="text" placeholder="Escribe aquí..."></div>
-                </div>
-            </section>
-
-
-        </main>
-
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month">◀</button>
+            <h2 id="month-year"></h2>
+            <button id="next-month">▶</button>
+        </div>
+        <div class="calendar-grid" id="calendar"></div>
     </div>
+
+
     <?php include '../../php/Components/notificaciones_a.php'; ?>
 </body>
 
