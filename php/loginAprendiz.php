@@ -1,32 +1,57 @@
 <?php
-// Establecer conexión con la base de datos
-$conexion = mysqli_connect("localhost", "root", "", "saludBE");
+// Conexión a la base de datos
+$conexion = new mysqli("localhost", "root", "natalia123", "saludBE");
 
-// Verificar la conexión
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+// Verificar conexión
+if ($conexion->connect_error) {
+    die("❌ Error de conexión: " . $conexion->connect_error);
 }
 
-// Obtener datos del formulario
-$documento = $_POST['documento'];
-$contrasena = $_POST['contrasena'];
+// Verificar si el formulario fue enviado
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $correo = $_POST['correo'] ?? '';
+    $contrasena = $_POST['contrasena'] ?? '';
 
-// Verificar si el aprendiz existe en la base de datos
-$consulta = "SELECT * FROM aprendiz WHERE documento = '$documento' AND contrasena = '$contrasena'";
-$resultado = mysqli_query($conexion, $consulta);
+    if (empty($correo) || empty($contrasena)) {
+        die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
+    }
 
-if (mysqli_num_rows($resultado) == 1) {
-    // Iniciar sesión y redirigir al usuario
-    session_start();
-    $_SESSION['documento'] = $documento;
-    header("Location: ../html/homeAprendiz.html");
-    exit();
-} else {
-    // Si las credenciales son incorrectas, redirigir al login
-    header("Location: ../html/loginAprendiz.html?error=1");
-    exit();
+    // Preparar la consulta
+    $sql = "SELECT Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
+    $stmt = $conexion->prepare($sql);
+
+    if (!$stmt) {
+        die("❌ Error al preparar la consulta: " . $conexion->error);
+    }
+
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    // Verificar si el usuario existe
+    if ($resultado->num_rows === 1) {
+        $usuario = $resultado->fetch_assoc();
+
+        // Verificar la contraseña
+        if (password_verify($contrasena, $usuario['Us_contraseña'])) {
+            session_start();
+            $_SESSION['documento'] = $usuario['Us_documento'];
+            header("Location: ../Html/Aprendiz/descarga.html");
+            exit();
+        } else {
+            // Mostrar mensaje de depuración
+            echo "❌ Contraseña incorrecta.<br>";
+            echo "Contraseña ingresada: $contrasena<br>";
+            echo "Hash en BD: " . $usuario['Us_contraseña'] . "<br>";
+            exit();
+        }
+    } else {
+        echo "❌ Usuario no encontrado con el correo: $correo";
+        exit();
+    }
+
+    $stmt->close();
 }
 
-// Cerrar la conexión
-mysqli_close($conexion);
+$conexion->close();
 ?>

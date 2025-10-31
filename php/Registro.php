@@ -6,13 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'];
     $contrasena = $_POST['contrasena'];
     $tipo_doc = $_POST['tipo-doc']; // ID del tipo de documento
+    $num_document = $_POST['num_document'];
     $estado = "activo"; // por defecto
 
     // Cifrar la contraseña
     $contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // Conexión a la base de datos
-    $conn = new mysqli("localhost", "root", "", "saludBE");
+    $conn = new mysqli("localhost", "root", "natalia123", "saludBE");
 
      // Verificar la conexión
 
@@ -35,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $check->close();
 
     // Insertar nuevo usuario
-    $stmt = $conn->prepare("INSERT INTO usuarios (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssi", $nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc);
+    $stmt = $conn->prepare("INSERT INTO usuarios (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id, Us_documento) VALUES (?, ?, ?, ?, ?, ?, ?,?)");
+    $stmt->bind_param("ssssssii", $nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Registro exitoso'); window.location.href='/Html/Login/Loginaprendiz.html';</script>";
+        echo "<script>alert('Registro exitoso'); window.location.href='../Html/Login/Loginaprendiz.html';</script>";
     } else {
         echo "Error: " . $stmt->error;
     }

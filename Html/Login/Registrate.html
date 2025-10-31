@@ -13,6 +13,18 @@
         <br>
 
         <form action="../../php/Registro.php" method="post">
+             <label for="tipo-doc">Tipo de documento:</label>
+            <select id="tipo-doc" name="tipo-doc" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option value="1">Cédula de ciudadanía</option>
+                <option value="2">Tarjeta de identidad</option>
+                <option value="3">Cédula de extranjería</option>
+                <option value="4">Pasaporte</option>
+            </select>
+
+            <label for="num_document">Número de documento:</label>
+            <input type="text" id="num_document" name="num_document" placeholder="Número de documento">
+
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
 
@@ -28,14 +40,7 @@
             <label for="contrasena">Contraseña (mínimo 6 caracteres):</label>
             <input type="password" id="contrasena" name="contrasena" minlength="6" required>
 
-            <label for="tipo-doc">Tipo de documento:</label>
-            <select id="tipo-doc" name="tipo-doc" required>
-                <option value="" disabled selected>Selecciona</option>
-                <option value="1">Cédula de ciudadanía</option>
-                <option value="2">Tarjeta de identidad</option>
-                <option value="3">Cédula de extranjería</option>
-                <option value="4">Pasaporte</option>
-            </select>
+           
 
             <button type="submit" class="btn-siguiente">Registrar</button>
             <button type="button" class="btn-volver" onclick="window.location.href='/Html/Login/Loginaprendiz.html'">Volver al inicio</button>
