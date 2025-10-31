@@ -1,46 +1,54 @@
 <?php
 include 'conexion.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $correo = $_POST['correo'] ?? '';
-    $contrasena = $_POST['contrasena'] ?? '';
+try {
+    // Creamos la conexión usando la clase PDO
+    $db = new Conexion();
+    $conexion = $db->getConnect(); // 🔥 Obtenemos el objeto PDO
 
-    if (empty($correo) || empty($contrasena)) {
-        die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
-    }
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $correo = trim($_POST['correo'] ?? '');
+        $contrasena = $_POST['contrasena'] ?? '';
 
-    $sql = "SELECT Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
-    $stmt = $conexion->prepare($sql);
+        if (empty($correo) || empty($contrasena)) {
+            die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
+        }
 
-    if (!$stmt) {
-        die("❌ Error al preparar la consulta: " . $conexion->error);
-    }
+        // 1️⃣ Buscamos al usuario por correo
+        $sql = "SELECT Us_id, Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute([$correo]);
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $stmt->bind_param("s", $correo);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+        // 2️⃣ Verificamos si existe el usuario
+        if ($usuario) {
+            // 3️⃣ Verificamos contraseña
+            if (password_verify($contrasena, $usuario['Us_contraseña'])) {
+                session_start();
 
-    if ($resultado->num_rows === 1) {
-        $usuario = $resultado->fetch_assoc();
+                // Guardamos los datos en sesión
+                $_SESSION['documento'] = $usuario['Us_documento'];
+                $_SESSION['id_usuario'] = $usuario['Us_id']; // ✅ Este es el campo correcto
 
-        if (password_verify($contrasena, $usuario['Us_contraseña'])) {
-            session_start();
-            $_SESSION['documento'] = $usuario['Us_documento'];
-            $_SESSION['id_usuario'] = $usuario['Id_Usuario']; // 🔥 Guardamos el ID numérico
-
-            header("Location: ../Php/Descarga.php");
-            exit();
+                // 4️⃣ Redirigimos al panel o página posterior
+                header("Location: ../Php/Descarga.php");
+                exit();
+            } else {
+                echo "❌ Contraseña incorrecta.";
+                exit();
+            }
         } else {
-            echo "❌ Contraseña incorrecta.";
+            echo "❌ Usuario no encontrado con el correo: $correo";
             exit();
         }
-    } else {
-        echo "❌ Usuario no encontrado con el correo: $correo";
-        exit();
     }
 
-    $stmt->close();
+} catch (PDOException $e) {
+    // Error de base de datos
+    error_log("PDO Exception en login: " . $e->getMessage());
+    die("❌ Error de base de datos. Revisá los logs.");
+} catch (Exception $e) {
+    error_log("Exception en login: " . $e->getMessage());
+    die("❌ Error interno: " . $e->getMessage());
 }
-
-$conexion->close();
 ?>

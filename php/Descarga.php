@@ -15,34 +15,35 @@ if (!isset($_SESSION['id_usuario'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SaludBE</title>
-    <link rel="stylesheet" href="../../Css/Aprendiz/descarga.css" />
-    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/Repetivos/Aprendis.css">
+    <link rel="stylesheet" href="../Css/Aprendiz/descarga.css" />
+    <link rel="stylesheet" href="../Css/Repetivos/root.css">
+    <link rel="stylesheet" href="../Css/Repetivos/Aprendis.css">
+
 </head>
 
 <body>
 
-  </head>
+    </head>
 
-  <body>
+    <body>
 
-    <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SaludBE" />
-    <h1>SaludBE</h1>
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SaludBE" />
+        <h1>SaludBE</h1>
 
-    <div class="loading-dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
 
-    <script>
-      // Espera 3 segundos (3000 ms) y redirige a la página principal
-      setTimeout(() => {
-        window.location.href = "frase_dia.html";  // Cambia aquí la URL de destino
-      }, 3000);
-    </script>
+        <script>
+            // Espera 3 segundos (3000 ms) y redirige a la página principal
+            setTimeout(() => {
+                window.location.href = "../Html/Aprendiz/frase_dia.html"; // Cambia aquí la URL de destino
+            }, 3000);
+        </script>
 
-  </body>
+    </body>
 
 </html>
