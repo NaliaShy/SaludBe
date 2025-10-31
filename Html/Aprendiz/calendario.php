@@ -18,11 +18,20 @@
             <h2 id="month-year"></h2>
             <button id="next-month">▶</button>
         </div>
+        <div class="calendar-weekdays">
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mié</div>
+            <div>Jue</div>
+            <div>Vie</div>
+            <div>Sáb</div>
+            <div>Dom</div>
+        </div>
         <div class="calendar-grid" id="calendar"></div>
     </div>
 
-
     <?php include '../../php/Components/notificaciones_a.php'; ?>
+    <script src="../../js/Calendario.js"></script>
 </body>
 
 </html>

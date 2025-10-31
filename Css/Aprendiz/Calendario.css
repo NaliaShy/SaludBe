@@ -11,23 +11,32 @@ html {
 }
 
 .calendar-container {
-  width: 320px;
+  width: 340px;
   margin: 40px auto;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: center;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--Sena-verde, #66BB33);
+  background: #66BB33;
   color: white;
   padding: 10px 15px;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #e0e0e0;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px 0;
 }
 
 .calendar-grid {
@@ -45,7 +54,7 @@ html {
 }
 
 .day:hover {
-  background: var(--Sena-Verde-Hover, #58A02A);
+  background: #66BB33;
   color: white;
 }
 
