@@ -1,13 +1,6 @@
 <?php
-// Conexión a la base de datos
-$conexion = new mysqli("localhost", "root", "natalia123", "saludBE");
+include 'conexion.php';
 
-// Verificar conexión
-if ($conexion->connect_error) {
-    die("❌ Error de conexión: " . $conexion->connect_error);
-}
-
-// Verificar si el formulario fue enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $correo = $_POST['correo'] ?? '';
     $contrasena = $_POST['contrasena'] ?? '';
@@ -16,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
     }
 
-    // Preparar la consulta
     $sql = "SELECT Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
     $stmt = $conexion->prepare($sql);
 
@@ -28,21 +20,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->execute();
     $resultado = $stmt->get_result();
 
-    // Verificar si el usuario existe
     if ($resultado->num_rows === 1) {
         $usuario = $resultado->fetch_assoc();
 
-        // Verificar la contraseña
         if (password_verify($contrasena, $usuario['Us_contraseña'])) {
             session_start();
             $_SESSION['documento'] = $usuario['Us_documento'];
-            header("Location: ../Html/Aprendiz/descarga.html");
+            $_SESSION['id_usuario'] = $usuario['Id_Usuario']; // 🔥 Guardamos el ID numérico
+
+            header("Location: ../Php/Descarga.php");
             exit();
         } else {
-            // Mostrar mensaje de depuración
-            echo "❌ Contraseña incorrecta.<br>";
-            echo "Contraseña ingresada: $contrasena<br>";
-            echo "Hash en BD: " . $usuario['Us_contraseña'] . "<br>";
+            echo "❌ Contraseña incorrecta.";
             exit();
         }
     } else {

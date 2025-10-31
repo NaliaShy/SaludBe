@@ -2,103 +2,118 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> SaludBE</title>
-  <link rel="stylesheet" href="../../Css/Aprendiz/solicitarcitaApren.css">
-  <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-  <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SaludBE</title>
+    <link rel="stylesheet" href="../../Css/Aprendiz/solicitarcitaApren.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
 </head>
 
 <body>
 
-  <!-- NAV superior -->
-  <nav>
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    <div class="logo">SaludBE</div>
-  </nav>
+    <!-- NAV superior -->
+    <nav>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <div class="logo">SaludBE</div>
+    </nav>
 
-  <!-- Menú lateral -->
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="/Html/Aprendiz/PaginaPrincipal.html">
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="../Aprendiz/PaginaPrincipal.html">
           Inicio</a></li>
-      <li><a href="/Html/Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
-      <li><a href="/Html/Aprendiz/Historial.html">
+            <li><a href="../Aprendiz/solicitarCitaApr.html"> Agendar citas</a></li>
+            <li><a href="../Aprendiz/Historial.html">
           Historial Clinico</a></li>
-      <li><a href="/Html/Aprendiz/calendario.html">
+            <li><a href="../Aprendiz/calendario.html">
           Calendario</a></li>
-      <li><a href="../../Html/Aprendiz/chats_a.html">Chat</a></li>
-      <li><a href="/Html/Aprendiz/test.html"> Test</a></li>
-     
-      <li><a href="/Html/Aprendiz/configuracion.html"> Configuraciones</a></li>
-      <li><a href="/Html/Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
-    </ul>
-  </div>
+            <li><a href="../Aprendiz/chats_a.html">Chat</a></li>
+            <li><a href="../Aprendiz/test.html"> Test</a></li>
+            <li><a href="../Aprendiz/configuracion.html"> Configuraciones</a></li>
+            <li><a href="../Login/Loginaprendiz.html"> Cerrar Sesión</a></li>
+        </ul>
+    </div>
 
     <!-- Fondo oscuro para cuando se abre el menú -->
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-  <!-- Contenedor principal -->
-  <main>
-    <section class="formulario">
-      <div class="titulo">
-        <center><h1>Agende su citas</h1></center>
-      <br>
-      </div>
-      <form>
-        <div class="form">
-          <div class="fila">
-          <div class="campo">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" required>
-          </div>
-          <div class="campo">
-            <label for="fecha">Selecciona la fecha</label>
-            <input type="date" id="fecha" name="fecha" required>
-          </div>
-        </div>
+    <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+    <!-- Contenedor principal -->
+    <main>
+        <section class="formulario">
+            <div class="titulo">
+                <center>
+                    <h1>Agende su citas</h1>
+                </center>
+                <br>
+            </div>
+            <form action="../../php/Guardar-cita.php" method="post">
+                <div class="form">
+                    <div class="fila">
+                        <div class="campo">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="campo">
+                            <label for="fecha">Selecciona la fecha</label>
+                            <input type="date" id="fecha" name="fecha" required>
+                        </div>
+                    </div>
 
-        <div class="fila">
-          <div class="campo">
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" name="apellido" required>
-          </div>
-          <div class="campo">
-            <label for="celular">Celular</label>
-            <input type="tel" id="celular" name="celular" required>
-          </div>
-        </div>
+                    <div class="fila">
+                        <div class="campo">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" id="apellido" name="apellido" required>
+                        </div>
+                        <div class="campo">
+                            <label for="celular">Celular</label>
+                            <input type="tel" id="celular" name="celular" required>
+                        </div>
+                    </div>
 
-        <div class="campo">
-          <label for="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" required>
-        </div>
+                    <div class="campo">
+                        <label for="correo">Correo electrónico</label>
+                        <input type="email" id="correo" name="correo" required>
+                    </div>
 
-        <div class="campo">
-          <label for="descripcion">Descripción</label>
-          <textarea id="descripcion" name="descripcion" rows="4"></textarea>
-        </div>
+                    <div class="campo">
+                        <label for="descripcion">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                    </div>
 
-        <div class="campo-check">
-          <input type="checkbox" id="confirmar" required>
-          <label for="confirmar">Confirmo que los datos ingresados en este formulario son verdaderos</label>
-        </div>
+                    <div class="campo-check">
+                        <input type="checkbox" id="confirmar" required>
+                        <label for="confirmar">Confirmo que los datos ingresados en este formulario son verdaderos</label>
+                    </div>
 
-        <div class="acciones">
-          <button type="submit" class="btn-enviar">Solicitar cita</button>
-        </div>
-      </form>
-        </div>
-    </section>
-  </main>
-  <script>
-    function toggleMenu() {
-        const sidebar = document.getElementById("sidebar");
-        const overlay = document.getElementById("overlay");
-        sidebar.classList.toggle("active");
-        overlay.classList.toggle("show");
-      }
-  </script>
+                    <div class="acciones">
+                        <button type="submit" class="btn-enviar">Solicitar cita</button>
+                    </div>
+            </form>
+            </div>
+        </section>
+    </main>
+    <div class="main-content">
+        <h1>SaludBE</h1>
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Saludbe Logo" />
+        <iframe src="../Aprendiz/notificacion_a.html" frameborder="0" id="Notificaciones"></iframe>
+        <script>
+            // Función para cargar el archivo HTML de notificaciones
+            function toggleMenu() {
+                const sidebar = document.getElementById("sidebar");
+                const overlay = document.getElementById("overlay");
+                sidebar.classList.toggle("active");
+                overlay.classList.toggle("show");
+            }
+        </script>
+    </div>
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("show");
+        }
+    </script>
 </body>
 
 </html>

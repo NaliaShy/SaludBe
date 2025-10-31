@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
     // Conexión a la base de datos
-    $conn = new mysqli("localhost", "root", "natalia123", "saludBE");
+    $conn = new mysqli("localhost", "root", "", "saludBE");
 
      // Verificar la conexión
 
