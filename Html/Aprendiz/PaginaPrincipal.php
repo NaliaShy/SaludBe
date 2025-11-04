@@ -17,6 +17,7 @@
     <div class="main-content">
         <h1>SaludBE</h1>
         <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Saludbe Logo" width="200">
+        <?php include '../../php/Components/carrusel.php'; ?>
     </div>
 
     <?php include '../../php/Components/notificaciones_a.php'; ?>

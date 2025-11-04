@@ -5,14 +5,18 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-sena);
   background: linear-gradient(135deg, #e6f5f1, #d3f3e2);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-image: url('../../Img/imagen.jpg');
+  background-size: cover;
+  background-position: center;
 }
+
 
 /* -------- Container -------- */
 
@@ -46,6 +50,7 @@ body {
     opacity: 0;
     transform: scale(0.8);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -57,6 +62,7 @@ h2 {
   color: #0c4b33;
   font-weight: 600;
 }
+
 
 /* -------- Inputs -------- */
 
@@ -77,6 +83,7 @@ input:focus {
   outline: none;
 }
 
+
 /* -------- Link -------- */
 
 .forgot {
@@ -92,6 +99,7 @@ input:focus {
 .forgot:hover {
   color: #178c65;
 }
+
 
 /* -------- Buttons -------- */
 
@@ -132,8 +140,9 @@ input:focus {
 }
 
 .btn-aprendiz:hover {
-  background-color:#1fa370;
+  background-color: #1fa370;
 }
+
 .btn {
   width: 100%;
   padding: 12px;
@@ -173,6 +182,7 @@ input:focus {
 .btn-Index:hover {
   background-color: #1fa370;
 }
+
 
 /* -------- Register Link -------- */
 

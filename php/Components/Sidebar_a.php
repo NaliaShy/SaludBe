@@ -13,10 +13,11 @@
     <li><a href="../../Html/Aprendiz/solicitarCitaApr.php">Agendar citas</a></li>
     <li><a href="../../Html/Aprendiz/Historial.php">Historial Clínico</a></li>
     <li><a href="../../Html/Aprendiz/calendario.php">Calendario</a></li>
-    <li><a href="../../Html/Aprendiz/chats_a.php">Chat</a></li>
+    <li><a href="../../Html/Aprendiz/chat.html">Chat</a></li>
     <li><a href="../../Html/Aprendiz/test.php">Test</a></li>
     <li><a href="../../Html/Aprendiz/configuracion.php">Configuraciones</a></li>
-    <li><a href="../../Html/Login/Loginaprendiz.php">Cerrar Sesión</a></li>
+    <li><a href="../../Html/Aprendiz/carrusel.php">carrusel</a></li>
+    <li><a href="../../Html/Index.t">Cerrar Sesión</a></li>
   </ul>
 </div>
 

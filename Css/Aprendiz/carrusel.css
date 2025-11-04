@@ -1,0 +1,92 @@
+/* Contenedor general */
+.carousel-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+/* Caja principal */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 254, 254, 0.25);
+    background: #ffffff;
+}
+
+/* Área del carrusel */
+.carousel {
+    width: 100%;
+    height: 400px; /* ajusta aquí si quieres más alto */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slides como fondos, sin zoom exagerado */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain; /* sin recortar */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Botones */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Puntitos */
+.dots-container {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+.dot.active {
+    background: #fff;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .carousel {
+        height: 240px;
+    }
+}

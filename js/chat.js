@@ -1,70 +1,42 @@
-function sendMessage() {
-  const input = document.getElementById("messageInput");
-  const chat = document.getElementById("chat-messages");
+const form = document.getElementById('chat-form');
+const input = document.getElementById('mensaje-input');
+const chatMessages = document.getElementById('chat-messages');
 
-  if (input.value.trim() !== "") {
-    const newMsg = document.createElement("div");
-    newMsg.classList.add("msg", "sent");
-    newMsg.textContent = input.value;
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const mensaje = input.value.trim();
+    if(!mensaje) return;
 
-    chat.appendChild(newMsg);
-    chat.scrollTop = chat.scrollHeight;
-
-    input.value = "";
-  }
-}
-// Historial de chats
-let chats = {
-  "Aprendis-1": [
-    { type: "received", text: "Hola, ¿cómo estás?" },
-    { type: "sent", text: "Todo bien, gracias. ¿Y tú?" },
-    { type: "received", text: "Perfecto 😎" }
-  ],
-  "Psicologo-2": [
-    { type: "received", text: "Buenos días, ¿cómo te sientes hoy?" }
-  ],
-  "Chatbot": [
-    { type: "received", text: "¡Hola! Soy tu asistente virtual 🤖" }
-  ]
-};
-
-let currentUser = "Aprendis-1";
-
-// Renderizar mensajes
-function renderMessages(user) {
-  const chatBox = document.getElementById("chat-messages");
-  chatBox.innerHTML = "";
-
-  chats[user].forEach(msg => {
-    const div = document.createElement("div");
-    div.classList.add("msg", msg.type);
-    div.textContent = msg.text;
-    chatBox.appendChild(div);
-  });
-}
-
-// Cambiar de chat al hacer clic
-document.querySelectorAll(".chat-sidebar li").forEach(li => {
-  li.addEventListener("click", () => {
-    document.querySelector(".chat-sidebar li.active")?.classList.remove("active");
-    li.classList.add("active");
-
-    currentUser = li.getAttribute("data-user");
-    document.getElementById("chatUser").textContent = currentUser;
-    renderMessages(currentUser);
-  });
+    fetch('Guardar_chat.php', {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: `mensaje=${encodeURIComponent(mensaje)}&us_id=1`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success){
+            input.value = '';
+            cargarMensajes();
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(err => console.error(err));
 });
 
-// Enviar mensaje
-function sendMessage() {
-  const input = document.getElementById("messageInput");
-  const text = input.value.trim();
-  if (text === "") return;
-
-  chats[currentUser].push({ type: "sent", text });
-  renderMessages(currentUser);
-  input.value = "";
+function cargarMensajes(){
+    fetch('cargarmensajes.php')
+    .then(res => res.json())
+    .then(mensajes => {
+        chatMessages.innerHTML = '';
+        mensajes.forEach(m => {
+            const div = document.createElement('div');
+            div.textContent = `Usuario ${m.Us_id}: ${m.Men_contenido}`;
+            chatMessages.appendChild(div);
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
 }
 
-// Render inicial
-renderMessages(currentUser);
+setInterval(cargarMensajes, 2000);
+cargarMensajes();

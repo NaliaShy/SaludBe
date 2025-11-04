@@ -1,64 +1,77 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body,
 html {
-  height: 100%;
-  font-family: var(--font-sena);
+    height: 100%;
+    font-family: var(--font-sena);
+}
+
+.calendario-list {
+    margin-top: 100px;
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .calendar-container {
-  width: 340px;
-  margin: 40px auto;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+    width: 60%;
+    margin: 90px auto;
+    background: var(--Sena-Blanco);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
 }
 
 .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #66BB33;
-  color: white;
-  padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    padding: 10px 15px;
+}
+
+#month-year {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--Sena-Blanco);
 }
 
 .calendar-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background: #e0e0e0;
-  font-weight: bold;
-  font-size: 14px;
-  padding: 8px 0;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background: var(--Sena-Blanco);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 8px 0;
 }
 
 .calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 10px;
 }
 
 .day {
-  padding: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
 .day:hover {
-  background: #66BB33;
-  color: white;
+    background: var(--Sena-Azul-Hover);
+    color: var(--Sena-Blanco);
 }
 
 .today {
-  background: #333;
-  color: white;
+    background: var(--Sena-verde);
+    color: var(--Sena-Blanco);
 }

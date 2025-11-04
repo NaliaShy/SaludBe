@@ -1,66 +1,60 @@
-const calendar = document.getElementById("calendar");
-const monthYear = document.getElementById("month-year");
-const prev = document.getElementById("prev-month");
-const next = document.getElementById("next-month");
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
 
-let date = new Date();
+const monthYearElement = document.getElementById("month-year");
+const calendarGrid = document.getElementById("calendar");
 
 function renderCalendar() {
-  const year = date.getFullYear();
-  const month = date.getMonth();
+    const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+    const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  // Título
-  monthYear.textContent = date.toLocaleDateString("es-ES", {
-    month: "long",
-    year: "numeric"
-  }).toUpperCase();
+    calendarGrid.innerHTML = "";
 
-  // Primer y último día del mes
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-
-  // Limpiar grilla
-  calendar.innerHTML = "";
-
-  // Calcular desplazamiento (de Lunes a Domingo)
-  let startDay = firstDay.getDay(); // 0 = Domingo
-  if (startDay === 0) startDay = 7; // mover domingo al final
-
-  // Rellenar días vacíos antes del 1
-  for (let i = 1; i < startDay; i++) {
-    const empty = document.createElement("div");
-    calendar.appendChild(empty);
-  }
-
-  // Generar días del mes
-  for (let day = 1; day <= lastDay.getDate(); day++) {
-    const d = document.createElement("div");
-    d.textContent = day;
-    d.classList.add("day");
-
-    const today = new Date();
-    if (
-      day === today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
-    ) {
-      d.classList.add("today");
+    // rellena espacios antes del día 1
+    for (let i = 0; i < (firstDay + 6) % 7; i++) {
+        calendarGrid.innerHTML += `<div class="empty"></div>`;
     }
 
-    calendar.appendChild(d);
-  }
+    // días del mes
+    for (let day = 1; day <= lastDay; day++) {
+        const div = document.createElement("div");
+        div.classList.add("day");
+        div.innerText = day;
+
+        div.addEventListener("click", () => {
+            const monthStr = String(currentMonth + 1).padStart(2, "0");
+            const dayStr = String(day).padStart(2, "0");
+            window.location.href = `calendario.php?fecha=${currentYear}-${monthStr}-${dayStr}`;
+        });
+
+        calendarGrid.appendChild(div);
+    }
+
+    // texto de mes y año
+    monthYearElement.innerText =
+        new Date(currentYear, currentMonth).toLocaleString("es-ES", {
+            month: "long",
+            year: "numeric",
+        });
 }
 
-// Botones de navegación
-prev.onclick = () => {
-  date.setMonth(date.getMonth() - 1);
-  renderCalendar();
-};
-
-next.onclick = () => {
-  date.setMonth(date.getMonth() + 1);
-  renderCalendar();
-};
-
-// Render inicial
+// ✅ LLAMADA QUE TE FALTABA
 renderCalendar();
+
+document.getElementById("next-month").addEventListener("click", () => {
+    currentMonth++;
+    if (currentMonth > 11) {
+        currentMonth = 0;
+        currentYear++;
+    }
+    renderCalendar();
+});
+
+document.getElementById("prev-month").addEventListener("click", () => {
+    currentMonth--;
+    if (currentMonth < 0) {
+        currentMonth = 11;
+        currentYear--;
+    }
+    renderCalendar();
+});

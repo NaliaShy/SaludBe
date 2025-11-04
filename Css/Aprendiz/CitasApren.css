@@ -4,97 +4,110 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+body, html {
+  height: 100%;
+  font-family: var(--font-sena);
   background-color: #fff;
-  color: #111;
 }
 
-
+/* HEADER */
 .header {
-  background-color: #e6e6e6;
+  background-color: #f0f0f0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  position: relative;
   padding: 10px 20px;
 }
 
-.menu-icon {
-  position: absolute;
-  left: 20px;
-  font-size: 26px;
+.menu {
+  font-size: 28px;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .logo {
-  font-size: 32px;
+  color: var(--Sena-Azul);
+  font-size: 36px;
   font-weight: bold;
-  color: #66BB33;
-}
-
-/* Título */
-.titulo {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-
-.tabla-citas {
-  width: 80%;
-  max-width: 800px;
   margin: 0 auto;
-  background-color: #ddd;
-  padding: 20px;
-  border-radius: 15px;
-
 }
 
+/* FORMULARIO */
+.formulario {
+  width: 90%;
+  max-width: 1100px;
+  margin: 30px auto;
+  background-color: rgb(144, 216, 224);
+  padding: 40px;
+  border-radius: 12px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* FILAS */
 .fila {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
+  gap: 20px;
 }
 
-.info {
+/* CAMPOS */
+.campo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.campo label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.campo input,
+.campo textarea {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  resize: none;
+}
+
+
+/* CHECKBOX */
+.campo-check {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.avatar {
-  font-size: 32px;
+/* BOTÓN */
+.acciones {
+  text-align: center;
 }
 
-.nombre {
-  font-weight: bold;
+.btn-enviar {
+  background-color: var(--Sena-Azul);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
   font-size: 16px;
 }
 
-.acciones {
-  display: flex;
-  gap: 10px;
+.btn-enviar:hover {
+  background-color: #417bbd;
 }
 
-.btn {
-  border: none;
-  padding: 8px 14px;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  color: white;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .fila {
+    flex-direction: column;
+  }
 }
-
-.aceptar {
-  background-color: #4a90e2;
-}
-
-.cancelar{
-  background-color: #8b0000;
-}
-

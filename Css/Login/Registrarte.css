@@ -6,12 +6,15 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-sena);
     background: linear-gradient(135deg, #e6f5f1, #d3f3e2);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url('../../Img/imagen.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 /* Contenedor principal */
@@ -69,8 +72,8 @@ input::placeholder {
 .btn-siguiente {
     width: 100%;
     padding: 14px;
-  background-color: var(--Sena-Azul);
-   
+    background-color: var(--Sena-Azul);
+
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -89,7 +92,7 @@ input::placeholder {
     width: 100%;
     padding: 14px;
     margin-top: 10px;
-    background-color:var(--Sena-Azul);
+    background-color: var(--Sena-Azul);
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -103,6 +106,7 @@ input::placeholder {
     background-color: #2cc288;
     transform: translateY(-2px);
 }
+
 /* Responsivo */
 @media (max-width: 480px) {
     .registro-container {

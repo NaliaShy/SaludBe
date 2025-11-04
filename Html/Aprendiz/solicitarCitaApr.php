@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> SaludBE</title>
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
     <link rel="stylesheet" href="../../Css/Aprendiz/solicitarcitaApren.css">
 </head>
 
@@ -23,38 +22,26 @@
                 </center>
                 <br>
             </div>
-            <form action="../../php/Guardar-cita.php" method="post">
+            <form action="../../php/agendarcitas.php" method="post">
                 <div class="form">
                     <div class="fila">
-                        <div class="campo">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
                         <div class="campo">
                             <label for="fecha">Selecciona la fecha</label>
                             <input type="date" id="fecha" name="fecha" required>
                         </div>
                     </div>
 
-                    <div class="fila">
-                        <div class="campo">
-                            <label for="apellido">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" required>
-                        </div>
-                        <div class="campo">
-                            <label for="celular">Celular</label>
-                            <input type="tel" id="celular" name="celular" required>
-                        </div>
+                    <div class="campo">
+                        <label for="Motivo">Motivo</label>
+                        <textarea id="Motivo" name="Motivo" rows="4"></textarea>
                     </div>
 
                     <div class="campo">
-                        <label for="correo">Correo electrónico</label>
-                        <input type="email" id="correo" name="correo" required>
-                    </div>
-
-                    <div class="campo">
-                        <label for="descripcion">Descripción</label>
-                        <textarea id="descripcion" name="descripcion" rows="4"></textarea>
+                        <select name="Psicologo" required>
+                            <option value="">Seleccione un psicólogo</option>
+                            <option value="1">Psicólogo 1</option>
+                            <option value="2">Psicólogo 2</option>
+                        </select>
                     </div>
 
                     <div class="campo-check">
