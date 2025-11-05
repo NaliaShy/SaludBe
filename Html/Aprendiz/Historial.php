@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Historial Clínico - SaludBE</title>
+    <title>Seguimiento al Aprendiz - SaludBE</title>
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../../Css/Aprendiz/Historial.css" />
 
@@ -16,7 +16,7 @@
     <!-- Contenido principal -->
     <div class="container">
         <center>
-            <h2>Historial Clínico</h2>
+            <h2>Seguimiento al Aprendiz</h2>
         </center>
 
         <div class="card">
@@ -39,7 +39,7 @@
         <script>
             // Botón Descargar
             document.getElementById('btn-descargar').addEventListener('click', function() {
-                alert('El historial clínico ha sido descargado.');
+                alert('El Seguimiento al Aprendiz ha sido descargado.');
             });
         </script>
 

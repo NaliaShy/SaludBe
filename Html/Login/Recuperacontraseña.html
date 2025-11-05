@@ -1,73 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperar Contraseña</title>
+
     <link rel="stylesheet" href="../../Css/Login/Recuperacontraseña.css">
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-</head>
-<body>
-    <div class="container">
-         <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
-        <h1>Recupera tu contraseña</h1>
-        <div class="form">
-            <p>A tu correo llegará un código de verificación, ¡ingrésalo!</p>
-            <div class="input-codigo">
-                <input type="text" maxlength="1" id="codigo1" class="codigo" />
-                <input type="text" maxlength="1" id="codigo2" class="codigo" />
-                <input type="text" maxlength="1" id="codigo3" class="codigo" />
-                <input type="text" maxlength="1" id="codigo4" class="codigo" />
-                <input type="text" maxlength="1" id="codigo5" class="codigo" />
-                <input type="text" maxlength="1" id="codigo6" class="codigo" />
-            </div>
-            <p id="timer">Tu código vencerá en <span id="time">3:50</span> minutos</p>
-            <p><a href="#" id="problema-codigo">¿Tienes problema con el código?</a></p>
-            <button class="btn-siguiente" onclick="window.location.href=''">Siguiente</button>
-            <button class="btn-volver" onclick="window.location.href='/HTML/Login/Loginaprendiz.html'">Volver a inicio de sesion</button>
 
+    <style>
+        /* ===== ESTILOS DEL MODAL ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-contenido {
+            background: #fff;
+            width: 90%;
+            max-width: 450px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-contenido h2 {
+            margin-bottom: 10px;
+        }
+
+        .modal-contenido ol {
+            margin-left: 18px;
+            line-height: 1.6;
+        }
+
+        .cerrar-modal {
+            margin-top: 15px;
+            background: #1f7b2b;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
+
+        <h1>Recupera tu contraseña</h1>
+
+        <div class="form">
+
+            <p>A tu correo llegará un código de verificación, ¡ingrésalo!</p>
+
+            <div class="input-codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+                <input type="text" maxlength="1" class="codigo">
+            </div>
+
+            <p id="timer">Tu código vencerá en <span id="time">3:50</span> minutos</p>
+
+            <p><a href="#" id="problema-codigo">¿Tienes problema con el código?</a></p>
+
+            <button class="btn-siguiente">Siguiente</button>
+            <button class="btn-volver" onclick="window.location.href='../Login/Loginaprendiz.html'">
+                Volver a inicio de sesión
+            </button>
         </div>
     </div>
 
+    <!-- ===== MODAL ===== -->
+    <div id="modalAyuda" class="modal">
+        <div class="modal-contenido">
+
+            <h2>¿Tienes problemas con el código?</h2>
+
+            <ol>
+                <li><strong>Revisa tu bandeja de entrada.</strong> El correo puede tardar unos segundos.</li>
+
+                <li><strong>Mira Spam, No deseados o Promociones.</strong> A veces se filtra ahí.</li>
+
+                <li><strong>Confirma tu correo.</strong> Un solo carácter mal escrito = el código nunca llega.</li>
+
+                <li><strong>Solicita un nuevo código.</strong> El botón “Reenviar código” genera uno nuevo.</li>
+
+                <li><strong>Espera 1 minuto antes de pedir otro.</strong> Es por seguridad.</li>
+
+                <li><strong>Si no llega nada, contacta soporte:</strong>
+                    <a href="mailto:soporte@saludbe.com">soporte@saludbe.com</a>
+                </li>
+            </ol>
+
+            <button class="cerrar-modal" id="cerrarModalBtn">Cerrar</button>
+        </div>
+    </div>
+
+
+    <!-- ===== SCRIPT COMPLETO ===== -->
     <script>
-        let countdown = 230; // 3 minutes and 50 seconds in seconds
-let timerElement = document.getElementById('time');
+        // TIMER
+        let countdown = 230;
+        const timerElement = document.getElementById("time");
 
-function updateTimer() {
-    let minutes = Math.floor(countdown / 60);
-    let seconds = countdown % 60;
-    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-    countdown--;
-    if (countdown < 0) {
-        clearInterval(timerInterval);
-        alert('El código ha expirado.');
-    }
-}
+        function updateTimer() {
+            let min = Math.floor(countdown / 60);
+            let seg = countdown % 60;
 
-let timerInterval = setInterval(updateTimer, 1000);
+            timerElement.textContent = `${min}:${seg < 10 ? "0" + seg : seg}`;
+            countdown--;
 
-// Handle input focus for each field
-const inputs = document.querySelectorAll('.codigo');
-inputs.forEach((input, index) => {
-    input.addEventListener('input', function () {
-        if (this.value.length == 1 && index < inputs.length - 1) {
-            inputs[index + 1].focus();
+            if (countdown < 0) {
+                clearInterval(timerInterval);
+                alert("El código ha expirado.");
+            }
         }
-    });
-});
 
-// Handle the 'Siguiente' button click
-document.getElementById('siguiente').addEventListener('click', () => {
-    let code = '';
-    inputs.forEach(input => {
-        code += input.value;
-    });
-    if (code.length === 6) {
-        alert('Código ingresado correctamente: ' + code);
-    } else {
-        alert('Por favor, ingresa el código completo.');
-    }
-});
-</script>
+        let timerInterval = setInterval(updateTimer, 1000);
+
+        // MOVER ENTRE INPUTS
+        const inputs = document.querySelectorAll(".codigo");
+
+        inputs.forEach((input, i) => {
+            input.addEventListener("input", () => {
+                if (input.value.length === 1 && i < inputs.length - 1) {
+                    inputs[i + 1].focus();
+                }
+            });
+        });
+
+        // ===== MODAL =====
+        const linkProblema = document.getElementById("problema-codigo");
+        const modal = document.getElementById("modalAyuda");
+        const cerrarBtn = document.getElementById("cerrarModalBtn");
+
+        linkProblema.onclick = (e) => {
+            e.preventDefault();
+            modal.style.display = "flex";
+        };
+
+        cerrarBtn.onclick = () => modal.style.display = "none";
+
+        window.onclick = (e) => {
+            if (e.target === modal) modal.style.display = "none";
+        };
+    </script>
+
 </body>
+
 </html>

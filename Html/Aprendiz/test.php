@@ -1,51 +1,77 @@
+<?php
+include '../../php/conexion.php';
+
+try {
+    $db = new Conexion();
+    $conn = $db->getConnect();
+
+    // Obtener todos los tests existentes
+    $sql = "SELECT tes_id, tes_titulo, tes_descripcion, tes_fecha_creacion 
+            FROM test 
+            ORDER BY tes_id ASC";
+    $stmt = $conn->query($sql);
+    $tests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    die("Error en la base de datos: " . $e->getMessage());
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaludBE - Test Psicológicos</title>
+    <title>Lista de Tests</title>
+
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/Aprendiz/test.css">
+    <link rel="stylesheet" href="../../Css/psicologo/lista_tests.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/sidebar.css">
 </head>
 
 <body>
-    <?php include '../../php/Components/Sidebar_a.php'; ?>
+
+    <?php include '../../php/Components/Sidebar_p.php'; ?>
 
     <div class="container">
+        <h2>Lista de Tests Disponibles</h2>
 
-        <main class="main-content">
+        <table class="tabla-tests">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Fecha de creación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
 
+            <tbody>
+                <?php if (!empty($tests)): ?>
+                    <?php foreach ($tests as $test): ?>
+                        <tr>
+                            <td><?= $test['tes_id'] ?></td>
+                            <td><?= htmlspecialchars($test['tes_titulo']) ?></td>
+                            <td><?= htmlspecialchars($test['tes_descripcion']) ?></td>
+                            <td><?= $test['tes_fecha_creacion'] ?></td>
 
-            <p class="subtitle">Test Psicológicos Disponibles</p>
-
-            <section class="test-grid">
-
-                <div class="test-card">
-                    <img src="/Img/ansiedad.webp" alt="Test de ansiedad social">
-                    <div class="test-label">Test de ansiedad social</div>
-                </div>
-
-                <div class="test-card">
-                    <img src="/Img/celular.webp" alt="Test de adicción al internet">
-                    <div class="test-label">Test de adicción al internet</div>
-                </div>
-
-                <div class="test-card">
-                    <img src="/Img/depre.jpg" alt="Test de depresion">
-                    <div class="test-label">Test de depresion</div>
-                </div>
-
-                <div class="test-card">
-                    <img src="/Img/estre.jpg" alt="Test de burnout">
-                    <div class="test-label">Test de burnout</div>
-                </div>
-
-            </section>
-
-        </main>
+                            <td>
+                                <a class="btn-ir" href="realizar_test.php?id=<?= $test['tes_id'] ?>">
+                                    Realizar test
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5">No hay tests registrados 😢</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
-    <?php include '../../php/Components/notificaciones_a.php'; ?>
-</body>
 
+</body>
 </html>

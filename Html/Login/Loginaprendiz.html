@@ -4,70 +4,293 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SaludBE</title>
-    
+    <title>SaludBE – Iniciar Sesión</title>
+
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../../Css/Login/Loginaprendiz.css" />
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #e9fff0;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 0;
+        }
+        /* Subimos el login */
+        
+        .login-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .bienvenida {
+            position: absolute;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: flotar 3s ease-in-out infinite;
+        }
+        
+        .bienvenida h1 {
+            font-size: 3em;
+            color: #1f7b2b;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        @keyframes flotar {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        /* ---- Frases animadas (ambos lados) ---- */
+        
+        .phrases {
+            position: fixed;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 320px;
+            height: 360px;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .phrases.right {
+            right: 80px;
+        }
+        
+        .phrases.left {
+            left: 80px;
+        }
+        
+        .phrase-box {
+            position: absolute;
+            background-color: rgba(37, 143, 16, 0.9);
+            color: white;
+            padding: 18px 20px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transform: translateX(120px) scale(0.9);
+            animation: phraseSlide 1.5s ease forwards;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            line-height: 1.5;
+            font-size: 15px;
+            pointer-events: auto;
+        }
+        
+        .left .phrase-box {
+            transform: translateX(-120px) scale(0.9);
+        }
+        
+        .phrase1 {
+            top: 0;
+            animation-delay: 0.4s;
+        }
+        
+        .phrase2 {
+            top: 130px;
+            animation-delay: 0.9s;
+        }
+        
+        .phrase3 {
+            top: 260px;
+            animation-delay: 1.4s;
+        }
+        
+        @keyframes phraseSlide {
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+        
+        .phrase-box:hover {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) scale(1.02);
+            }
+            50% {
+                transform: translateY(-10px) scale(1);
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .phrases {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <canvas id="bgCanvas"></canvas>
 
+    <div class="bienvenida">
+        <h1>Bienvenido a SaludBE</h1>
+    </div>
+
+    <!-- Frases Izquierda -->
+    <div class="phrases left">
+        <div class="phrase-box phrase1">🍃 “Tu mente también merece descanso.”</div>
+        <div class="phrase-box phrase2">🌼 “Pequeños logros crean grandes cambios.”</div>
+        <div class="phrase-box phrase3">💭 “Escúchate, cuídate y sigue creciendo.”</div>
+    </div>
+
+    <!-- Login -->
     <div class="login-container">
-        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA"
-            class="logo">
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
         <h2>Iniciar Sesión</h2>
 
         <form action="../../php/loginAprendiz.php" method="post">
             <input type="email" name="correo" placeholder="Ingrese su correo" required>
             <input type="password" name="contrasena" placeholder="Ingrese su contraseña" required>
-            <a href="/Html/Login/olvidocontraseña.html" class="forgot">¿Olvidó su contraseña?</a>
+            <a href="../Login/olvidocontraseña.html" class="forgot">¿Olvidó su contraseña?</a>
             <button type="submit" class="btn btn-login">Ingresar</button>
-            <button type="button" class="btn-aprendiz" onclick="window.location.href='Loginpsicologo.html'">
-                Ingresar como psicólogo
-            </button>
+            <button type="button" class="btn-aprendiz" onclick="window.location.href='Loginpsicologo.html'">Ingresar como psicólogo</button>
             <button type="button" class="btn-aprendiz" onclick="window.location.href='../Index.html'">Volver al inicio</button>
-            <div class="register-link">
-                ¿No tienes cuenta? <a href="Registrate.html">Regístrate</a>
-            </div>
+            <div class="register-link">¿No tienes cuenta? <a href="Registrate.html">Regístrate</a></div>
         </form>
-
     </div>
+
+    <!-- Frases Derecha -->
+    <div class="phrases right">
+        <div class="phrase-box phrase1">🌿 “Tu bienestar empieza con un pequeño paso cada día.”</div>
+        <div class="phrase-box phrase2">💚 “Cuidar tu salud mental es una inversión en tu felicidad.”</div>
+        <div class="phrase-box phrase3">🌞 “Respira, sonríe y sigue adelante — SaludBE está contigo.”</div>
+    </div>
+
+    <!-- Fondo animado -->
     <script>
-    // Obtener parámetros de la URL
-    const params = new URLSearchParams(window.location.search);
-    const error = params.get('error');
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
 
-    if (error) {
-        let mensaje = '';
+        function fitCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = innerWidth * dpr;
+            canvas.height = innerHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        fitCanvas();
+        window.addEventListener('resize', fitCanvas);
 
-        switch (error) {
-            case '1':
-                mensaje = '❌ Contraseña incorrecta';
-                break;
-            case '2':
-                mensaje = '⚠️ Usuario no encontrado';
-                break;
-            default:
-                mensaje = '❗ Ocurrió un error desconocido';
+        function rand(min, max) {
+            return Math.random() * (max - min) + min;
         }
 
-        // Crear y mostrar el mensaje de error visualmente
-        const alerta = document.createElement('div');
-        alerta.textContent = mensaje;
-        alerta.style.background = '#ffdddd';
-        alerta.style.color = '#900';
-        alerta.style.border = '1px solid #f5c2c2';
-        alerta.style.padding = '10px';
-        alerta.style.marginTop = '10px';
-        alerta.style.textAlign = 'center';
-        alerta.style.borderRadius = '6px';
-        alerta.style.fontWeight = 'bold';
-        alerta.style.fontFamily = 'sans-serif';
-        document.querySelector('form').prepend(alerta);
-    }
-</script>
+        const shapes = [];
+        const dots = [];
 
+        class Shape {
+            constructor(type) {
+                this.type = type;
+                this.reset();
+            }
+            reset() {
+                this.x = rand(0, innerWidth);
+                this.y = rand(0, innerHeight);
+                this.size = rand(30, 120);
+                this.speed = rand(0.2, 0.6);
+                this.angle = rand(0, Math.PI * 2);
+                this.hue = rand(110, 140);
+                this.alpha = rand(0.08, 0.15);
+            }
+            step() {
+                this.y -= this.speed;
+                this.x += Math.sin(this.angle) * 0.3;
+                this.angle += 0.01;
+                if (this.y < -150) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = `hsl(${this.hue},60%,40%)`;
+                ctx.beginPath();
+                if (this.type === "wave") {
+                    for (let i = 0; i < Math.PI * 2; i += Math.PI / 10)
+                        ctx.lineTo(Math.sin(i) * this.size / 2, Math.cos(i) * this.size / 4);
+                } else {
+                    ctx.moveTo(0, -this.size / 2);
+                    ctx.lineTo(this.size / 2, this.size / 2);
+                    ctx.lineTo(-this.size / 2, this.size / 2);
+                }
+                ctx.closePath();
+                ctx.fill();
+                ctx.restore();
+            }
+        }
 
+        for (let i = 0; i < 20; i++)
+            shapes.push(new Shape(i % 2 === 0 ? "triangle" : "wave"));
+
+        class Dot {
+            constructor() {
+                this.x = rand(0, innerWidth);
+                this.y = rand(0, innerHeight);
+                this.r = rand(0.6, 2.2);
+                this.vx = rand(-0.12, 0.12);
+                this.vy = rand(-0.06, 0.06);
+                this.a = rand(0.05, 0.16);
+            }
+            step() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < -10) this.x = innerWidth + 10;
+                if (this.x > innerWidth + 10) this.x = -10;
+                if (this.y < -10) this.y = innerHeight + 10;
+                if (this.y > innerHeight + 10) this.y = -10;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(48,150,60,${this.a})`;
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) dots.push(new Dot());
+
+        function render() {
+            const bg = ctx.createLinearGradient(0, 0, 0, innerHeight);
+            bg.addColorStop(0, '#f5fff8');
+            bg.addColorStop(1, '#e4faec');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, innerWidth, innerHeight);
+            shapes.forEach(s => {
+                s.step();
+                s.draw();
+            });
+            dots.forEach(d => {
+                d.step();
+                d.draw();
+            });
+            requestAnimationFrame(render);
+        }
+
+        render();
+    </script>
 </body>
 
 </html>

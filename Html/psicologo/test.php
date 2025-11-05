@@ -12,24 +12,9 @@
 
 <body>
 
+  <?php include '../../php/Components/Sidebar_p.php'; ?>
+  
   <div class="container">
-
-    <aside class="sidebar">
-      <div class="icon"></div>
-      <div class="icon"></div>
-      <div class="icon"></div>
-      <div class="icon"></div>
-      <div class="icon"></div>
-      <div class="icon"></div>
-    </aside>
-
-    <main class="main-content">
-
-      <header class="header">
-        <h1 class="title">SaludBE</h1>
-        <div class="menu">☰</div>
-      </header>
-
       <p class="subtitle">Test Psicológicos Disponibles</p>
 
       <section class="test-grid">

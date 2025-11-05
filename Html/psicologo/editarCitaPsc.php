@@ -11,12 +11,7 @@
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="header">
-    <div class="menu">&#9776;</div>
-    <h1 class="logo">SaludBE</h1>
-  </header>
-
+  <?php include '../../php/Components/Sidebar_p.php'; ?>
   <!-- Contenido principal -->
   <main>
     <section class="formulario">

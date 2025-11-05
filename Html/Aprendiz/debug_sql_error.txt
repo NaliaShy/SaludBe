@@ -1,0 +1,1 @@
+SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`saludbe`.`mensaje`, CONSTRAINT `FK_MENSAJE_USUARIOS` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`))

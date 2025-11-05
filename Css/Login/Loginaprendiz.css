@@ -1,66 +1,66 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body {
-  font-family: var(--font-sena);
-  background: linear-gradient(135deg, #e6f5f1, #d3f3e2);
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-image: url('../../Img/imagen.jpg');
-  background-size: cover;
-  background-position: center;
+    font-family: var(--font-sena);
+    background: linear-gradient(135deg, #e6f5f1, #d3f3e2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-image: url('../../Img/imagen.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 
 /* -------- Container -------- */
 
 .login-container {
-  background: #ffffff;
-  width: 500px;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  animation: slideUp 0.8s ease-out forwards;
-  opacity: 0;
-  transform: translateY(50px);
+    background: #ffffff;
+    width: 500px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(50px);
 }
 
 @keyframes slideUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .logo {
-  width: 100px;
-  margin-bottom: 20px;
-  animation: fadeIn 1s ease forwards;
+    width: 100px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease forwards;
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 h2 {
-  margin-bottom: 30px;
-  color: #0c4b33;
-  font-weight: 600;
+    margin-bottom: 30px;
+    color: #0c4b33;
+    font-weight: 600;
 }
 
 
@@ -68,137 +68,137 @@ h2 {
 
 input[type="email"],
 input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus {
-  border-color: #0c4b33;
-  box-shadow: 0 0 8px rgba(11, 72, 50, 0.3);
-  outline: none;
+    border-color: #0c4b33;
+    box-shadow: 0 0 8px rgba(11, 72, 50, 0.3);
+    outline: none;
 }
 
 
 /* -------- Link -------- */
 
 .forgot {
-  display: block;
-  text-align: right;
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #0c4b33;
-  text-decoration: none;
-  transition: color 0.3s ease;
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #0c4b33;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .forgot:hover {
-  color: #178c65;
+    color: #178c65;
 }
 
 
 /* -------- Buttons -------- */
 
 .btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-login {
-  background-color: #258f10;
-  color: white;
+    background-color: #258f10;
+    color: white;
 }
 
 .btn-aprendiz {
-  background-color: #279111;
-  color: white;
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
+    background-color: #279111;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .btn-login:hover {
-  background-color: #146c4a;
+    background-color: #32901b;
 }
 
 .btn-aprendiz:hover {
-  background-color: #1fa370;
+    background-color: #32901b;
 }
 
 .btn {
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-login {
-  background-color: #258f10;
-  color: white;
+    background-color: #258f10;
+    color: white;
 }
 
 .btn-Index {
-  background-color: #279111;
-  color: white;
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
+    background-color: #279111;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .btn-login:hover {
-  background-color: #146c4a;
+    background-color: #32901b;
 }
 
 .btn-Index:hover {
-  background-color: #1fa370;
+    background-color: #32901b;
 }
 
 
 /* -------- Register Link -------- */
 
 .register-link {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #444;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #444;
 }
 
 .register-link a {
-  color: #0c4b33;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
+    color: #0c4b33;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .register-link a:hover {
-  color: #18a04c;
+    color: #18a04c;
 }

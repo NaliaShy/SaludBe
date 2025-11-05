@@ -1,80 +1,45 @@
-/* ==== RESET BÁSICO ==== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-  font-family: var(--font-sena, 'Georgia'), serif;
-  background-color: var(--Sena-Blanco, #fffdfd);
-}
-
-/* ==== CONTENEDOR PRINCIPAL ==== */
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background: url('fondo.png') no-repeat center center;
-  background-size: contain;
-  padding: 40px 20px;
+    padding: 30px;
 }
 
-/* ==== TITULOS ==== */
-.title {
-  color: var(--Sena-verde, #66BB33);
-  font-size: 42px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 10px;
+h2 {
+    margin-bottom: 20px;
+    color: var(--color-verde);
+    text-align: center;
 }
 
-.subtitle {
-  font-style: italic;
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 18px;
-  color: var(--Sena-Contraste, #000);
+.tabla-tests {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-/* ==== GRID DE TESTS ==== */
-.test-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 25px;
-  width: 100%;
-  max-width: 900px;
+.tabla-tests th {
+    background: var(--color-verde);
+    color: white;
+    padding: 12px;
 }
 
-/* ==== TARJETAS ==== */
-.test-card {
-  background-color: #333;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  cursor: pointer;
+.tabla-tests td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.test-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+.tabla-tests tr:hover {
+    background: #f3fff5;
 }
 
-.test-card img {
-  width: 100%;
-  height: 140px;
-  object-fit: cover;
+.btn-ir {
+    background: var(--color-verde);
+    padding: 6px 12px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.test-label {
-  color: white;
-  padding: 12px;
-  font-size: 15px;
-  text-align: center;
-  letter-spacing: 0.3px;
+.btn-ir:hover {
+    background: #0d7f3c;
 }

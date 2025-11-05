@@ -12,32 +12,7 @@
 </head>
 
 <body>
-  <nav>
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-    <div class="logo">SaludBE</div>
-  </nav>
-
-
-  <!-- Menú lateral -->
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="PaginaPrincipal.html">
-          Inicio</a></li>
-      <li><a href="Lista.html"> Lista De
-          Pacientes</a></li>
-      <li><a href="Historial.html">
-          Historial Clinico</a></li>
-      <li><a href="calendario.html">
-          Calendario</a></li>
-      <li><a href="chat.html">Chat</a></li>
-       <li><a href="ResulTest.html">Resultado Test</a></li>
-      <li><a href="/Html/psicologo/configuracion.html"> Configuración</a></li>
-      <li><a href="/Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>
-    </ul>
-  </div>
-
-  <!-- Fondo oscuro -->
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+  <?php include '../../php/Components/Sidebar_p.php'; ?>
 
   <!-- Contenido principal -->
   <div class="container">

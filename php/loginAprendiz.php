@@ -12,29 +12,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
     }
 
-    // Instanciamos la conexión con PDO
     $db = new Conexion();
     $conexion = $db->getConnect();
 
     try {
-        // 1️⃣ Buscamos el usuario por correo
         $sql = "SELECT Us_id, Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([$correo]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario) {
-            // 2️⃣ Verificamos la contraseña
             if (password_verify($contrasena, $usuario['Us_contraseña'])) {
 
-                // 3️⃣ Guardamos los datos en sesión
-                $_SESSION['id_usuario'] = $usuario['Us_id'];        // 🔥 ID del usuario
-                $_SESSION['documento'] = $usuario['Us_documento'];  // Documento
+                // ✅ Aquí corregimos los nombres de sesión
+                $_SESSION['us_id'] = $usuario['Us_id'];
+                $_SESSION['documento'] = $usuario['Us_documento'];
 
-                // 4️⃣ También lo guardamos en una variable (por si querés usarla enseguida)
-                $idUsuario = $usuario['Us_id'];
-
-                // Redirigir al panel o siguiente página
                 header("Location: ../Php/Descarga.php");
                 exit();
 

@@ -11,27 +11,7 @@
 <body>
 
   <!-- Barra superior -->
-  <nav>
-    <div class="logo">SaludBE</div>
-    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-  </nav>
-
-  <!-- Sidebar del menú general -->
-  <div class="sidebar" id="sidebar">
-    <ul>
-      <li><a href="PaginaPrincipal.html">Inicio</a></li>
-      <li><a href="Lista.html">Lista De Pacientes</a></li>
-      <li><a href="Historial.html">Historial Clínico</a></li>
-      <li><a href="calendario.html">Calendario</a></li>
-      <li><a href="chat.html">Chat</a></li>
-      <li><a href="ResulTest.html">Resultado Test</a></li>
-      <li><a href="/Html/psicologo/configuracion.html">Configuración</a></li>
-      <li><a href="/Html/Login/Loginpsicologo.html">Cerrar Sesión</a></li>
-    </ul>
-  </div>
-
-  <!-- Fondo oscuro para cuando se abre el menú -->
-  <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+ <?php include '../../php/Components/Sidebar_p.php'; ?>
 
   <!-- Contenedor del chat -->
   <div class="chat-container">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -7,13 +7,114 @@
     <title>SaludBe - SENA</title>
     <link rel="stylesheet" href="../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../Css/Index.css">
+
+    <style>
+        /* Bloques de ayuda psicológica */
+        
+        .bloques-ayuda {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .bloque {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bloque h3 {
+            margin-bottom: 10px;
+            color: #006633;
+        }
+        
+        .bloque a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .bloque a:hover {
+            text-decoration: underline;
+        }
+        
+        .numero {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /* ===== Modal de ayuda ===== */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-contenido {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            animation: aparecer 0.3s ease;
+        }
+        
+        .modal h2 {
+            color: #006633;
+            margin-bottom: 10px;
+        }
+        
+        .modal p,
+        .modal li {
+            color: #333;
+            margin: 8px 0;
+        }
+        
+        .cerrar-modal {
+            background: #00a859;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+        
+        .cerrar-modal:hover {
+            background: #007b55;
+        }
+        
+        @keyframes aparecer {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- ===== NAVBAR ===== -->
     <nav>
         <div class="logo">
-            <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
-                alt="Logo de SaludBe">
+            <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo de SaludBe">
             <h1>SaludBe</h1>
         </div>
         <div class="option">
@@ -25,17 +126,22 @@
                     <li>¿Necesitas ayuda?</li>
                 </a>
                 <a href="Nosotros.html">
-                    <li>¿Quienes somos?</li>
+                    <li>¿Quiénes somos?</li>
                 </a>
             </div>
+
             <div class="Cuenta">
+                <!-- Botón real de inicio de sesión -->
                 <button onclick="window.location.href='../Html/Login/Loginaprendiz.html'">
-                    Inicia Seccion
+                    Iniciar Sesión
                 </button>
+
+
                 <button onclick="window.location.href='/Html/Login/Registrate.html'">
                     Registrate
                 </button>
             </div>
+
             <div class="perfil-contenedor">
                 <div class="perfil-icono">
                     <svg viewBox="0 0 24 24">
@@ -45,26 +151,74 @@
                 </div>
                 <p class="perfil-texto">Perfil</p>
             </div>
-
-
         </div>
     </nav>
-    <!-- Información de ayuda para iniciar sesión -->
+
+    <!-- ===== CONTENIDO ===== -->
     <main class="ayuda-contenido">
         <section>
-            <h2>¿Cómo iniciar sesión?</h2>
-            <ol>
-                <li>Haz clic en el botón <strong>Inicia Sección</strong> ubicado en la parte superior derecha.</li>
-                <li>Serás redirigido a la página de inicio de sesión.</li>
-                <li>Ingresa tu correo electrónico y contraseña registrados.</li>
-                <li>Haz clic en el botón <strong>Iniciar sesión</strong>.</li>
-                <li>Si los datos son correctos, accederás a tu cuenta.</li>
-            </ol>
-            <p>¿No tienes cuenta? Haz clic en <a href="/Html/Login/Registrate.html"><strong>Registrate</strong></a> para
-                crear una nueva.</p>
-            <p>¿Olvidaste tu contraseña? Busca la opción de recuperación en la página de inicio de sesión.</p>
+            <h2>Ayuda e Información</h2>
+            <p>En esta sección encontrarás recursos útiles de orientación emocional y psicológica.</p>
         </section>
+
+        <!-- BLOQUES DE AYUDA 24/7 -->
+        <div class="bloques-ayuda">
+            <div class="bloque">
+                <h3>Línea 123 - Emergencias</h3>
+                <p>Atención inmediata en situaciones de crisis o peligro.</p>
+                <p class="numero">📞 123</p>
+            </div>
+
+            <div class="bloque">
+                <h3>Línea de la Vida (Colombia)</h3>
+                <p>Atención psicológica 24/7 del Ministerio de Salud.</p>
+                <p class="numero">📞 01-8000-113-113</p>
+            </div>
+
+            <div class="bloque">
+                <h3>Línea Psicológica Bogotá</h3>
+                <p>Apoyo emocional y contención en momentos difíciles.</p>
+                <p class="numero">📞 106</p>
+            </div>
+
+            <div class="bloque">
+                <h3>Chat Psicológico Nacional</h3>
+                <p>Apoyo emocional online gratuito.</p>
+                <a href="https://www.minsalud.gov.co/Paginas/Linea-106.aspx" target="_blank">
+                    💬 Acceder al chat 24/7
+                </a>
+            </div>
+
+            <div class="bloque">
+                <h3>Fundación Sergio Urrego</h3>
+                <p>Acompañamiento emocional y prevención del suicidio.</p>
+                <a href="https://sergiourrego.org/linea-de-apoyo/" target="_blank">
+                    💬 Chat de apoyo
+                </a>
+            </div>
+        </div>
     </main>
+
+    <!-- ===== MODAL ===== -->
+    <div id="modalAyuda" class="modal">
+        <div class="modal-contenido">
+            <h2>Cómo iniciar sesión</h2>
+            <ol>
+                <li>Haz clic en el botón <strong>“Iniciar Sesión”</strong> en la parte superior.</li>
+                <li>Ingresa tu correo electrónico y contraseña registrados.</li>
+                <li>Presiona el botón <strong>“Entrar”</strong>.</li>
+                <li>Si los datos son correctos, accederás automáticamente a tu cuenta.</li>
+                <li>En caso de olvidar tu contraseña, usa la opción <strong>“¿Olvidaste tu contraseña?”</strong>.</li>
+            </ol>
+            <button class="cerrar-modal" id="cerrarModalBtn">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Botón que abre la modal -->
+    <button id="abrirModalBtn">
+                    ¿Cómo iniciar sesión?
+                </button>
+    <script src="../Js/modal.js"></script>
 
 
 </body>
