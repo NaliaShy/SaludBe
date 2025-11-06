@@ -13,7 +13,7 @@ Array
     [Sec-Fetch-Site] => same-origin
     [Sec-Fetch-Mode] => cors
     [Sec-Fetch-Dest] => empty
-    [Referer] => http://localhost/SaludBe/Html/Aprendiz/chat.php
+    [Referer] => http://localhost/SaludBe/Html/psicologo/Chat_P.php
     [Accept-Encoding] => gzip, deflate, br, zstd
     [Accept-Language] => es,en;q=0.9,zh-CN;q=0.8,zh;q=0.7,ru;q=0.6,de;q=0.5,id;q=0.4,pt;q=0.3,it;q=0.2
     [Cookie] => PHPSESSID=6tctmskii549nre6a5qtvfnb7g

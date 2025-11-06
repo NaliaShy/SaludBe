@@ -7,67 +7,6 @@
     <title>SaludBe - SENA</title>
     <link rel="stylesheet" href="../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../Css/Index.css">
-
-    <style>
-        /* ==== Estilos del modal de perfil ==== */
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            text-align: center;
-            width: 350px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            animation: aparecer 0.3s ease;
-        }
-        
-        @keyframes aparecer {
-            from {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        .modal-content h2 {
-            color: #00713D;
-            margin-bottom: 10px;
-        }
-        
-        .modal-content p {
-            margin: 5px 0;
-        }
-        
-        .cerrar {
-            background-color: #00713D;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        
-        .cerrar:hover {
-            background-color: #00994D;
-        }
-    </style>
 </head>
 
 <body>
@@ -96,15 +35,20 @@
                     Registrate
                 </button>
             </div>
-            <div class="perfil-contenedor" id="perfilBtn">
-                <div class="perfil-icono">
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2c-3.3 0-9.9 1.7-9.9 5v2h19.8v-2c0-3.3-6.6-5-9.9-5z" />
-                    </svg>
+            <a href="../Html/Login/Registrate.html" class="perfil-link">
+                <div class="perfil-contenedor">
+                    <div class="perfil-icono">
+                        <svg viewBox="0 0 24 24">
+                <path
+                    d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2c-3.3 0-9.9 1.7-9.9 5v2h19.8v-2c0-3.3-6.6-5-9.9-5z" />
+            </svg>
+                    </div>
+                    <p class="perfil-texto">Perfil</p>
                 </div>
-                <p class="perfil-texto">Perfil</p>
-            </div>
+            </a>
+
+
+
         </div>
     </nav>
     <!--Contenido-->
@@ -177,45 +121,6 @@
         </section>
 
     </div>
-
-    <!-- ===== Modal de perfil ===== -->
-    <div id="modalPerfil" class="modal">
-        <div class="modal-content">
-            <h2>Perfil del Usuario</h2>
-            <p><strong>Nombre:</strong> <span id="nombreUsuario">Juan Pérez</span></p>
-            <p><strong>Correo:</strong> <span id="correoUsuario">juanperez@example.com</span></p>
-            <button class="cerrar" id="cerrarModal">Cerrar</button>
-        </div>
-    </div>
-
-    <script>
-        // Mostrar y ocultar el modal
-        const perfilBtn = document.getElementById("perfilBtn");
-        const modal = document.getElementById("modalPerfil");
-        const cerrar = document.getElementById("cerrarModal");
-
-        perfilBtn.addEventListener("click", () => {
-            modal.style.display = "flex";
-        });
-
-        cerrar.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
-
-        // Cierra el modal al hacer clic fuera del contenido
-        window.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-
-        // Si tienes datos guardados en localStorage, los carga automáticamente
-        const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
-        if (usuarioGuardado) {
-            document.getElementById("nombreUsuario").textContent = usuarioGuardado.nombre;
-            document.getElementById("correoUsuario").textContent = usuarioGuardado.correo;
-        }
-    </script>
 
 </body>
 

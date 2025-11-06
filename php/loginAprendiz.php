@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $conexion = $db->getConnect();
 
     try {
-        $sql = "SELECT Us_id, Us_documento, Us_contraseña FROM usuarios WHERE Us_correo = ?";
+        $sql = "SELECT Us_id, Us_documento, Us_contraseña, Rol_id FROM usuarios WHERE Us_correo = ?";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([$correo]);
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -28,9 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // ✅ Sesión correcta: usar los mismos nombres SIEMPRE
                 $_SESSION['us_id'] = $usuario['Us_id'];
                 $_SESSION['documento'] = $usuario['Us_documento'];
+                $_SESSION['rol_id'] = $usuario['Rol_id'];
 
-                header("Location: ../Html/Aprendiz/Descarga.php");
-                exit();
+                if ($usuario['Rol_id'] == 1) {
+                    header("Location: ../Html/Aprendiz/Descarga.php");
+                    exit();
+                } elseif ($usuario['Rol_id'] == 2) {
+                    header("Location: ../Html/psicologo/descarga.php");
+                    exit();
+                } else {
+                    echo "❌ Rol de usuario no reconocido.";
+                    header("Location: ../Html/Login/Loginaprendiz.html");
+                }
 
             } else {
                 echo "❌ Contraseña incorrecta.";

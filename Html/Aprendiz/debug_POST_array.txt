@@ -1,83 +1,10 @@
 Array
 (
-)
-Array
-(
-    [mensaje] => sdf
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => hola edgar
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => fdg
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => sdfg
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => frgdrg
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => wenas
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => gf
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => fgd
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => fdg
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => dgdf
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => hfd
-    [us_id] => 1
-)
-Array
-(
-    [mensaje] => sdf
-    [us_id] => $idUsuario 
-)
-Array
-(
-    [mensaje] => fghg
-    [us_id] => 2
-)
-Array
-(
-    [mensaje] => dyfj
-    [us_id] => 2
-)
-Array
-(
     [mensaje] => hola
-    [us_id] => 2
+    [us_id] => 5
 )
 Array
 (
-    [mensaje] => hola
-    [us_id] => 1
+    [mensaje] => como estan
+    [us_id] => 5
 )

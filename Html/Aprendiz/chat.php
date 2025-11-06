@@ -39,7 +39,6 @@ body { font-family: Arial; display:flex; justify-content:center; padding-top:50p
     </form>
 </div>
 
-<!-- Pasamos la variable de sesión a JS -->
 <script>
     var usuarioLogueado = <?php echo $idUsuario; ?>;
 </script>

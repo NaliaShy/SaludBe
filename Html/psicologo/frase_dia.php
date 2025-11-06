@@ -22,13 +22,13 @@
     session_start();
     include '../../php/conexion.php';
 
-    if (!isset($_SESSION['id_usuario'])) {
+    if (!isset($_SESSION['us_id'])) {
       // el usuario no inició sesión
       header("Location: login.php");
       exit();
     }
 
-    $idUsuario = $_SESSION['id_usuario']; // ✅ AQUÍ SÍ
+    $idUsuario = $_SESSION['us_id']; // ✅ AQUÍ SÍ
     $db = new Conexion();
     $conexion = $db->getConnect();
 

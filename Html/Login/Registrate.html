@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro - SENA</title>
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../../Css/Login/Registrarte.css" />
-    
+
 </head>
+
 <body>
     <div class="registro-container">
-        <center><h1>Regístrate</h1></center>
+        <center>
+            <h1>Regístrate</h1>
+        </center>
         <br>
 
         <form action="../../php/Registro.php" method="post">
-             <label for="tipo-doc">Tipo de documento:</label>
+            <label for="tipo-doc">Tipo de documento:</label>
             <select id="tipo-doc" name="tipo-doc" required>
                 <option value="" disabled selected>Selecciona</option>
                 <option value="1">Cédula de ciudadanía</option>
@@ -41,11 +45,12 @@
             <label for="contrasena">Contraseña (mínimo 6 caracteres):</label>
             <input type="password" id="contrasena" name="contrasena" minlength="6" required>
 
-           
+
 
             <button type="submit" class="btn-siguiente">Registrar</button>
             <button type="button" class="btn-volver" onclick="window.location.href='../Index.html'">Volver al inicio</button>
         </form>
     </div>
 </body>
+
 </html>
