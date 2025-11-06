@@ -7,13 +7,73 @@
     <title>SaludBe - SENA</title>
     <link rel="stylesheet" href="../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../Css/Index.css">
+
+    <style>
+        /* ==== Estilos del modal de perfil ==== */
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: aparecer 0.3s ease;
+        }
+        
+        @keyframes aparecer {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .modal-content h2 {
+            color: #00713D;
+            margin-bottom: 10px;
+        }
+        
+        .modal-content p {
+            margin: 5px 0;
+        }
+        
+        .cerrar {
+            background-color: #00713D;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        
+        .cerrar:hover {
+            background-color: #00994D;
+        }
+    </style>
 </head>
 
 <body>
     <nav>
         <div class="logo">
-            <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
-                alt="Logo de SaludBe">
+            <img id="logo" src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo de SaludBe">
             <h1>SaludBe</h1>
         </div>
         <div class="option">
@@ -36,7 +96,7 @@
                     Registrate
                 </button>
             </div>
-            <div class="perfil-contenedor">
+            <div class="perfil-contenedor" id="perfilBtn">
                 <div class="perfil-icono">
                     <svg viewBox="0 0 24 24">
                         <path
@@ -45,8 +105,6 @@
                 </div>
                 <p class="perfil-texto">Perfil</p>
             </div>
-
-
         </div>
     </nav>
     <!--Contenido-->
@@ -59,13 +117,9 @@
                 </div>
                 <div class="contenido">
                     <p>
-                        En <strong>SaludBE</strong> encuentras apoyo psicológico, orientación profesional
-                        y herramientas de autocuidado diseñadas para acompañarte durante tu proceso
-                        formativo en el SENA. Aquí podrás agendar citas con especialistas, acceder a
-                        tu historial clínico, realizar test de bienestar y mantener un contacto directo
-                        con psicólogos en un entorno seguro y confidencial. Porque tu salud mental y
-                        emocional es tan importante como tu desarrollo académico, SaludBE está contigo
-                        en cada paso de tu aprendizaje.
+                        En <strong>SaludBE</strong> encuentras apoyo psicológico, orientación profesional y herramientas de autocuidado diseñadas para acompañarte durante tu proceso formativo en el SENA. Aquí podrás agendar citas con especialistas, acceder
+                        a tu historial clínico, realizar test de bienestar y mantener un contacto directo con psicólogos en un entorno seguro y confidencial. Porque tu salud mental y emocional es tan importante como tu desarrollo académico, SaludBE está
+                        contigo en cada paso de tu aprendizaje.
                     </p>
                 </div>
                 <div class="empieza-ahora">
@@ -83,14 +137,11 @@
                 </div>
                 <div class="contenido">
                     <p>
-                        Porque cuidar tu salud mental y emocional es tan importante como tu formación.
-                        Con <strong>SaludBe</strong> tienes un espacio digital seguro para agendar citas,
-                        recibir apoyo psicológico, acceder a recursos de autocuidado y mantener el control
-                        de tu bienestar en todo momento.
+                        Porque cuidar tu salud mental y emocional es tan importante como tu formación. Con <strong>SaludBe</strong> tienes un espacio digital seguro para agendar citas, recibir apoyo psicológico, acceder a recursos de autocuidado y mantener
+                        el control de tu bienestar en todo momento.
                     </p>
                     <p>
-                        Nuestra meta es crear comunidades más saludables, mejorar el rendimiento académico
-                        y laboral, y acompañarte en cada paso de tu proceso en el SENA.
+                        Nuestra meta es crear comunidades más saludables, mejorar el rendimiento académico y laboral, y acompañarte en cada paso de tu proceso en el SENA.
                     </p>
                 </div>
             </div>
@@ -107,8 +158,7 @@
                     <h3>👨‍🎓 Aprendiz</h3>
                     <p>
                         Los aprendices pueden <strong>agendar citas</strong>, acceder a su
-                        <strong>historial clínico</strong>, realizar <strong>test de bienestar</strong>,
-                        consultar su <strong>calendario</strong> y comunicarse con psicólogos mediante el chat.
+                        <strong>historial clínico</strong>, realizar <strong>test de bienestar</strong>, consultar su <strong>calendario</strong> y comunicarse con psicólogos mediante el chat.
                     </p>
                 </div>
             </div>
@@ -120,14 +170,52 @@
                     <h3>🧑‍⚕️ Psicólogo</h3>
                     <p>
                         Los psicólogos gestionan la <strong>lista de pacientes</strong>, revisan el
-                        <strong>historial clínico</strong>, administran el <strong>calendario</strong>,
-                        realizan seguimiento y brindan <strong>acompañamiento psicológico continuo</strong>.
+                        <strong>historial clínico</strong>, administran el <strong>calendario</strong>, realizan seguimiento y brindan <strong>acompañamiento psicológico continuo</strong>.
                     </p>
                 </div>
             </div>
         </section>
 
     </div>
+
+    <!-- ===== Modal de perfil ===== -->
+    <div id="modalPerfil" class="modal">
+        <div class="modal-content">
+            <h2>Perfil del Usuario</h2>
+            <p><strong>Nombre:</strong> <span id="nombreUsuario">Juan Pérez</span></p>
+            <p><strong>Correo:</strong> <span id="correoUsuario">juanperez@example.com</span></p>
+            <button class="cerrar" id="cerrarModal">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar y ocultar el modal
+        const perfilBtn = document.getElementById("perfilBtn");
+        const modal = document.getElementById("modalPerfil");
+        const cerrar = document.getElementById("cerrarModal");
+
+        perfilBtn.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+
+        cerrar.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Cierra el modal al hacer clic fuera del contenido
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // Si tienes datos guardados en localStorage, los carga automáticamente
+        const usuarioGuardado = JSON.parse(localStorage.getItem("usuario"));
+        if (usuarioGuardado) {
+            document.getElementById("nombreUsuario").textContent = usuarioGuardado.nombre;
+            document.getElementById("correoUsuario").textContent = usuarioGuardado.correo;
+        }
+    </script>
 
 </body>
 

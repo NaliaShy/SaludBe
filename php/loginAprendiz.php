@@ -22,19 +22,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario) {
+
             if (password_verify($contrasena, $usuario['Us_contraseña'])) {
 
-                // ✅ Aquí corregimos los nombres de sesión
+                // ✅ Sesión correcta: usar los mismos nombres SIEMPRE
                 $_SESSION['us_id'] = $usuario['Us_id'];
                 $_SESSION['documento'] = $usuario['Us_documento'];
 
-                header("Location: ../Php/Descarga.php");
+                header("Location: ../Html/Aprendiz/Descarga.php");
                 exit();
 
             } else {
                 echo "❌ Contraseña incorrecta.";
                 exit();
             }
+
         } else {
             echo "❌ Usuario no encontrado con el correo: $correo";
             exit();

@@ -19,8 +19,5 @@ class Conexion {
     public function getConnect() {
         return $this->connect;
     }
-
-    
-
 }
 ?>

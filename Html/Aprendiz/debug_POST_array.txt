@@ -71,3 +71,13 @@ Array
     [mensaje] => dyfj
     [us_id] => 2
 )
+Array
+(
+    [mensaje] => hola
+    [us_id] => 2
+)
+Array
+(
+    [mensaje] => hola
+    [us_id] => 1
+)
