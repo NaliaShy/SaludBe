@@ -12,16 +12,16 @@ try {
 
     // Tomamos todos menos el usuario logueado
     $stmt = $conn->prepare("
-        SELECT Us_id, Us_nombre 
-        FROM usuarios 
-        WHERE Us_id != :id
-        ORDER BY Us_nombre ASC
+        SELECT *
+FROM usuarios
+WHERE Rol_id = 2
+ORDER BY Us_nombre ASC;
+
     ");
     $stmt->bindParam(':id', $idUsuario);
     $stmt->execute();
 
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }

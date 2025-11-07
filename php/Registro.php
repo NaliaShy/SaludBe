@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // 2) Insertar nuevo usuario (usando parámetros posicionados)
         $sql = "INSERT INTO usuarios 
-            (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id, Us_documento)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            (Us_nombre, Us_apellios, Us_telefono, Us_correo, Us_contraseña, Us_estado, Ti_id, Us_documento, Rol_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)";
         $stmt = $pdo->prepare($sql);
         // Si num_document es numérico, podes castear a int. Aquí lo dejamos como string.
         $stmt->execute([$nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document]);

@@ -13,9 +13,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../../Img/imagen.jpg');
-    background-size: cover;
-    background-position: center;
 }
 
 
