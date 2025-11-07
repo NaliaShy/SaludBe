@@ -1,0 +1,142 @@
+/* ======== ESTILOS GENERALES ======== */
+body {
+    font-family: var(--font-sena);
+    margin: 0;
+    padding: 0;
+    background: #f5f7fb;
+    display: flex;
+    height: 100vh;
+}
+
+/* ======== CONTENEDOR PRINCIPAL ======== */
+.chat-big-container {
+    margin-top: 90px;
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 90px);
+}
+
+/* ======== CONTENEDOR LATERAL ======== */
+.selector-chats {
+    width: 25%;
+    border-right: 1px solid #ddd;
+    background: #ffffff;
+}
+
+.selector-chats h3 {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+#lista-usuarios {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#lista-usuarios li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+#lista-usuarios li:hover {
+    color: white;
+    background-color: var(--Sena-Azul);
+}
+
+#lista-usuarios li.activo {
+    color: white;
+    background-color: var(--Sena-verde);
+}
+
+
+/* ======== CONTENEDOR DE CHAT ======== */
+.chat-container {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+/* ======== MENSAJES DEL CHAT ======== */
+.chat-messages {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Mensajes míos */
+.mensaje.mio {
+    padding: 10px;
+    background: white;
+    color: var(--Sena-Azul);
+    align-self: flex-end;
+    text-align: right;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mensajes del otro */
+.mensaje.otro {
+    background: white;
+    color: var(--Sena-verde);
+    align-self: flex-start;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nombre */
+.mensaje strong {
+    font-size: 13px;
+}
+
+#name-user {
+    margin-right: 5px;
+    color: var(--Sena-Contraste);
+}
+
+/* Fecha */
+.mensaje small {
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+#chat-form {
+    display: flex;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+}
+
+#mensaje-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+}
+
+#mensaje-input:focus {
+    border-color: #4f7cff;
+}
+
+#btn-enviar {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #4f7cff;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#btn-enviar:hover {
+    background: #3257d9;
+}
