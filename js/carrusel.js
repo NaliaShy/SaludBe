@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Cargar imágenes desde la BD
+    fetch("../../Php/obtener_carrusel.php")
+        .then(r => r.json())
+        .then(data => {
+
+            const slidesContainer = document.getElementById("slides-container");
+
+            data.forEach(item => {
+                const div = document.createElement("div");
+                div.classList.add("slide");
+                div.style.backgroundImage = `url('${item.imagen_url}')`;
+                slidesContainer.appendChild(div);
+            });
+
+            iniciarCarrusel(); // Llama a tu carrusel original
+        })
+        .catch(e => console.error("Error cargando carrusel:", e));
+});
+
+
+function iniciarCarrusel() {
     const slides = document.querySelectorAll('.slide');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
@@ -6,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector(".carousel-container");
     let currentSlide = 0;
     let autoPlayInterval;
+
+    if (slides.length === 0) return;
 
     // Crear puntos
     slides.forEach((_, i) => {
@@ -29,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dots[currentSlide].classList.add("active");
 
         // Fondo blur igual a la imagen actual
-        container.style.backgroundImage = `url('${slides[currentSlide].src}')`;
+        container.style.backgroundImage =
+            slides[currentSlide].style.backgroundImage;
     }
 
     function nextSlide() {
@@ -66,6 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         resetAutoPlay();
     });
 
-    container.style.backgroundImage = `url('${slides[0].src}')`;
+    updateSlides();
     startAutoPlay();
-});
+}

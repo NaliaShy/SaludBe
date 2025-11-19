@@ -1,16 +1,38 @@
 <link rel="stylesheet" href="../../Css/Aprendiz/carrusel.css">
 
+<?php
+// Cargar imágenes del carrusel
+include "../../Php/conexion.php";
+
+$query = "SELECT * FROM carrusel ORDER BY id DESC";
+$result = mysqli_query($conn, $query);
+?>
+
 <div class="carousel-wrapper">
   <div class="carousel-container">
 
-    <div class="carousel">
-      <div class="slide active" style="background-image: url('https://i.pinimg.com/564x/20/a8/36/20a836b28a731563e14cc260471eceeb.jpg');"></div>
+    <div class="carousel" id="slides-container">
+      <?php  
+      if (mysqli_num_rows($result) > 0) {
+          $first = true;
 
-      <div class="slide" style="background-image: url('https://preview.redd.it/sonic-gives-you-a-little-wave-v0-zfdgd2fyu83d1.jpeg?auto=webp&s=367167ea04f32e4f9109e6d0e4b8c051227f7184');"></div>
+          while ($row = mysqli_fetch_assoc($result)) {
+              $img = "../../Uploads/carrusel/" . $row['imagen_nombre'];
+              $active = $first ? "active" : "";
+              $first = false;
 
-      <div class="slide" style="background-image: url('https://i.pinimg.com/originals/51/83/31/518331198bbddd954bdaa2835ec9879e.jpg');"></div>
+              echo "
+                <div class='slide $active' style='background-image: url(\"$img\");'></div>
+              ";
+          }
+      } else {
+          // Si no hay imágenes en BD
+          echo "
+          <div class='slide active' style='background-image:url(\"https://i.pinimg.com/564x/20/a8/36/20a836b28a731563e14cc260471eceeb.jpg\")'></div>
+          ";
+      }
+      ?>
     </div>
-    
 
     <button class="carousel-button prev">&#8249;</button>
     <button class="carousel-button next">&#8250;</button>
@@ -19,4 +41,32 @@
   </div>
 </div>
 
-<script src="../../Js/carrusel.js"></script>
+<script src="../../js/carrusel.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const slidesContainer = document.getElementById("slides-container");
+
+    function actualizarCarrusel() {
+        fetch("../../Php/obtener_carrusel_json.php")
+            .then(res => res.json())
+            .then(imagenes => {
+                // Limpiar carrusel
+                slidesContainer.innerHTML = "";
+
+                // Insertar imágenes
+                imagenes.forEach((img, index) => {
+                    slidesContainer.innerHTML += `
+                        <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${img}')"></div>
+                    `;
+                });
+            });
+    }
+
+    // Ejecutar cada 5 segundos (5000ms)
+    setInterval(actualizarCarrusel, 5000);
+
+    // Ejecutar apenas cargue la página
+    actualizarCarrusel();
+});
+</script>
