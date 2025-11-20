@@ -4,6 +4,31 @@
     box-sizing: border-box;
 }
 
+
+/* ---------------------------------------------------- */
+
+
+/* Variables de color asumidas para el ejemplo */
+
+
+/* Reemplaza con tus variables reales si son diferentes */
+
+:root {
+    --Sena-verde: #458a1d;
+    --Sena-Azul: #00909E;
+    --Sena-Verde-Hover: #76dc85;
+    --Sena-Azul-Hover: #76b8dc;
+    --Sena-Contraste: #000;
+    --Sena-Blanco: #fffdfd;
+    --transparencia: rgba(0, 0, 0, 0.6);
+    --font-sena: 'Sena', sans-serif;
+    --color-pasado: #e0e0e0;
+    /* Color gris para días pasados */
+}
+
+
+/* ---------------------------------------------------- */
+
 body,
 html {
     height: 100%;
@@ -36,6 +61,21 @@ html {
     padding: 10px 15px;
 }
 
+.calendar-header button {
+    background: none;
+    border: none;
+    color: var(--Sena-Blanco);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+    transition: background 0.2s;
+    border-radius: 4px;
+}
+
+.calendar-header button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
 #month-year {
     font-size: 18px;
     font-weight: bold;
@@ -50,6 +90,8 @@ html {
     font-weight: bold;
     font-size: 14px;
     padding: 8px 0;
+    color: #555;
+    /* Color sutil para los nombres de los días */
 }
 
 .calendar-grid {
@@ -64,6 +106,10 @@ html {
     border-radius: 6px;
     cursor: pointer;
     transition: 0.2s;
+    position: relative;
+    /* ¡CRUCIAL! Permite posicionar el punto dentro de cada día */
+    user-select: none;
+    /* Evita selección de texto al hacer click */
 }
 
 .day:hover {
@@ -74,4 +120,98 @@ html {
 .today {
     background: var(--Sena-verde);
     color: var(--Sena-Blanco);
+    font-weight: bold;
+}
+
+
+/* ---------------------------------------------------- */
+
+
+/* ESTILOS PARA EL INDICADOR DE CITA (EL PUNTICO) */
+
+
+/* ---------------------------------------------------- */
+
+
+/* La clase que JS añade al día con evento */
+
+.day.has-event {
+    /* Opcional: Dale un borde o un fondo sutil para distinguirlo */
+    border: 1px solid var(--Sena-verde);
+}
+
+.past-day {
+    background-color: var(--color-pasado);
+    /* Gris claro */
+    color: #666;
+    /* Gris más oscuro para el número */
+    cursor: default;
+    /* Indicar que no se puede seleccionar (opcional) */
+    pointer-events: none;
+    /* Deshabilita clics en días pasados (opcional) */
+}
+
+
+/* Re-habilita el cursor para los días pasados si tienen evento, si decides que sean clickeables */
+
+.past-day.has-event {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+
+/* El puntico en sí */
+
+.event-dot {
+    position: absolute;
+    bottom: 5px;
+    /* Distancia desde la parte inferior */
+    /* Centrado horizontalmente */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #ffc107;
+    /* Color Amarillo o Naranja para hacerlo destacar, usa tu color deseado */
+    border-radius: 50%;
+    z-index: 10;
+    border: 1px solid var(--Sena-Azul-Hover);
+    /* Borde opcional para mejor visibilidad */
+}
+
+
+/* Estilos de la Lista de Eventos (añadidos para completar la sección .list) */
+
+.list {
+    width: 30%;
+    background: var(--Sena-Blanco);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.list h2 {
+    color: var(--Sena-verde);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.list ul {
+    list-style: none;
+}
+
+.list li {
+    background: #f8f8f8;
+    border-left: 5px solid var(--Sena-verde);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.list li strong {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 2px;
 }

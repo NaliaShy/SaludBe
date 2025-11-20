@@ -17,6 +17,7 @@
     <li><a href="../../Html/psicologo/calendario.php">
         Calendario</a></li>
     <li><a href="/Saludbe/php/chat/chat.php">Chat</a></li>
+      <li><a href="../../Html/psicologo/test.php">Crear test</a></li>
     <li><a href="../../Html/psicologo/ResulTest.php">Resultado Test</a></li>
     <li><a href="../../Html/psicologo/configuracion.php"> Configuración</a></li>
     <li><a href="../../Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>

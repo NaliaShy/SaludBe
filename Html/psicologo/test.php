@@ -13,8 +13,11 @@
 <body>
 
   <?php include '../../php/Components/Sidebar_p.php'; ?>
-  
+
   <div class="container">
+
+    <main class="main-content">
+
       <p class="subtitle">Test Psicológicos Disponibles</p>
 
       <section class="test-grid">
@@ -22,27 +25,45 @@
         <div class="test-card">
           <img src="" alt="Test de ansiedad social">
           <div class="test-label">Test de ansiedad social</div>
+          <button class="test-btn">Crear test</button>
         </div>
 
         <div class="test-card">
           <img src="" alt="Test de adicción al internet">
           <div class="test-label">Test de adicción al internet</div>
+          <button class="test-btn">Crear test</button>
         </div>
 
         <div class="test-card">
-          <img src="" alt="Test de depresion">
-          <div class="test-label">Test de depresion</div>
+          <img src="" alt="Test de depresión">
+          <div class="test-label">Test de depresión</div>
+          <button class="test-btn">Crear test</button>
         </div>
 
         <div class="test-card">
           <img src="" alt="Test de burnout">
           <div class="test-label">Test de burnout</div>
+          <button class="test-btn">Crear test</button>
         </div>
 
       </section>
 
     </main>
   </div>
+<!-- MODAL PARA CREAR O INICIAR TEST -->
+<div id="testModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+
+    <h2 id="modal-title">Crear test</h2>
+
+    <p id="modal-description"></p>
+
+    <button id="crearTestBtn" class="btn-modal-action">Crear este test</button>
+  </div>
+</div>
+
+<script src="../../Js/test.js"></script>
 
 </body>
 
