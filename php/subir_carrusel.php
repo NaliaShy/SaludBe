@@ -1,71 +1,49 @@
 <?php
-session_start();
-include "Conexion.php";
+header("Content-Type: application/json");
+require "Conexion.php";
 
-// Crear instancia de la conexión
-$db = new Conexion();
-$conn = $db->getConnect();  
+// Crear conexión con PDO
+$conexion = new Conexion();
+$conn = $conexion->getConnect();
 
-// Verificar usuario logueado
-$usuario = $_SESSION['Us_id'] ?? null;
-
-if (!$usuario) {
-    echo json_encode([
-        "status" => "error",
-        "msg" => "El usuario no está logueado (Us_id vacío)"
-    ]);
+// Validar archivo
+if (!isset($_FILES["imagen"])) {
+    echo json_encode(["error" => "No se recibió imagen"]);
     exit;
 }
 
-// Verificar archivo
-if (!isset($_FILES['imagen'])) {
-    echo json_encode([
-        "status" => "error",
-        "msg" => "No se recibió archivo"
-    ]);
-    exit;
+$archivo = $_FILES["imagen"];
+$dir = "../Uploads/carrusel/";
+
+// Crear carpeta si no existe
+if (!file_exists($dir)) {
+    mkdir($dir, 0777, true);
 }
 
-// Directorio
-$directorio = "../Uploads/carrusel/";
+// Crear nombre único
+$nombre_archivo = uniqid() . "_" . basename($archivo["name"]);
+$ruta_final = $dir . $nombre_archivo;
 
-if (!file_exists($directorio)) {
-    mkdir($directorio, 0777, true);
-}
+// Mover al servidor
+if (move_uploaded_file($archivo["tmp_name"], $ruta_final)) {
 
-// Crear nombre de imagen
-$nombreImagen = time() . "_" . basename($_FILES["imagen"]["name"]);
-$rutaDestino = $directorio . $nombreImagen;
-
-// Mover archivo a servidor
-if (!move_uploaded_file($_FILES["imagen"]["tmp_name"], $rutaDestino)) {
-    echo json_encode([
-        "status" => "error",
-        "msg" => "No se pudo mover la imagen al servidor"
-    ]);
-    exit;
-}
-
-$titulo = $_POST["titulo"] ?? "";
-$descripcion = $_POST["descripcion"] ?? "";
-
-// INSERT SEGÚN TU TABLA carrusel
-try {
-    $sql = "INSERT INTO carrusel (titulo, descripcion, imagen_url, estado, Us_id)
-            VALUES (?, ?, ?, 'activo', ?)";
-
+    // Insertar en la BD
+    $sql = "INSERT INTO carrusel (imagen_nombre, estado) VALUES (?, 'activo')";
     $stmt = $conn->prepare($sql);
-    $stmt->execute([$titulo, $descripcion, $nombreImagen, $usuario]);
 
-    echo json_encode([
-        "status" => "ok",
-        "msg" => "Imagen subida correctamente",
-        "file" => $nombreImagen
-    ]);
+    if ($stmt->execute([$nombre_archivo])) {
 
-} catch (PDOException $e) {
-    echo json_encode([
-        "status" => "error",
-        "msg" => "Error SQL: " . $e->getMessage()
-    ]);
+        echo json_encode([
+            "success" => true,
+            "nombre" => $nombre_archivo,
+            "url" => "../../Uploads/carrusel/" . $nombre_archivo
+        ]);
+
+    } else {
+        echo json_encode(["error" => "Error insertando en BD"]);
+    }
+
+} else {
+    echo json_encode(["error" => "Error moviendo archivo"]);
 }
+?>

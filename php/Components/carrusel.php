@@ -2,10 +2,14 @@
 
 <?php
 // Cargar imágenes del carrusel
-include "../../Php/conexion.php";
+require "../../Php/Conexion.php";
 
-$query = "SELECT * FROM carrusel ORDER BY id DESC";
-$result = mysqli_query($conn, $query);
+$conexion = new Conexion();
+$conn = $conexion->getConnect();
+
+$query = $conn->prepare("SELECT imagen_nombre FROM carrusel WHERE estado = 'activo' ORDER BY id DESC");
+$query->execute();
+$imagenes = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="carousel-wrapper">
@@ -13,10 +17,10 @@ $result = mysqli_query($conn, $query);
 
     <div class="carousel" id="slides-container">
       <?php  
-      if (mysqli_num_rows($result) > 0) {
+      if (count($imagenes) > 0) {
           $first = true;
 
-          while ($row = mysqli_fetch_assoc($result)) {
+          foreach ($imagenes as $row) {
               $img = "../../Uploads/carrusel/" . $row['imagen_nombre'];
               $active = $first ? "active" : "";
               $first = false;
@@ -51,22 +55,19 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch("../../Php/obtener_carrusel_json.php")
             .then(res => res.json())
             .then(imagenes => {
-                // Limpiar carrusel
+
                 slidesContainer.innerHTML = "";
 
-                // Insertar imágenes
                 imagenes.forEach((img, index) => {
                     slidesContainer.innerHTML += `
-                        <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${img}')"></div>
+                        <div class="slide ${index === 0 ? 'active' : ''}" 
+                             style="background-image: url('${img}')"></div>
                     `;
                 });
             });
     }
 
-    // Ejecutar cada 5 segundos (5000ms)
     setInterval(actualizarCarrusel, 5000);
-
-    // Ejecutar apenas cargue la página
     actualizarCarrusel();
 });
 </script>

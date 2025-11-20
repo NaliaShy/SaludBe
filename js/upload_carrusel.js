@@ -1,117 +1,162 @@
-console.log("✔ JS CARGADO CORRECTAMENTE");
-
 // ELEMENTOS
 const uploadBox = document.getElementById("uploadBox");
 const fileInput = document.getElementById("fileInput");
+const historial = document.getElementById("historial");
 const previewContainer = document.getElementById("previewContainer");
 const imagePreview = document.getElementById("imagePreview");
 const popup = document.getElementById("popupNotification");
-const historial = document.getElementById("historial");
 
-// ABRIR SELECTOR AL CLIC
+// EVITAR COMPORTAMIENTO POR DEFECTO
+["dragenter", "dragover", "dragleave", "drop"].forEach(e => {
+    uploadBox.addEventListener(e, ev => ev.preventDefault());
+});
+
+// ESTILOS AL ARRASTRAR
+["dragenter", "dragover"].forEach(e => {
+    uploadBox.addEventListener(e, () => uploadBox.classList.add("hover"));
+});
+
+["dragleave", "drop"].forEach(e => {
+    uploadBox.addEventListener(e, () => uploadBox.classList.remove("hover"));
+});
+
+// CLICK PARA ABRIR SELECTOR
 uploadBox.addEventListener("click", () => fileInput.click());
 
-// CAMBIO DE ARCHIVO MANUAL
-fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    showPreview(file);
-    uploadImage(file);
-});
-
-// DRAGOVER
-uploadBox.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    uploadBox.classList.add("dragover");
-});
-
-// DRAG LEAVE
-uploadBox.addEventListener("dragleave", () => {
-    uploadBox.classList.remove("dragover");
-});
-
 // DROP
-uploadBox.addEventListener("drop", (e) => {
-    e.preventDefault();
-    uploadBox.classList.remove("dragover");
-
-    const file = e.dataTransfer.files[0];
-    showPreview(file);
-    uploadImage(file);
+uploadBox.addEventListener("drop", e => {
+    fileInput.files = e.dataTransfer.files;
+    mostrarPreview(fileInput.files[0]);
+    subirImagen(fileInput.files[0]);
 });
 
-// MOSTRAR PREVIEW
-function showPreview(file) {
-    if (!file) return;
+// CHANGE
+fileInput.addEventListener("change", () => {
+    mostrarPreview(fileInput.files[0]);
+    subirImagen(fileInput.files[0]);
+});
+
+// PREVIEW
+function mostrarPreview(archivo) {
+    if (!archivo) return;
 
     const reader = new FileReader();
-
-    reader.onload = () => {
-        imagePreview.src = reader.result;
+    reader.onload = e => {
         previewContainer.style.display = "block";
+        imagePreview.src = e.target.result;
     };
-
-    reader.readAsDataURL(file);
-}
-
-// SUBIR IMAGEN
-function uploadImage(file) {
-    if (!file) return;
-
-    console.log("📤 Enviando fetch con archivo:", file.name);
-
-    let formData = new FormData();
-    formData.append("imagen", file);
-    formData.append("titulo", "Imagen automática");
-    formData.append("descripcion", "Subida por el psicólogo");
-
-    fetch("../../Php/subir_carrusel.php", {
-        method: "POST",
-        body: formData
-    })
-        .then((resp) => {
-            console.log("📥 Respuesta RAW del servidor:", resp);
-            return resp.text();
-        })
-        .then((texto) => {
-            console.log("📄 TEXTO DEVUELTO POR PHP:", texto);
-
-            let res;
-            try {
-                res = JSON.parse(texto);
-            } catch (e) {
-                showPopup("❌ Error: respuesta inválida del servidor");
-                console.error("❌ NO SE PUDO PARSEAR JSON:", e);
-                return;
-            }
-
-            if (res.status === "ok") {
-                showPopup("✔ Imagen subida correctamente");
-                addToHistorial(res.file);
-            } else {
-                showPopup("❌ Error: " + res.msg);
-            }
-        })
-        .catch((err) => {
-            console.error("❌ ERROR EN FETCH:", err);
-            showPopup("❌ Error al subir la imagen");
-        });
+    reader.readAsDataURL(archivo);
 }
 
 // POPUP
-function showPopup(msg) {
-    popup.innerHTML = msg;
-    popup.classList.add("show");
+function showPopup(msg, error = false) {
+    popup.innerText = msg;
+    popup.classList.toggle("error", error);
+    popup.style.display = "block";
 
     setTimeout(() => {
-        popup.classList.remove("show");
-    }, 3000);
+        popup.style.display = "none";
+    }, 2500);
 }
 
-// AGREGAR AL HISTORIAL
-function addToHistorial(nombre) {
-    const img = document.createElement("img");
-    img.src = "../../Uploads/carrusel/" + nombre;
-    img.classList.add("thumb");
+// SUBIR IMAGEN
+function subirImagen(archivo) {
 
-    historial.prepend(img); // Lo más nuevo primero
+    if (!archivo) {
+        showPopup("No seleccionaste ninguna imagen", true);
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("imagen", archivo);
+
+    fetch("../../php/subir_carrusel.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            showPopup("Imagen subida correctamente");
+            cargarHistorial();
+        } else {
+            showPopup("Error al subir imagen", true);
+        }
+    })
+    .catch(() => showPopup("Error de conexión", true));
 }
+
+// CARGAR HISTORIAL
+function cargarHistorial() {
+
+    fetch("../../php/historial_carrusel.php")
+    .then(r => r.json())
+    .then(items => {
+        historial.innerHTML = "";
+
+        items.forEach(img => {
+
+            historial.innerHTML += `
+                <div class="historial-item">
+                    <img src="${img.url}">
+
+                    <button class="delete-btn" onclick="eliminarImagen(${img.id})">✖</button>
+
+                    <button class="estado-btn" onclick="cambiarEstado(${img.id}, '${img.estado}')">
+                        ${img.estado === "activo" ? "Desactivar" : "Activar"}
+                    </button>
+                </div>
+            `;
+        });
+    });
+}
+
+// ELIMINAR IMAGEN
+function eliminarImagen(id) {
+
+    if (!confirm("¿Eliminar esta imagen del carrusel?")) return;
+
+    let formData = new FormData();
+    formData.append("id", id);
+
+    fetch("../../php/eliminar_carrusel.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(r => r.text())
+    .then(res => {
+        if (res.trim() === "ok") {
+            showPopup("Imagen eliminada");
+            cargarHistorial();
+        } else {
+            showPopup("Error eliminando imagen", true);
+        }
+    });
+}
+
+// CAMBIAR ESTADO
+function cambiarEstado(id, estadoActual) {
+
+    const nuevoEstado = estadoActual === "activo" ? "inactivo" : "activo";
+
+    let formData = new FormData();
+    formData.append("id", id);
+    formData.append("estado", nuevoEstado);
+
+    fetch("../../php/cambiar_estado.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(r => r.text())
+    .then(res => {
+        if (res.trim() === "ok") {
+            showPopup("Estado actualizado");
+            cargarHistorial();
+        } else {
+            showPopup("Error cambiando estado", true);
+        }
+    });
+}
+
+// INICIAR
+cargarHistorial();

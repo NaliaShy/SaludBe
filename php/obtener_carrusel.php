@@ -1,14 +1,14 @@
 <?php
 header("Content-Type: application/json");
-include "conexion.php";
+require "Conexion.php";
 
-$sql = "SELECT * FROM carrusel WHERE estado='activo' ORDER BY id_carrusel DESC";
-$result = mysqli_query($conn, $sql);
+$sql = "SELECT id, imagen_url FROM carrusel_imagenes WHERE estado='activo' ORDER BY id DESC";
+$result = $conn->query($sql);
 
 $imagenes = [];
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $imagenes[] = "../../Uploads/carrusel/" . $row["imagen_url"];
+while ($row = $result->fetch_assoc()) {
+    $imagenes[] = $row;
 }
 
 echo json_encode($imagenes);

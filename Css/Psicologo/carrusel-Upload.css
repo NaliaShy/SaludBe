@@ -1,3 +1,6 @@
+/* ------------------------------
+   CUADRO PARA SUBIR LA IMAGEN
+--------------------------------*/
 .upload-box {
     width: 350px;
     height: 200px;
@@ -12,21 +15,29 @@
     background: #f4f6ff;
     transition: .3s;
 }
-.upload-box.dragover {
+
+.upload-box.hover {
     background: #dce5ff;
     border-color: #2e59d9;
 }
 
+/* ------------------------------
+   PREVIEW DE LA IMAGEN
+--------------------------------*/
 .preview-container {
     margin-top: 15px;
     padding: 10px;
 }
+
 .preview-img {
     width: 200px;
     border-radius: 10px;
     border: 2px solid #4e73df;
 }
 
+/* ------------------------------
+   POPUP (EXITO / ERROR)
+--------------------------------*/
 .popup-notification {
     position: fixed;
     right: 20px;
@@ -40,6 +51,7 @@
     z-index: 9999;
     animation: fadeIn .3s forwards;
 }
+
 .popup-notification.error {
     background: #e63946;
 }
@@ -49,34 +61,70 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ------------------------------
+   HISTORIAL (GRID DE IMÁGENES)
+--------------------------------*/
 .historial-container {
-    display: flex;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
-    flex-wrap: wrap;
 }
 
+/* Cada tarjeta */
 .historial-item {
     position: relative;
-    width: 150px;
-}
-
-.historial-item img {
-    width: 150px;
-    height: 90px;
-    object-fit: cover;
     border-radius: 10px;
-    border: 2px solid #4e73df;
+    overflow: hidden;
+    border: 2px solid #ddd;
+    background: #fff;
+    transition: 0.3s;
 }
 
+/* Imagen */
+.historial-item img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+/* ------------------------------
+   BOTÓN ELIMINAR
+--------------------------------*/
 .delete-btn {
     position: absolute;
     top: 5px;
     right: 5px;
-    background: rgba(230,57,70,.9);
+    background: rgba(230, 57, 70, 0.95);
+    color: white;
     border: none;
-    color: #fff;
-    padding: 5px 7px;
-    border-radius: 5px;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 14px;
     cursor: pointer;
+    transition: .2s;
 }
- 
+
+.delete-btn:hover {
+    background: red;
+}
+
+/* ------------------------------
+   BOTÓN ACTIVAR / DESACTIVAR
+--------------------------------*/
+.estado-btn {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    background: #2d89ff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: .3s;
+}
+
+.estado-btn:hover {
+    background: #1a5fcc;
+}

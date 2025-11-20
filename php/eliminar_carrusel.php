@@ -1,18 +1,39 @@
 <?php
-include "conexion.php";
+require "Conexion.php";
 
-$url = $_POST['url']; 
-$nombre = basename($url);
-
-$sql = "DELETE FROM carrusel WHERE imagen_nombre = '$nombre'";
-mysqli_query($conn, $sql);
-
-$ruta = "../Uploads/carrusel/" . $nombre;
-
-if (file_exists($ruta)) {
-    unlink($ruta);
-    echo "eliminado";
-} else {
-    echo "no existe";
+// Validar
+if (!isset($_POST["id"])) {
+    echo "no id";
+    exit;
 }
+
+$id = intval($_POST["id"]);
+
+// Crear conexión
+$conexion = new Conexion();
+$conn = $conexion->getConnect();
+
+// 1️⃣ Obtener nombre del archivo
+$stmt = $conn->prepare("SELECT imagen_nombre FROM carrusel WHERE id = ?");
+$stmt->execute([$id]);
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$row) {
+    echo "no existe";
+    exit;
+}
+
+$imagen = $row["imagen_nombre"];
+$path = "../Uploads/carrusel/" . $imagen;
+
+// 2️⃣ Borrar archivo físico
+if (file_exists($path)) {
+    unlink($path);
+}
+
+// 3️⃣ Eliminar registro en BD
+$delete = $conn->prepare("DELETE FROM carrusel WHERE id = ?");
+$delete->execute([$id]);
+
+echo "ok";
 ?>
