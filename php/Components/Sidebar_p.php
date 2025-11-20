@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/SaludBe/css/Repetivos/sidebar_A.css">
+<link rel="stylesheet" href="/SaludBe/css/Repetivos/sidebar.css">
 <!-- NAV superior -->
 <nav>
   <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
