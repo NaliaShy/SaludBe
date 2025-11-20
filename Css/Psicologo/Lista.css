@@ -1,89 +1,262 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-font-family: var(--font-sena);
+/* ---------------------------------------------------- */
+
+
+/* Variables de color asumidas para el ejemplo */
+
+
+/* ---------------------------------------------------- */
+
+:root {
+    --Sena-Blanco: #ffffff;
+    --Sena-verde: #008744;
+    --Sena-Gris: #f4f4f4;
+    --Sena-Azul-Hover: #004d40;
 }
 
-body {
-  background: linear-gradient(135deg, #e6f5f1, #d3f3e2);
-  color: #2f9a4f;
-  min-height: 100vh;
+
+/* ---------------------------------------------------- */
+
+
+/* ESTILOS DE LA PÁGINA PRINCIPAL */
+
+
+/* ---------------------------------------------------- */
+
+body,
+html {
+    font-family: var(--font-sena, sans-serif);
+    background-color: var(--Sena-Gris);
+    color: #333;
+}
+
+.container {
+    padding: 20px;
+    margin-left: 250px;
+    /* Ajustar por el Sidebar */
 }
 
 h2 {
-  margin-bottom: 20px;
-  color: #15822d;
+    color: var(--Sena-verde);
+    border-bottom: 2px solid var(--Sena-verde);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-/* ===== CONTENIDO PRINCIPAL ===== */
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== BARRA DE BÚSQUEDA ===== */
 .search-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.search-bar .icon {
-  font-size: 20px;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: 0.2s;
-}
-
-.search-bar input:focus {
-  border-color: #1abc9c;
-  box-shadow: 0 0 6px rgba(26, 188, 156, 0.4);
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .search-bar button {
-  background:     #15822d;
-  border: none;
-  padding: 10px 14px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
+    padding: 10px 15px;
+    background-color: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .search-bar button:hover {
-  background: #16a085;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--Sena-Azul-Hover);
 }
 
-/* ===== CARDS ===== */
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+.aprendiz-container {
+    padding: 10px;
 }
 
-.card {
-  background: #ecf0f1;
-  border-radius: 10px;
-  height: 120px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
+.juegos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.juego-card {
+    background: var(--Sena-Blanco);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    /* Indica que es clickeable */
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid var(--Sena-verde);
+    /* Indicador visual de elemento de lista */
+}
+
+.juego-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.juego-card h3 {
+    color: var(--Sena-verde);
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+}
+
+.juego-card p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+
+/* ---------------------------------------------------- */
+
+
+/* ESTILOS DEL MODAL */
+
+
+/* ---------------------------------------------------- */
+
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    /* Alto z-index para estar sobre todo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo semi-transparente oscuro */
+    justify-content: center;
+    /* Centrado vertical y horizontalmente */
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--Sena-Blanco);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 500px;
+    /* Ancho máximo para el modal */
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--Sena-verde);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Estilos de Contenido del Usuario */
+
+.user-detail-header h3 {
+    color: var(--Sena-verde);
+    border-bottom: 2px solid var(--Sena-Gris);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.user-detail-body p {
+    line-height: 1.6;
+    border-bottom: 1px dashed #eee;
+    padding: 5px 0;
+}
+
+.user-detail-body p strong {
+    min-width: 120px;
+    display: inline-block;
+    color: #555;
+}
+
+.user-detail-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.user-detail-actions button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+}
+
+.btn-primary:hover {
+    background-color: var(--Sena-Azul-Hover);
+}
+
+.btn-secondary {
+    background-color: #ccc;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background-color: #aaa;
+}
+
+
+/* Estilos del Spinner de Carga */
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--Sena-verde);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 15px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.error-message {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
 }

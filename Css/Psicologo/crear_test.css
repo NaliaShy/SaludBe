@@ -1,0 +1,179 @@
+/* Estilos para crear_test.php
+   Diseño limpio, acorde con el resto del proyecto
+*/
+
+body {
+    margin: 0;
+    background: var(---Sena-verde-);
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.form-container {
+    max-width: var(--max-width);
+    margin: 40px auto;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px rgba(33, 40, 60, 0.08);
+    padding: 28px;
+    box-sizing: border-box;
+    border: 1px solid rgba(40, 50, 70, 0.04);
+}
+
+.form-title {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+    color: var(--Sena-verde);
+    font-weight: 600;
+}
+
+.descripcion {
+    margin: 0 0 18px 0;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.form-container label {
+    display: block;
+    font-size: 13px;
+    color: #444;
+    margin: 14px 0 6px 0;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(34, 40, 60, 0.08);
+    background: linear-gradient(180deg, #fff, #fbfdff);
+    font-size: 14px;
+    color: #222;
+    outline: none;
+    transition: box-shadow .12s ease, border-color .12s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus,
+.form-container input[type="number"]:focus {
+    box-shadow: 0 6px 18px rgba(74, 144, 226, 0.12);
+    border-color: var(--accent);
+}
+
+#questions-container {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pregunta {
+    background: linear-gradient(180deg, rgba(246, 248, 251, 0.9), #fff);
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(40, 50, 70, 0.04);
+}
+
+.pregunta h4 {
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    color: var(--accent-2);
+}
+
+.pregunta textarea {
+    min-height: 64px;
+    resize: vertical;
+}
+
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 12px;
+    margin-top: 12px;
+}
+
+.opciones label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+}
+
+.opciones input[type="text"] {
+    flex: 1;
+    margin-left: 6px;
+    padding: 8px 10px;
+}
+
+.nota {
+    margin: 14px 0 18px 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.btn-guardar {
+    display: inline-block;
+    padding: 10px 16px;
+    background: var(--Sena-verde);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(74, 144, 226, 0.16);
+    transition: transform .08s ease, box-shadow .12s ease;
+}
+
+.btn-guardar:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Pequeños ajustes para inputs y accesibilidad */
+
+.form-container input[required],
+.form-container textarea[required] {
+    box-shadow: none;
+}
+
+
+/* Responsive */
+
+@media (max-width:760px) {
+    .form-container {
+        padding: 18px;
+        margin: 20px;
+    }
+    .opciones {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Estilos para mensajes de error (si se desean) */
+
+.form-error {
+    color: var(--danger);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+
+/* Estilo para contador/orden si se quiere visualizar orden */
+
+.pregunta .orden-badge {
+    display: inline-block;
+    background: var(--accent-2);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+}

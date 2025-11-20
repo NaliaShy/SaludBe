@@ -2,11 +2,13 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Página Principal</title>
-  <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-  <link rel="stylesheet" href="../../Css/psicologo/Lista.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+    <link rel="stylesheet" href="../../Css/psicologo/Lista.css" />
+    <!-- Se incluye jQuery para facilitar las llamadas AJAX -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -17,7 +19,7 @@
     <div class="container">
         <h2>Lista de Aprendiz</h2>
 
-        <form method="GET" action=""> 
+        <form method="GET" action="">
             <div class="search-bar">
                 <span class="icon">🔍</span>
                 <input type="text" placeholder="Buscar aprendiz..." name="search_term"
@@ -30,14 +32,18 @@
             </div>
         </form>
 
-        <?php include '../../php/mostrarusuarios.php'; ?>
+        <?php 
+        // Nota: Asumo que este archivo obtiene la lista de aprendices en la variable $aprendices
+        include '../../php/mostrarusuarios.php'; 
+        ?>
 
         <div class="aprendiz-container">
 
             <?php if (!empty($aprendices)): ?>
                 <div class="juegos-grid">
                     <?php foreach ($aprendices as $aprendiz): ?>
-                        <div class="juego-card">
+                        <!-- MODIFICACIÓN CLAVE: Añadir el evento onclick y pasar el ID -->
+                        <div class="juego-card" onclick="openModal('<?= htmlspecialchars($aprendiz['Us_id']) ?>')">
                             <h3><?= htmlspecialchars($aprendiz['Us_nombre']) ?></h3>
                             <p><?= htmlspecialchars($aprendiz['Us_apellios']) ?></p>
                         </div>
@@ -56,6 +62,29 @@
 
     </div>
 
+    <!-- ------------------------------------------------------------------ -->
+    <!-- ESTRUCTURA DEL MODAL -->
+    <!-- ------------------------------------------------------------------ -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div id="modal-body-content">
+                <!-- Aquí se cargará la información del aprendiz vía AJAX -->
+                <center>
+                    <div class="loading-spinner"></div>
+                    <p>Cargando información del aprendiz...</p>
+                </center>
+            </div>
+        </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- LÓGICA JAVASCRIPT/AJAX -->
+    <!-- ------------------------------------------------------------------ -->
+    <script src="../../js//Lista.js">
+        // Función para mostrar el modal y cargar los datos
+        
+    </script>
 </body>
 
 </html>

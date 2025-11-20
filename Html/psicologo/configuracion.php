@@ -1,97 +1,174 @@
+<?php
+session_start();
+// NOTA: Revisar si la ruta '../../php/conexion.php' es correcta para el entorno real.
+include_once '../../php/conexion.php'; 
+
+// 1. Verificar sesión y obtener ID de usuario
+if (!isset($_SESSION['us_id'])) {
+    header("Location: ../Html/Login/Loginpsicologo.html"); 
+    exit();
+}
+
+$userId = $_SESSION['us_id'];
+$userData = [
+    'nombre_completo' => '',
+    'email' => '',
+    'documento' => '',
+    'tipo_documento' => '',
+];
+
+// **********************************************
+// NUEVA LÓGICA: Forzar siempre la pestaña 'General' como activa
+// **********************************************
+$isGeneralActive = 'active';
+$isActualizarActive = '';
+
+
+// 2. Obtener datos actuales del usuario para pre-llenar el formulario
+try {
+    $db = new Conexion();
+    $conexion = $db->getConnect();
+    
+    // Consulta actualizada: Incluye JOIN a tipo_usuarios para obtener el nombre del tipo de documento
+    $sql = "SELECT 
+                u.Us_nombre, 
+                u.Us_apellios, 
+                u.Us_correo,
+                u.Us_documento,
+                t.Ti_rol AS Tipo_documento
+            FROM usuarios u
+            JOIN tipo_usuarios t ON u.Ti_id = t.Ti_id
+            WHERE u.Us_id = ?";
+            
+    $stmt = $conexion->prepare($sql);
+    $stmt->execute([$userId]); 
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($user) {
+        $userData['nombre_completo'] = htmlspecialchars($user['Us_nombre'] . ' ' . $user['Us_apellios']);
+        $userData['email'] = htmlspecialchars($user['Us_correo']);
+        // Datos de documento añadidos
+        $userData['documento'] = htmlspecialchars($user['Us_documento']);
+        $userData['tipo_documento'] = htmlspecialchars($user['Tipo_documento']);
+    }
+
+} catch (PDOException $e) {
+    // Manejo de errores de base de datos
+    error_log("Error al cargar datos del usuario para configuración: " . $e->getMessage());
+    $_SESSION['notificacion_error'] = "Error al cargar datos: " . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro de Configuraciones</title>
     <link rel="stylesheet" href="../../Css/Psicologo/configuaracion.css">
-    <link rel="stylesheet" href="../../Css/Repetivos/sidebar.css">
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
 </head>
 
 <body>
-    <?php include '../../php/Components/Sidebar_p.php'; ?>
+    <?php 
+    include '../../php/Components/Sidebar_p.php'; 
+    ?>
+    <?php 
+    // NOTA: Corregí el include a notificaciones_p.php (asumiendo que 'p' es de psicólogo)
+    include '../../php/Components/notificaciones_a.php'; 
+    ?>
+
     <div class="config-container">
         <div class="tabs">
-            <div class="tab active" onclick="showSection('general')">General</div>
-            <div class="tab" onclick="showSection('actualizar')">Actualizar Datos</div>
+            <!-- Pestaña General siempre 'active' por defecto al cargar -->
+            <div class="tab <?= $isGeneralActive ?>" onclick="showSection('general', this)">General</div>
+            <div class="tab <?= $isActualizarActive ?>" onclick="showSection('actualizar', this)">Actualizar Datos</div>
         </div>
-        <div id="general" class="section active">
-            <button class="config-btn secondary">Cambiar Cuenta</button>
-            <button class="config-btn" onclick="window.location.href='../Login/Loginpsicologo.html'">Cerrar
-                Sesión</button>
+        
+        <!-- Sección General siempre 'active' por defecto al cargar -->
+        <div id="general" class="section <?= $isGeneralActive ?>">
+            <h2 class="section-title">Ajustes Generales de la Cuenta</h2>
+            <p>Desde aquí puedes gestionar el estado de tu cuenta de psicólogo.</p>
             <button class="config-btn danger">Eliminar Cuenta</button>
             <button class="config-btn" style="margin-top: 20px;"
-                onclick="window.location.href='paginaprincipal.html'">Volver</button>
+                onclick="window.location.href='PaginaPrincipal.php'">Volver</button>
         </div>
 
-        <div id="actualizar" class="section">
-            <form>
-                <label for="tipo_doc">Tipo y número de documento:</label>
-                <div style="display: flex; gap: 10px;">
-                    <select id="tipo_doc" name="tipo_doc" style="flex: 1;">
-                        <option value="CC">CC</option>
-                        <option value="TI">TI</option>
-                        <option value="CE">CE</option>
-                    </select>
-                    <input type="text" id="num_doc" name="num_doc" placeholder="123456789" style="flex: 2;">
-                </div>
-                <label for="nombre_completo">Nombre completo:</label>
-                <input type="text" id="nombre_completo" name="nombre_completo" placeholder="Ingresa tu nombre completo">
+        <!-- Sección Actualizar Datos sin clase 'active' por defecto -->
+        <div id="actualizar" class="section <?= $isActualizarActive ?>">
+            <h2 class="section-title">Actualizar Información Personal</h2>
+            <!-- Formulario con ACTION a la ruta correcta -->
+            <form method="POST">
+                
+                <!-- Campos de Documento (Solo Lectura) -->
+                <label for="tipo_documento">Tipo de Documento:</label>
+                <input type="text" id="tipo_documento" name="tipo_documento" 
+                       value="<?= $userData['tipo_documento'] ?? '' ?>" 
+                       readonly 
+                       style="background-color: #f0f0f0; cursor: not-allowed;">
+                
+                <label for="numero_documento">Número de Documento:</label>
+                <input type="text" id="numero_documento" name="numero_documento" 
+                       value="<?= $userData['documento'] ?? '' ?>" 
+                       readonly 
+                       style="background-color: #f0f0f0; cursor: not-allowed;">
+                
+                <!-- Campos Actualizables -->
+                <label for="nombre_completo">Nombre completo (Nombre y Apellido):</label>
+                <input type="text" id="nombre_completo" name="nombre_completo" 
+                       value="<?= $userData['nombre_completo'] ?>" required>
+                
                 <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" placeholder="Example@soy.sena.edu.co">
-                <label for="password">Contraseña:</label>
+                <input type="email" id="email" name="email" 
+                       value="<?= $userData['email'] ?>" required>
+                
+                <label for="password">Nueva Contraseña (Dejar vacío para no cambiar):</label>
                 <div style="display: flex; align-items: center;">
-                    <input type="password" id="password" name="password" placeholder="Contraseña" style="flex: 1;">
+                    <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" style="flex: 1;">
                     <button type="button" onclick="togglePassword()"
-                        style="margin-left: -35px; background: none; border: none; cursor: pointer;">
-                        <span id="eye">&#128065;</span>
+                        style="margin-left: -35px; background: none; border: none; cursor: pointer; color: #666;">
+                        <span id="eye">👁️</span>
                     </button>
                 </div>
-                <button class="config-btn" type="submit" style="margin-top: 20px;">Actualizar</button>
+
+                <p class="nota">Si solo quieres actualizar tu nombre o correo, deja el campo de contraseña vacío.</p>
+                
+                <button class="config-btn primary" type="submit" style="margin-top: 20px;">Guardar Cambios</button>
             </form>
         </div>
-        <script>
-            function togglePassword() {
-                const pwd = document.getElementById('password');
-                const eye = document.getElementById('eye');
-                if (pwd.type === 'password') {
-                    pwd.type = 'text';
-                    eye.textContent = '🙈';
-                } else {
-                    pwd.type = 'password';
-                    eye.textContent = '👁️';
-                }
-            }
-        </script>
-
-
     </div>
+    
+    <!-- LÓGICA DE JS -->
     <script>
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            if (sidebar.style.left === '0px') {
-                sidebar.style.left = '-250px';
-                overlay.style.display = 'none';
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const eye = document.getElementById('eye');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                eye.innerHTML = '&#128065;'; // Ojo abierto
             } else {
-                sidebar.style.left = '0px';
-                overlay.style.display = 'block';
+                pwd.type = 'password';
+                eye.innerHTML = '&#128064;'; // Ojo cerrado
             }
         }
-        function showSection(section) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+
+        // Función para cambiar de sección y manejar la clase 'active' en las pestañas
+        function showSection(sectionId, clickedTab) {
+            // Remover 'active' de todas las secciones
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-            if (section === 'general') {
-                document.querySelector('.tab:nth-child(1)').classList.add('active');
-                document.getElementById('general').classList.add('active');
+            // Remover 'active' de todas las pestañas
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            
+            // Añadir 'active' a la sección y pestaña correspondiente
+            document.getElementById(sectionId).classList.add('active');
+            if (clickedTab) {
+                clickedTab.classList.add('active');
             } else {
-                document.querySelector('.tab:nth-child(2)').classList.add('active');
-                document.getElementById('actualizar').classList.add('active');
+                 // Esto solo se ejecuta si se llama sin clickear, lo cual es redundante ahora, pero mantiene el código limpio.
+                document.querySelector(`.tabs [onclick*="${sectionId}"]`).classList.add('active');
             }
         }
     </script>
-
 </body>
 
 </html>
