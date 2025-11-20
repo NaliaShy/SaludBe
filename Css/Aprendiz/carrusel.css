@@ -11,14 +11,15 @@
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    /* Aumentado a 1400px para un carrusel más ancho */
+    max-width: 1400px; 
     margin: auto;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(255, 254, 254, 0.25);
     background: #ffffff;
+    background-repeat: no-repeat;
 }
-
 /* Área del carrusel */
 .carousel {
     width: 100%;

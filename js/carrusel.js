@@ -54,8 +54,7 @@ function iniciarCarrusel() {
         slides[currentSlide].classList.add("active");
         dots[currentSlide].classList.add("active");
 
-        container.style.backgroundImage =
-            slides[currentSlide].style.backgroundImage;
+       
     }
 
     function nextSlide() {
