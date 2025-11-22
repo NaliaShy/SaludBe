@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Para prueba directa:
-$usuarioId = 7; // Cambia a $_SESSION['id_usuario'] cuando tengas sesión
+$usuarioId = $_SESSION['Us_id']; // Cambia a $_SESSION['id_usuario'] cuando tengas sesión
 
 include 'conexion.php';
 $db = new Conexion();
