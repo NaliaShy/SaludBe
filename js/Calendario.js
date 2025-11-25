@@ -120,3 +120,88 @@ document.getElementById("prev-month").addEventListener("click", () => {
     }
     renderCalendar();
 });
+
+
+// Variable global para almacenar la fecha seleccionada si el usuario ha hecho clic en un día.
+// Opcionalmente, puedes calcularla de la URL al inicio de la página.
+let fechaActualSeleccionada = new URLSearchParams(window.location.search).get('fecha') || null;
+
+/**
+ * Función que maneja el envío del formulario de aceptar cita usando AJAX.
+ * @param {Event} event - El evento de envío del formulario.
+ * @param {HTMLFormElement} form - El formulario que se está enviando.
+ */
+function aceptarCitaAjax(event, form) {
+    // 1. Prevenir el envío normal del formulario (para evitar la redirección)
+    event.preventDefault(); 
+    
+    // Obtener los datos del formulario
+    const idCita = form.querySelector('input[name="idCita"]').value;
+    
+    // 🔥 CAMBIO CRUCIAL: USAR EL NOMBRE CORRECTO DEL INPUT OCULTO DEL FORMULARIO
+    const fechaCita = form.querySelector('input[name="fecha_cita"]').value; // ¡Corregido!
+
+    // Deshabilitar el botón y mostrar un mensaje temporal
+    const boton = form.querySelector('.btn-aceptar');
+
+
+    // 2. Llamada AJAX al script PHP
+    $.ajax({
+        url: '../../php/Psicologo/Citas/aceptarCita.php', // El script que devuelve JSON
+        type: 'POST',
+        data: { idCita: idCita },
+        dataType: 'json',
+        success: function(response) {
+            // 3. Manejar la respuesta
+            let mensaje = response.message;
+            if (response.status === 'success') {
+                mostrarNotificacion(mensaje, 'success'); // Asumiendo que tienes una función de notificación
+                // Actualizar la lista de citas para reflejar el cambio
+                refrescarListaCitas(fechaCita);
+            } else if (response.status === 'warning') {
+                mostrarNotificacion(mensaje, 'warning');
+                // Re-habilitar botón si es solo una advertencia (p.ej., ya aceptada)
+                boton.textContent = textoOriginal;
+                boton.disabled = false; 
+            } else {
+                mostrarNotificacion(mensaje, 'error');
+                // Re-habilitar botón en caso de error
+                boton.textContent = textoOriginal;
+                boton.disabled = false;
+            }
+        },
+        error: function(xhr, status, error) {
+            mostrarNotificacion('❌ Error de conexión al servidor.', 'error');
+            console.error("AJAX Error:", status, error);
+            // Re-habilitar botón en caso de error
+            boton.textContent = textoOriginal;
+            boton.disabled = false;
+        }
+    });
+}
+
+
+/**
+ * Función para recargar la lista de citas del día actual/seleccionado.
+ * Esto es lo que reemplaza la redirección de PHP.
+ * @param {string} fecha - La fecha de la cita para recargar la vista.
+ */
+function refrescarListaCitas(fecha) {
+    // Simplemente recargamos la página con el parámetro 'fecha'
+    // Esto fuerza a PHP a regenerar solo la lista de citas para esa fecha, 
+    // manteniendo la vista actual.
+    
+    // Si la página se carga sin parámetro 'fecha' (mostrando citas futuras), 
+    // recargamos sin parámetro 'fecha' para mantener esa vista.
+    const url = fecha ? `calendarioPsicologo.php?fecha=${fecha}` : 'calendarioPsicologo.php';
+    
+    // Usamos window.location.replace() para evitar que el usuario vuelva atrás al POST.
+    window.location.replace(url); 
+}
+
+
+// --- Función de Notificación (Ejemplo Básico) ---
+// Puedes reemplazar esto con tu sistema de notificaciones.
+function mostrarNotificacion(mensaje, tipo) {
+    alert(`[${tipo.toUpperCase()}] ${mensaje}`);
+}

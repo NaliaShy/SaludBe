@@ -1,8 +1,4 @@
 <?php
-/**
- * Archivo: seguimiento.php
- * ... [Encabezado y líneas 1-27] ...
- */
 
 // 1. Requerir el archivo de conexión
 require_once('../../Conexion.php'); 

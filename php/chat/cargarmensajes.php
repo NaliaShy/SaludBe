@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include '../Conexion.php';
+include '../Conexion/Conexion.php';
 
 try {
     $db = new Conexion();

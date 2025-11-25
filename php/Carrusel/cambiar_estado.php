@@ -1,5 +1,5 @@
 <?php
-require "Conexion.php";
+require_once "../Conexion/Conexion.php";
 
 // Validar ID y estado
 if (!isset($_POST["id"]) || !isset($_POST["estado"])) {

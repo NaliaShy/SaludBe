@@ -1,5 +1,6 @@
 <?php
-require "Conexion.php";
+require_once "../Conexion/Conexion.php";
+
 
 // Validar
 if (!isset($_POST["id"])) {
@@ -24,7 +25,7 @@ if (!$row) {
 }
 
 $imagen = $row["imagen_nombre"];
-$path = "../Uploads/carrusel/" . $imagen;
+$path = "../../Uploads/carrusel/" . $imagen;
 
 // 2️⃣ Borrar archivo físico
 if (file_exists($path)) {

@@ -1,3 +1,54 @@
+<?php
+session_start();
+require_once('../../php/Conexion/Conexion.php');
+$conexionObj = new Conexion();
+$conexion = $conexionObj->getConnect(); // Esto es un objeto PDO
+
+// 1. Verificar si el ID está en la sesión
+if (!isset($_SESSION['us_id'])) {
+    die("No hay usuario en sesión.");
+}
+$usuario_id = $_SESSION['us_id'];
+
+// 2. Consulta con marcador de posición posicional (?)
+$sql = "SELECT Us_nombre, Us_apellios
+        FROM usuarios 
+        WHERE Us_id = ?";
+
+// PDO utiliza prepare()
+$stmt = $conexion->prepare($sql);
+
+if ($stmt) {
+    // 3. Vincular y ejecutar la consulta
+    // Usamos execute con un array para vincular el parámetro (más sencillo que bindParam)
+    // No se necesita especificar el tipo ("i") como en MySQLi.
+    if ($stmt->execute([$usuario_id])) {
+
+        // 4. Obtener el resultado
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($data) {
+            $nombre = $data['Us_nombre'];
+            $apellido = $data['Us_apellios']; // Asegúrate de la ortografía: 'Us_apellidos'
+        } else {
+            $nombre = "Aprendiz";
+            $apellido = "";
+        }
+    } else {
+        // Error de ejecución
+        $errorInfo = $stmt->errorInfo();
+        die("Error al ejecutar la consulta: " . $errorInfo[2]);
+    }
+} else {
+    // Error de preparación
+    $errorInfo = $conexion->errorInfo();
+    die("Error al preparar la consulta: " . $errorInfo[2]);
+}
+
+// 5. Cerrar la conexión (PDO la cierra automáticamente cuando el script termina)
+// Ya no necesitas $stmt->close() ni $conexion->close()
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,13 +66,13 @@
         <h1 class="logo">SaludBE</h1>
         <a href="../Aprendiz/PaginaPrincipal.php" class="skip">SALTAR</a>
     </div>
-
+    <div class="bienvenida">
+        <h2>Bienvenido(a), <?php echo htmlspecialchars($nombre); ?> <?php echo htmlspecialchars($apellido); ?> 👋</h2>
+    </div>
     <div class="phrase-box">
         <?php
-        session_start();
-        include '../../php/conexion.php';
 
-        // ✅ Usar el MISMO nombre que viene del login
+
         if (!isset($_SESSION['us_id'])) {
             header("Location: login.php");
             exit();

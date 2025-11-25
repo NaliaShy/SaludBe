@@ -1,5 +1,5 @@
 <?php
-include 'conexion.php';
+require "../Conexion/Conexion.php";
 
 // Iniciar sesión
 session_start();
@@ -31,28 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['rol_id'] = $usuario['Rol_id'];
 
                 if ($usuario['Rol_id'] == 1) {
-                    header("Location: ../Html/Aprendiz/Descarga.php");
+                    header("Location: ../../Html/Aprendiz/Descarga.php");
                     exit();
                 } elseif ($usuario['Rol_id'] == 2) {
-                    header("Location: ../Html/psicologo/descarga.php");
+                    header("Location: ../../Html/psicologo/descarga.php");
                     exit();
                 } else {
                     echo "❌ Rol de usuario no reconocido.";
-                    header("Location: ../Html/Login/Loginaprendiz.html");
+                    header("Location: ../../Html/Login/Loginaprendiz.html");
                 }
-
             } else {
                 echo "❌ Contraseña incorrecta.";
                 exit();
             }
-
         } else {
             echo "❌ Usuario no encontrado con el correo: $correo";
             exit();
         }
-
     } catch (PDOException $e) {
         echo "❌ Error en la consulta: " . $e->getMessage();
     }
 }
-?>

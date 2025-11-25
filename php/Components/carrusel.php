@@ -1,7 +1,5 @@
-
 <?php
-// Cargar imágenes del carrusel
-require "../../Php/Conexion.php";
+include "../../php\Conexion\Conexion.php";
 
 $conexion = new Conexion();
 $conn = $conexion->getConnect();
@@ -15,26 +13,6 @@ $imagenes = $query->fetchAll(PDO::FETCH_ASSOC);
   <div class="carousel-container">
 
     <div class="carousel" id="slides-container">
-      <?php  
-      // ELIMINAR O COMENTAR TODA ESTA LÓGICA DE GENERACIÓN DE DIVS CON PHP
-      /*
-      if (count($imagenes) > 0) {
-          $first = true;
-          foreach ($imagenes as $row) {
-              $img = "../../Uploads/carrusel/" . $row['imagen_nombre'];
-              $active = $first ? "active" : "";
-              $first = false;
-              echo "
-                <div class='slide $active' style='background-image: url(\"$img\");'></div>
-              ";
-          }
-      } else {
-          echo "
-          <div class='slide active' style='background-image:url(\"...\")'></div>
-          ";
-      }
-      */
-      ?>
       </div>
 
     <button class="carousel-button prev">&#8249;</button>

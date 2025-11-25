@@ -9,7 +9,7 @@ if (!isset($_SESSION['us_id'])) {
 
 // Guardamos el ID del usuario logueado
 $idUsuario = $_SESSION['us_id'];
-include '../Conexion.php';
+include '../Conexion/Conexion.php';
 $db = new Conexion();
 $conn = $db->getConnect();
 
@@ -47,7 +47,7 @@ if (!$usuario) {
         include '../../php/Components/Sidebar_p.php';
     } else {
         echo "❌ Rol de usuario no reconocido.";
-        header("Location: ../Html/Login/Loginaprendiz.html");
+        header("Location: ../../Html/Login/Loginaprendiz.html");
     }
 
     ?>

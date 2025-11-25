@@ -1,10 +1,9 @@
 <?php
-// 1. INICIAR SESIÓN
 session_start();
 
 // 2. INCLUIR CONEXIÓN A LA BASE DE DATOS
 // Asegúrate de que la ruta 'conexion.php' sea correcta
-include_once 'conexion.php'; 
+include_once '../Conexion/Conexion.php'; 
 
 // 3. VALIDACIÓN BÁSICA DEL MÉTODO
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -61,7 +60,7 @@ try {
     
     // 9. REDIRECCIÓN TRAS ÉXITO
     $_SESSION['notificacion_exito'] = "✅ Cita solicitada exitosamente. Espera la confirmación del psicólogo.";
-    header("Location: ../Html/Aprendiz/Descarga.php"); 
+    header("Location: ../../Html/Aprendiz/Descarga.php"); 
     exit();
 
 } catch (PDOException $e) {

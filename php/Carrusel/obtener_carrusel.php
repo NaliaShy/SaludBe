@@ -1,7 +1,6 @@
 <?php
 header("Content-Type: application/json");
-require "Conexion.php";
-
+require_once "../Conexion/Conexion.php";
 // 1. Crea una instancia de la clase Conexion
 $db = new Conexion();
 

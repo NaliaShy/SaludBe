@@ -1,5 +1,5 @@
 <?php
-require "Conexion.php";
+require_once "../Conexion/Conexion.php";
 
 // Crear conexión
 $con = new Conexion();

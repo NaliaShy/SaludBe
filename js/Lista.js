@@ -48,7 +48,7 @@ function openModal(userId) {
                         
                         <button 
                             class="btn-primary" 
-                            onclick="window.location.href='../../php/Psicologo/aceptarCita.php?user_id=${user.Us_id}'"
+                            onclick="window.location.href='/SaludBe/Html/psicologo/calendario.php'"
                         >
                             📅 Citas
                         </button>

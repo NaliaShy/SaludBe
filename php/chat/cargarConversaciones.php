@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 
-include '../Conexion.php';
+include '../Conexion/Conexion.php';
 
 if (!isset($_SESSION['us_id'])) {
     echo json_encode([]);

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>SaludBe Chat</title>
+
+<style>
+/* ======================================================
+   ESTILOS GENERALES
+====================================================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+/* ======================================================
+   BOTÓN FLOTANTE (ÓVALO ABAJO A LA DERECHA)
+====================================================== */
+#chatBtn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #458a1d;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#chatBtn:hover {
+    transform: scale(1.08);
+}
+
+/* ======================================================
+   MODAL
+====================================================== */
+#chatModal {
+    position: fixed;
+    bottom: 110px;
+    right: 25px;
+    width: 350px;
+    height: 480px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+#modalHeader {
+    background: #458a1d;
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+}
+
+/* Caja de mensajes */
+#chatBox {
+    padding: 12px;
+    flex: 1;
+    overflow-y: auto;
+    background: #eef3ee;
+}
+
+/* Mensajes */
+.msg-user {
+    background: #d2ebc7;
+    padding: 8px 12px;
+    max-width: 80%;
+    margin: 8px 0;
+    border-radius: 12px 12px 0 12px;
+    align-self: flex-end;
+}
+.msg-bot {
+    background: white;
+    padding: 8px 12px;
+    max-width: 80%;
+    margin: 8px 0;
+    border-radius: 12px 12px 12px 0;
+    align-self: flex-start;
+}
+
+/* Input */
+#inputArea {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+#userInput {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    font-size: 15px;
+}
+#sendBtn {
+    background: #458a1d;
+    color: white;
+    width: 60px;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- BOTÓN ÓVALO -->
+<div id="chatBtn">💬</div>
+
+<!-- MODAL -->
+<div id="chatModal">
+    <div id="modalHeader">SaludBe Apoyo</div>
+    <div id="chatBox"></div>
+
+    <div id="inputArea">
+        <input type="text" id="userInput" placeholder="Escribe aquí…">
+        <button id="sendBtn">➤</button>
+    </div>
+</div>
+
+<script>
+/* ======================================================
+   BASE DE INTELIGENCIA SALUDBE (SIN API)
+====================================================== */
+
+/* Palabras: riesgo alto */
+const highRisk = [
+    "suicidio", "suicida", "quitarme la vida", "matarme",
+    "morir", "no quiero vivir", "cortarme", "hacerme daño",
+    "autolesión", "abuso sexual", "violación"
+];
+
+/* Palabras: riesgo medio */
+const mediumRisk = [
+    "depresión", "ansiedad severa", "ataque de pánico",
+    "no puedo más", "desesperado", "sin salida"
+];
+
+/* Palabras: riesgo bajo */
+const lowRisk = [
+    "triste", "estresado", "angustiado", "mal", "agotado"
+];
+
+/* Respuestas automáticas */
+const responses = {
+    high: `
+⚠️ **ALERTA DE APOYO INMEDIATO**
+Lamento mucho lo que estás viviendo. No tienes que enfrentarlo solo(a).
+Por favor contacta a la **Línea 106 (Colombia)** o a alguien de confianza ahora mismo.
+Estoy aquí contigo. 💚
+`,
+    medium: `
+Gracias por abrirte. Lo que sientes es válido.
+Estoy aquí contigo. ¿Quieres contarme más?
+`,
+    low: `
+Entiendo cómo te sientes.  
+Si quieres, podemos hablar para ayudarte a sentirte mejor. 💚
+`,
+};
+
+/* Detección de riesgo */
+function getRiskLevel(msg) {
+    const t = msg.toLowerCase();
+
+    if (highRisk.some(w => t.includes(w))) return "high";
+    if (mediumRisk.some(w => t.includes(w))) return "medium";
+    if (lowRisk.some(w => t.includes(w))) return "low";
+    return "none";
+}
+
+/* Evitar incoherencias */
+function coherent(userMsg, lastBotMsg) {
+    if (!lastBotMsg) return true;
+    const u = userMsg.toLowerCase().trim();
+    const l = lastBotMsg.toLowerCase().trim();
+
+    if (u === l) return false;
+    if (l.includes("alerta de apoyo inmediato") && getRiskLevel(userMsg) === "high")
+        return false;
+
+    return true;
+}
+
+/* Respuesta de IA */
+function getAIResponse(userMsg, lastBotMsg = "") {
+    const lvl = getRiskLevel(userMsg);
+
+    if (!coherent(userMsg, lastBotMsg))
+        return "Estoy aquí contigo, cuéntame un poco más 💚";
+
+    switch (lvl) {
+        case "high": return responses.high;
+        case "medium": return responses.medium;
+        case "low": return responses.low;
+        default:
+            return "Te entiendo. Estoy aquí para escucharte. ¿Qué está pasando?";
+    }
+}
+
+/* ======================================================
+   FUNCIONALIDAD DEL CHAT
+====================================================== */
+
+const chatBtn = document.getElementById("chatBtn");
+const chatModal = document.getElementById("chatModal");
+const chatBox = document.getElementById("chatBox");
+const userInput = document.getElementById("userInput");
+const sendBtn = document.getElementById("sendBtn");
+
+let lastBotMessage = "";
+
+/* Abrir modal */
+chatBtn.onclick = () => {
+    chatModal.style.display = "flex";
+};
+
+/* Enviar mensaje */
+function sendMessage() {
+    const msg = userInput.value.trim();
+    if (msg === "") return;
+
+    // Mostrar mensaje usuario
+    addMessage(msg, "user");
+
+    // IA responde
+    const bot = getAIResponse(msg, lastBotMessage);
+
+    setTimeout(() => {
+        addMessage(bot, "bot");
+        lastBotMessage = bot;
+    }, 300);
+
+    userInput.value = "";
+}
+
+/* Añadir mensaje al chat */
+function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = type === "user" ? "msg-user" : "msg-bot";
+    div.innerText = text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+/* Botón */
+sendBtn.onclick = sendMessage;
+
+/* Tecla ENTER */
+userInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+});
+</script>
+
+</body>
+</html>

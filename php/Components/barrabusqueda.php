@@ -1,6 +1,6 @@
 <?php
 // Incluye la clase de conexión y la instancia (asumiendo que está en el mismo nivel o que la ruta es correcta)
-include '../Conexion.php'; // Asegúrate de que esta ruta sea correcta
+require_once "../Conexion/Conexion.php"; // Asegúrate de que esta ruta sea correcta
 
 $db = new Conexion();
 $conn = $db->getConnect(); // Obtenemos el objeto PDO

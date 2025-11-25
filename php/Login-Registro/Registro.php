@@ -15,10 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    include 'Conexion.php';
+    require "../Conexion/Conexion.php";
 
     try {
-        // Instancia de la clase Conexion (debe devolver un objeto PDO)
         $db = new Conexion();
         $pdo = $db->getConnect();
 
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $check = $pdo->prepare("SELECT Us_id FROM usuarios WHERE Us_correo = ?");
         $check->execute([$correo]);
         if ($check->fetch()) {
-            echo "<script>alert('El correo ya está registrado.'); window.location.href='/Html/Login/Registrate.html';</script>";
+            echo "<script>alert('El correo ya está registrado.'); window.location.href='../../Html/Login/Login.html';</script>";
             exit;
         }
 
@@ -38,9 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Si num_document es numérico, podes castear a int. Aquí lo dejamos como string.
         $stmt->execute([$nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document]);
 
-        echo "<script>alert('Registro exitoso'); window.location.href='../Html/Login/Loginaprendiz.html';</script>";
+        echo "<script>alert('Registro exitoso'); window.location.href='../../Html/Login/Login.html';</script>";
         exit;
-
     } catch (PDOException $e) {
         // En producción no muestres $e->getMessage() directamente
         error_log("Registro error: " . $e->getMessage());
@@ -48,4 +46,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-?>

@@ -20,7 +20,7 @@
       <li><a href="../../Html/psicologo/test.php">Crear test</a></li>
     <li><a href="../../Html/psicologo/ResulTest.php">Resultado Test</a></li>
     <li><a href="../../Html/psicologo/configuracion.php"> Configuración</a></li>
-    <li><a href="../../Html/Login/Loginpsicologo.html "> Cerrar Sesión</a></li>
+    <li><a href="../../Html/Login/Login.html"> Cerrar Sesión</a></li>
   </ul>
 </div>
 

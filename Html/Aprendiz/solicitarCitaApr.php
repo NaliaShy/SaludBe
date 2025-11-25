@@ -27,7 +27,7 @@ session_start();
                 <br>
             </div>
             <!-- El formulario envía los datos al script de procesamiento agendarcitas.php -->
-            <form action="../../php/agendarcitas.php" method="post">
+            <form action="../../php/Citas/agendarcitas.php" method="post">
                 <div class="form">
                     <div class="fila">
                         <div class="campo">
@@ -49,7 +49,7 @@ session_start();
                             <?php
                             // Incluye tu archivo de conexión a la base de datos.
                             // Nota: la ruta debe ser correcta desde este archivo.
-                            include_once '../../php/conexion.php';
+                            include_once '../../php/Conexion/conexion.php';
 
                             try {
                                 // 1. Instancia la clase de conexión (PDO)

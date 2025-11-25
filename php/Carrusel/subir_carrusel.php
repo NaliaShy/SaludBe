@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-require "Conexion.php";
+require_once "../Conexion/Conexion.php";
 
 // Crear conexión con PDO
 $conexion = new Conexion();
