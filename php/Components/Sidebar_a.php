@@ -15,6 +15,7 @@
     <li><a href="../../Html/Aprendiz/calendario.php">Calendario</a></li>
     <li><a href="/Saludbe/php/chat/chat.php">Chat</a></li>
     <li><a href="../../Html/Aprendiz/test.php">Test</a></li>  
+    <li><a href="/Saludbe/php/chat-bot/chat.html">Chat Bot</a></li>  
     <li><a href="../../Html/Aprendiz/configuracion.php">Configuraciones</a></li>
     <li><a href="../../Html/Index.html">Cerrar Sesión</a></li>
   </ul>
