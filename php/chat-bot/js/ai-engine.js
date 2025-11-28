@@ -1,108 +1,122 @@
-// Utilidades básicas
-export const sleep = ms => new Promise(r=>setTimeout(r,ms));
-export const randomChoice = arr => arr[Math.floor(Math.random()*arr.length)];
+// =====================================================
+// AI ENGINE – CRISIS DETECTOR ULTRA + FLOW CORREGIDO
+// =====================================================
 
+export const normalize = (t) =>
+  t.toLowerCase()
+   .normalize("NFD")
+   .replace(/[\u0300-\u036f]/g, "")
+   .trim();
 
-// ───────────────────────────────────────────────
-// PALABRAS DE CRISIS (COMPLETAS Y SIN TILDES)
-// ───────────────────────────────────────────────
-export const crisisKeywords = [
-  "suicid", "suicida", "suicidarme", "suicidarme", "me voy a suicidar",
-  "matarme", "me quiero matar", "me quiero matas", "me quiero mata",
-  "me voy a matar", "me voy a matas", "matar", "me mato",
-  "quitarme la vida", "quitarme mi vida",
-  "no quiero vivir", "ya no quiero vivir",
-  "no puedo mas", "ya no puedo mas",
-  "me rindo", "me rendi",
-  "desaparecer", "quiero desaparecer",
-  "cortarme", "cortar", "hacerme daño", "hacerme dano",
-  "lastimarme",
-  "acabar con todo",
-  "terminar con todo",
-  "irme pa siempre", "irme para siempre"
+// --------------------------
+// Detección de CRISIS
+// --------------------------
+const CRISIS_REGEX = [
+  /suicid/,
+  /matarme/,
+  /matarme/,
+  /me quiero matar/,
+  /me quiero matas/,
+  /me voy a matar/,
+  /acabar conmigo/,
+  /acabar todo/,
+  /acabar esto/,
+  /quitarme la vida/,
+  /ya no quiero vivir/,
+  /no vale la pena vivir/,
+  /morirme/,
+  /desaparecer/,
+  /ya no doy mas/,
+  /no doy mas/,
+  /me rindo/,
+  /terminar todo/,
 ];
 
-
-// ───────────────────────────────────────────────
-// RESPUESTAS SEGURAS
-// ───────────────────────────────────────────────
-const variationPool = [
-  "¿Querés que lo hablemos más despacio?",
-  "Puedo acompañarte mientras lo contás.",
-  "Estoy aquí contigo, ¿sí?"
-];
-
-const safeResponses = {
-  normal: [
-    "Gracias por confiar en mí.",
-    "Te escucho con atención.",
-    "Cuéntame un poquito más."
-  ],
-  depresion: [
-    "Siento lo que estás viviendo, ¿qué fue lo más duro hoy?",
-    "Estoy contigo en esto. No estás solo."
-  ],
-  ansiedad: [
-    "Respira conmigo: inhala 4s... exhala 6s.",
-    "Probemos grounding: dime 3 cosas que ves ahora mismo."
-  ]
-};
-
-
-// ───────────────────────────────────────────────
-// LIMPIAR TEXTO (sin tildes ni mayúsculas)
-// ───────────────────────────────────────────────
-function normalize(t){
-  return t
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+export function isCrisis(text) {
+  const t = normalize(text);
+  return CRISIS_REGEX.some((re) => re.test(t));
 }
 
+// --------------------------
+// MODO CRISIS (flujo)
+// --------------------------
+let crisisStep = 0;
 
-// ───────────────────────────────────────────────
-// CLASIFICADOR DE INTENTOS
-// ───────────────────────────────────────────────
+const CRISIS_FLOW = [
+  "Lo que dices es muy serio. ¿Hay alguien contigo ahora mismo?",
+  "Gracias por responder. ¿Hay alguien a quien puedas llamar o escribir ahora mismo?",
+  "Entiendo. ¿Algún familiar, amigo o vecino disponible cerca?",
+  "Quiero que estés seguro. En Colombia puedes llamar a la Línea 106 o al 123. ¿Puedes intentarlo ahora?",
+  "Estoy contigo. ¿Cómo te sientes en este momento?",
+];
+
+// --------------------------
+// Respuestas normales
+// --------------------------
+const RESP = {
+  saludo: [
+    "Hola, ¿cómo te sientes hoy?",
+    "Hola, aquí estoy contigo.",
+  ],
+  general: [
+    "Te escucho con atención. Cuéntame más.",
+    "Estoy aquí para ti. ¿Qué pasó?",
+  ],
+};
+
 export function classifyIntent(text) {
   const t = normalize(text);
 
-  if (crisisKeywords.some(k => t.includes(normalize(k)))) return "crisis";
-  if (t.includes("hola")) return "saludo";
-  if (t.includes("ansied")) return "ansiedad";
-  if (t.includes("depres")) return "depresion";
+  if (isCrisis(t)) return "crisis";
+  if (/hola|buenas|hey/.test(t)) return "saludo";
 
-  return "normal";
+  return "general";
 }
 
-
-// ───────────────────────────────────────────────
+// --------------------------
 // GENERADOR DE RESPUESTAS
-// ───────────────────────────────────────────────
-export function makeResponse(intent) {
-  switch(intent){
-    case "crisis":
-      return "Me preocupa mucho lo que dices. Si estás en peligro, por favor contacta ayuda inmediata. ¿Estás acompañado ahora?";
+// --------------------------
+export function makeResponse(text) {
+  const intent = classifyIntent(text);
 
-    case "saludo":
-      return "Hola, ¿cómo te sientes hoy?";
-
-    case "ansiedad":
-      return randomChoice(safeResponses.ansiedad);
-
-    case "depresion":
-      return randomChoice(safeResponses.depresion);
-
-    default:
-      return randomChoice([...safeResponses.normal, ...variationPool]);
+  // --------------------------
+  // Crisis detectada
+  // --------------------------
+  if (intent === "crisis") {
+    crisisStep = 1;
+    return CRISIS_FLOW[0];
   }
+
+  // --------------------------
+  // Continuación del flujo
+  // --------------------------
+  if (crisisStep > 0) {
+    crisisStep++;
+
+    // Máximo paso 5
+    if (crisisStep > 5) crisisStep = 5;
+
+    return CRISIS_FLOW[crisisStep - 1];
+  }
+
+  // --------------------------
+  // Respuestas normales
+  // --------------------------
+  if (intent === "saludo") {
+    return RESP.saludo[Math.floor(Math.random() * RESP.saludo.length)];
+  }
+
+  return RESP.general[Math.floor(Math.random() * RESP.general.length)];
 }
+
+// --------------------------
+// MODO COSTEÑO
+// --------------------------
 export function applyCostenoMode(text) {
-  // Reemplazos costeños suaves
+  if (!text) return text;
   return text
-    .replace(/tú/g, "tu llave")
-    .replace(/estoy/g, "toy")
-    .replace(/amigo/g, "panita")
-    .replace(/tranquilo/g, "relax bro")
-    .replace(/hola/g, "oe llave")
-    .replace(/¿/g, "¿")
+    .replace(/\bestoy\b/gi, "toy")
+    .replace(/\bcontigo\b/gi, "contigo mi llave")
+    .replace(/\bpara\b/gi, "pa'")
+    .replace(/\bhola\b/gi, "oe llave");
 }

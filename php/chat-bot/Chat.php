@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SaludMental — Asistente</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seguimiento al Aprendiz - SaludBE</title>
+    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
+    <link rel="stylesheet" href="../../php/chat-bot/css/style.css">
+    
 </head>
 <body>
+  <?php include '../../php/Components/Sidebar_a.php'; ?>
+
 
 <!-- TOP BAR -->
 <div class="topbar">
@@ -62,7 +67,7 @@
     <img src="assers/avatar.png" class="drawer-avatar">
 
     <h3>Asistente Salud</h3>
-    <p class="drawer-sub">Modo DIOS • Memoria local</p>
+    <p class="drawer-sub"> • Memoria local</p>
   </div>
 
   <div class="drawer-options">
@@ -76,9 +81,6 @@
 
   <div class="resource-box" id="resourceBox"></div>
 
-  <a class="conversation-download" href="data/conversation-sample.json" target="_blank">
-    Descargar conversación de prueba
-  </a>
 </div>
 
 <script type="module" src="js/ai-engine.js"></script>
