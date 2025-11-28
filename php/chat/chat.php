@@ -35,7 +35,7 @@ if (!$usuario) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat SaludBE</title>
     <link rel="stylesheet" href="/saludbe/css/repetivos/root.css">
-    <link rel="stylesheet" href="/SaludBe/Css/Repetivos/chat.css">
+    <link rel="stylesheet" href="../../Css/Aprendiz/chats_A.css">
 
 </head>
 
