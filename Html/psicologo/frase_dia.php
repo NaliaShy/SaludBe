@@ -20,10 +20,9 @@
   <div class="phrase-box">
     <?php
     session_start();
-    include '../../php/conexion.php';
+    include '../../php/Conexion/Conexion.php';
 
     if (!isset($_SESSION['us_id'])) {
-      // el usuario no inició sesión
       header("Location: login.php");
       exit();
     }

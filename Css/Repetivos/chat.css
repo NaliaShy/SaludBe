@@ -1,32 +1,74 @@
-/* ======== ESTILOS GENERALES ======== */
-body {
-    font-family: var(--font-sena);
-    margin: 0;
-    padding: 0;
-    background: #f5f7fb;
-    display: flex;
-    height: 100vh;
-}
+/* ------------------------------------------- */
+/* 1. Variables de Chat y Contenedor Principal */
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+/* 1. Contenedor Principal: Invertir el Orden */
+/* ------------------------------------------- */
 
-/* ======== CONTENEDOR PRINCIPAL ======== */
 .chat-big-container {
-    margin-top: 90px;
+   
     display: flex;
-    width: 100%;
-    height: calc(100vh - 90px);
+    flex-direction: column-reverse; 
+    
+    height: 90vh; 
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--whatsapp-bg);
+    color: var(--chat-text);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-sena);
 }
 
-/* ======== CONTENEDOR LATERAL ======== */
+/* ------------------------------------------- */
+/* 2. Columna Derecha: Selector de Usuarios (AJUSTE DE BORDE) */
+/* ------------------------------------------- */
+
 .selector-chats {
-    width: 25%;
-    border-right: 1px solid #ddd;
-    background: #ffffff;
+    width: 300px; 
+    background-color: var(--whatsapp-list-bg);
+    padding: 0;
+    flex-shrink: 0;
+    overflow-y: auto;
+    /* AJUSTE: Mover el divisor al lado izquierdo del panel de usuarios */
+    border-right: none; 
+    border-left: 1px solid #ebebeb; 
+}
+
+
+/* ------------------------------------------- */
+/* 3. Columna Izquierda: Área de Conversación */
+/* ------------------------------------------- */
+
+.chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--whatsapp-bg);
+    /* Ya no necesita un borde a la derecha */
+}
+/* ------------------------------------------- */
+/* 2. Columna Izquierda: Selector de Usuarios */
+/* ------------------------------------------- */
+
+.selector-chats {
+    width: 300px; /* Ancho cómodo para la lista */
+    background-color: var(--whatsapp-list-bg);
+    padding: 0;
+    flex-shrink: 0;
+    overflow-y: auto;
+    border-right: 1px solid #ebebeb;
 }
 
 .selector-chats h3 {
-    text-align: center;
+    /* El encabezado del panel de chats (si lo usas) */
+    color: var(--chat-text);
+    font-size: 16px;
+    font-weight: bold;
     padding: 15px;
-    border-bottom: 1px solid #ddd;
+    margin: 0;
 }
 
 #lista-usuarios {
@@ -35,108 +77,171 @@ body {
     margin: 0;
 }
 
+/* Elemento de usuario */
 #lista-usuarios li {
-    padding: 10px 15px;
-    border-bottom: 1px solid #ddd;
+    padding: 12px 15px;
+    border-bottom: 1px solid #f2f2f2;
     cursor: pointer;
+    transition: background-color 0.15s ease;
+    font-weight: 500;
 }
 
 #lista-usuarios li:hover {
-    color: white;
-    background-color: var(--Sena-Azul);
+    background-color: #f5f5f5; 
 }
 
-#lista-usuarios li.activo {
-    color: white;
-    background-color: var(--Sena-verde);
+/* Usuario Activo (resaltado con color SENA) */
+#lista-usuarios li.activo { 
+    background-color: #e9edef;
+    border-left: 3px solid var(--Sena-verde); 
+    padding-left: 12px;
 }
 
+/* ------------------------------------------- */
+/* 3. Columna Derecha: Área de Conversación */
+/* ------------------------------------------- */
 
-/* ======== CONTENEDOR DE CHAT ======== */
 .chat-container {
-    width: 60%;
+    flex-grow: 1;
     display: flex;
+    flex-direction: column;
+    background-color: var(--whatsapp-bg);
+}
+
+/* Encabezado del chat (Opcional: Si muestras el nombre del contacto actual) */
+.chat-header {
+    padding: 15px 20px;
+    background-color: var(--whatsapp-list-bg);
+    border-bottom: 1px solid #ebebeb;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--chat-text);
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px 20px;
+    display: flex; 
+    flex-direction: column; /* Apila de arriba a abajo */
+}
+
+/* Base de los mensajes */
+.mensaje { 
+    padding: 2px 0;
+    margin-top: 5px; 
+    max-width: 60%; 
+    display: flex; 
     flex-direction: column;
 }
 
-
-
-/* ======== MENSAJES DEL CHAT ======== */
-.chat-messages {
-    display: flex;
-    flex-direction: row;
+/* 🟢 Estilo de la Burbuja (Contenido y Metadatos) 🟢 */
+.mensaje strong:nth-child(2), .mensaje small {
+    /* Aplicamos el estilo de burbuja al contenido y la fecha */
+    padding: 8px 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13); 
+    font-size: 14.5px;
+    line-height: 1.3;
+    margin: 0; 
+    font-weight: normal; 
+    text-align: left;
 }
 
-/* Mensajes míos */
-.mensaje.mio {
-    padding: 10px;
-    background: white;
-    color: var(--Sena-Azul);
-    align-self: flex-end;
-    text-align: right;
-    border: 1px solid #ddd;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Mensajes del otro */
+/* ------------------ Mensaje Recibido (.otro) ------------------ */
 .mensaje.otro {
-    background: white;
-    color: var(--Sena-verde);
-    align-self: flex-start;
-    border: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+    align-self: flex-start; /* Izquierda */
+    margin-right: auto;
 }
 
-/* Nombre */
-.mensaje strong {
+.mensaje.otro strong:nth-child(2) {
+    background-color: var(--whatsapp-incoming); /* Fondo blanco */
+    color: var(--chat-text);
+    border-radius: 8px 8px 8px 2px;
+}
+
+.mensaje.otro strong:first-child {
+    color: var(--Sena-Azul); /* Color del nombre del contacto */
     font-size: 13px;
+    margin-bottom: 2px;
+    display: block; /* Muestra el nombre del otro usuario */
 }
 
-#name-user {
-    margin-right: 5px;
-    color: var(--Sena-Contraste);
-}
-
-/* Fecha */
-.mensaje small {
+.mensaje.otro small {
+    color: rgba(0, 0, 0, 0.5); /* Fecha oscura */
     font-size: 10px;
-    opacity: 0.6;
+    display: block; 
+    margin-top: 3px;
 }
+
+
+/* ------------------ Mensaje Enviado (.mio) ------------------ */
+.mensaje.mio {
+    align-self: flex-end; /* Derecha */
+    margin-left: auto;
+}
+
+.mensaje.mio strong:nth-child(2) {
+    background-color: var(--whatsapp-outgoing); /* Fondo Verde SENA */
+    color: var(--Sena-Blanco); 
+    border-radius: 8px 8px 2px 8px;
+}
+
+.mensaje.mio small {
+    color: rgba(255, 255, 255, 0.7); /* Fecha clara */
+    font-size: 10px;
+    display: block; 
+    margin-top: 3px;
+}
+
+/* Ocultar el nombre de usuario en la burbuja propia (solo se necesita la hora) */
+.mensaje.mio strong:first-child {
+    display: none;
+}
+
+
+/* ------------------------------------------- */
+/* 4. Formulario de Entrada (chat-form) */
+/* ------------------------------------------- */
 
 #chat-form {
     display: flex;
-    padding: 15px;
-    background: #fff;
-    border-top: 1px solid #ddd;
+    padding: 10px 15px;
+    background-color: var(--whatsapp-bg);
 }
 
 #mensaje-input {
-    flex: 1;
+    flex-grow: 1;
     padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-}
-
-#mensaje-input:focus {
-    border-color: #4f7cff;
-}
-
-#btn-enviar {
-    margin-left: 10px;
-    padding: 10px 20px;
     border: none;
-    background: #4f7cff;
-    color: white;
-    font-weight: bold;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.2s;
+    border-radius: 21px;
+    background-color: var(--whatsapp-list-bg); /* Fondo blanco */
+    color: var(--chat-text);
+    font-size: 16px;
+    box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
 }
 
-#btn-enviar:hover {
-    background: #3257d9;
+#enviar-btn {
+    margin-left: 10px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    border-radius: 50%; 
+    background-color: var(--Sena-verde); 
+    color: var(--Sena-Blanco);
+    border: none;
+    cursor: pointer;
+    font-size: 0; 
+}
+
+#enviar-btn:after {
+    content: "➤";
+    font-size: 18px;
+    transform: rotate(-45deg); 
+    display: block;
+    line-height: 45px;
+}
+
+#enviar-btn:hover {
+    background-color: var(--Sena-Verde-Hover);
 }

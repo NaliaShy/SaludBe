@@ -13,7 +13,7 @@ if (!isset($_FILES["imagen"])) {
 }
 
 $archivo = $_FILES["imagen"];
-$dir = "../Uploads/carrusel/";
+$dir = "../../Uploads/carrusel/";
 
 // Crear carpeta si no existe
 if (!file_exists($dir)) {

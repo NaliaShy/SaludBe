@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Cargar imágenes desde la BD
-    fetch("../../Php/Carrusel/obtener_carrusel_json.php")
+    fetch("../../php/Carrusel/obtener_carrusel_json.php")
         .then(r => r.json())
         .then(data => {
 

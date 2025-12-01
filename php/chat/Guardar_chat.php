@@ -20,7 +20,7 @@ if (!$mensaje || !$us_id || !$destinatario_id) {
 }
 
 try {
-    include '../Conexion.php';
+    include '../Conexion/Conexion.php';
     $db = new Conexion();
     $conn = $db->getConnect();
 

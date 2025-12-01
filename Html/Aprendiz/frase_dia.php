@@ -19,9 +19,7 @@ $sql = "SELECT Us_nombre, Us_apellios
 $stmt = $conexion->prepare($sql);
 
 if ($stmt) {
-    // 3. Vincular y ejecutar la consulta
-    // Usamos execute con un array para vincular el parámetro (más sencillo que bindParam)
-    // No se necesita especificar el tipo ("i") como en MySQLi.
+
     if ($stmt->execute([$usuario_id])) {
 
         // 4. Obtener el resultado

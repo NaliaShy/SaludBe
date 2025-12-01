@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seguimiento al Aprendiz - SaludBE</title>
-    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+<link rel="stylesheet" href="../../Css/Repetivos/root.css">
     <link rel="stylesheet" href="../../Css/Repetivos/sidebar_A.css">
     <link rel="stylesheet" href="../../php/chat-bot/css/style.css">
-    
-</head>
-<body>
-  <?php include '../../php/Components/Sidebar_a.php'; ?>
-
-
-<!-- TOP BAR -->
+<div class="chat-bot" id="chat-bot" style="display: none;">
 <div class="topbar">
   <div class="brand">
     <img src="assers/avatar.png" alt="avatar">
@@ -82,10 +70,8 @@
   <div class="resource-box" id="resourceBox"></div>
 
 </div>
-
+</div>
 <script type="module" src="js/ai-engine.js"></script>
 <script type="module" src="js/ui.js"></script>
 <script type="module" src="js/app.js"></script>
 
-</body>
-</html>

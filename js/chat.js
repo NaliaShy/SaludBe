@@ -49,12 +49,11 @@ form.addEventListener('submit', async function (e) {
     if (!mensaje) return;
 
     try {
-        const res = await fetch('/SaludBe/php/chat/Guardar_chat.php', {
+        const res = await fetch('/SaludBe/php/chat/guardar_chat.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `mensaje=${encodeURIComponent(mensaje)}&us_id=${usuarioLogueado}&destinatario_id=${usuarioSeleccionado}`
         });
-
         const data = await res.json();
 
         if (data.success) {

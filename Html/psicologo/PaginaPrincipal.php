@@ -1,73 +1,55 @@
+<?php
+include 'C:\laragon\www\SaludBe\php\Conexion\Conexion.php';
+// Crear conexión
+session_start();
+$db = new Conexion();
+// La variable de conexión es $conn, ya que así la definiste
+$conn = $db->getConnect();
+
+
+//Variable para usar en todo
+
+$usuario_id = $_SESSION['us_id'];
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Página Principal</title>
 
-    <!-- TUS CSS -->
-    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/psicologo/PaginaPrincipal.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Principal — Psicologo</title>
 
-    <!-- CSS del upload -->
-    <link rel="stylesheet" href="../../Css/psicologo/carrusel-upload.css">
-  </head>
+  <!-- TUS CSS -->
 
-  <body>
-    <?php include '../../php/Components/Sidebar_p.php'; ?>
+  <link rel="stylesheet" href="../../Css/Index.css">
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-content">
+</head>
 
-      <h1>SaludBE</h1>
+<body>
+  <div class="sidebarUsuario">
+    <?php include '../../php/Components/sidebar.php'; ?>
+  </div>
+  <div class="main">
+    <?php include '../../php/Components/añadirImagenes.php'; ?>
+    <?php include 'seccions/Lista.php' ?>
+    <?php include 'seccions/Historial.php' ?>
+    <?php include 'seccions/calendario.php' ?>
+    <?php include '../../php/chat/chat.php'; ?>
 
-      <img
-        src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
-        alt="Saludbe Logo"
-        style="width: 200px; margin-bottom: 20px;"
-      />
 
-      <!-- ⭐ Cuadro de arrastrar imagen ⭐ -->
-      <div class="upload-box" id="uploadBox">
-          <p>Arrastra aquí una imagen<br>o haz clic para seleccionar</p>
 
-          <!-- 🔥 INPUT CORREGIDO 🔥 -->
-          <input type="file" id="fileInput" name="imagen" accept="image/*" hidden>
-      </div>
+  </div>
 
-      <!-- ⭐ Preview ⭐ -->
-      <div id="previewContainer" class="preview-container" style="display:none;">
-          <h3>Vista previa:</h3>
-          <img id="imagePreview" class="preview-img">
-      </div>
 
-      <!-- ⭐ Popup ⭐ -->
-      <div id="popupNotification" class="popup-notification"></div>
 
-      <!-- ⭐ Historial ⭐ -->
-      <h3 style="margin-top:20px;">Imágenes subidas:</h3>
-      <div id="historial" class="historial-container"></div>
+  <script src="../../js/upload_carrusel.js"></script>
+  <script src="../../js/Seccions/seccions.js"></script>
 
-    </div>
 
-    <!-- Script menú -->
-    <script>
-      function toggleMenu() {
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
+</body>
 
-        if (sidebar.style.left === '0px') {
-          sidebar.style.left = '-250px';
-          overlay.style.display = 'none';
-        } else {
-          sidebar.style.left = '0px';
-          overlay.style.display = 'block';
-        }
-      }
-    </script>
-
-    <!-- Script de cargar/subir imágenes -->
-    <script src="../../js/upload_carrusel.js"></script>
-
-  </body>
 </html>

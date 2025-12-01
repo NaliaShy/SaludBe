@@ -1,22 +1,59 @@
+// =======================================================================
+// 1. DEFINICIONES GLOBALES (Aseguramos que el elemento exista)
+// =======================================================================
+
+// Obtenemos la referencia al modal principal UNA VEZ al cargar el script.
+const userModal = document.getElementById('userModal');
+
+
+/**
+ * Función para cerrar y ocultar el modal de detalles del aprendiz.
+ */
+function closeModal() {
+    if (userModal) {
+        // Oculta el modal
+        userModal.style.display = 'none'; 
+        
+        // Limpiar el contenido interno y restaurar el spinner de carga
+        const modalBody = document.getElementById('modal-body-content');
+        if (modalBody) {
+            modalBody.innerHTML = `
+                <center>
+                    <div class="loading-spinner"></div>
+                    <p>Cargando información del aprendiz...</p>
+                </center>`;
+        }
+    }
+}
+
+
+/**
+ * Función para abrir el modal y cargar los detalles del usuario vía AJAX.
+ * @param {string|number} userId - El ID del usuario seleccionado.
+ */
 function openModal(userId) {
-    const modal = document.getElementById('userModal');
     const content = document.getElementById('modal-body-content');
 
-    // 1. Mostrar spinner de carga
+    if (!userModal || !content) {
+        console.error("Error: Elementos del modal no encontrados (userModal o modal-body-content).");
+        return;
+    }
+
+    // 1. Mostrar spinner de carga y el modal
     content.innerHTML = '<center><div class="loading-spinner"></div><p>Cargando información del aprendiz...</p></center>';
-    modal.style.display = "flex"; // Mostrar modal
+    userModal.style.display = "flex"; // Mostrar modal
 
     // 2. Llamada AJAX para obtener los detalles del usuario
     $.ajax({
-        url: '../../php/obtener_detalle_usuario.php', // (Asumo que este script ya funciona)
+        url: '../../php/Citas/obtener_detalle_usuario.php', 
         type: 'GET',
-        data: { Us_id: userId }, // Enviamos el ID del usuario
+        data: { Us_id: userId },
         dataType: 'json',
         success: function(data) {
             if (data && data.success) {
                 const user = data.user;
 
-                // 3. Renderizar el contenido
+                // 3. Renderizar el contenido de detalles
                 content.innerHTML = `
                     <div class="user-detail-header">
                         <h3>Detalles del Aprendiz</h3>
@@ -64,15 +101,18 @@ function openModal(userId) {
         }
     });
 }
-// Las funciones closeModal y window.onclick se mantienen sin cambios
 
-// ***************************************************************
-// NUEVA FUNCIÓN: CARGAR SEGUIMIENTOS CON AJAX Y RENDERIZAR EN MODAL
-// ***************************************************************
 
+/**
+ * Carga el historial de seguimientos de un aprendiz en el mismo modal.
+ * @param {string|number} aprendizId - El ID del aprendiz.
+ * @param {string} nombreCompleto - Nombre y apellido del aprendiz.
+ */
 function loadSeguimientos(aprendizId, nombreCompleto) {
     const content = document.getElementById('modal-body-content');
     
+    if (!content) return; // Si no hay content, salimos
+
     // Mostrar spinner de carga en el modal
     content.innerHTML = `
         <div class="user-detail-header">
@@ -85,9 +125,9 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
 
     // Llamada AJAX para obtener los seguimientos
     $.ajax({
-        url: '../../php/Psicologo/Seguimientoaprendiz/seguimiento.php', // Script que devuelve JSON
+        url: '../../php/SeguimientoAprendiz/seguimiento.php',
         type: 'GET',
-        data: { id_aprendiz: aprendizId }, // Pasamos el ID del Aprendiz
+        data: { id_aprendiz: aprendizId },
         dataType: 'json',
         success: function(response) {
             if (response && response.success) {
@@ -106,7 +146,6 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
                     htmlContent += '<div class="seguimientos-list">';
                     
                     seguimientos.forEach(s => {
-                        // Formateo de fechas para mejor lectura
                         const fechaCreacion = new Date(s.fecha_creacion).toLocaleString('es-ES');
                         const fechaCita = s.fecha_cita ? `${s.fecha_cita} (${s.hora_cita})` : 'No asociada';
 
@@ -137,3 +176,24 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
         }
     });
 }
+
+
+// =======================================================================
+// 2. EVENTOS DE CIERRE ADICIONALES
+// =======================================================================
+
+// Cierre al presionar la tecla ESC
+document.addEventListener('keydown', (event) => {
+    // Verificamos que el modal exista, esté visible y la tecla sea 'Escape'
+    if (event.key === 'Escape' && userModal && userModal.style.display === 'flex') {
+        closeModal();
+    }
+});
+
+// Cierre al hacer clic fuera del contenido (en el overlay)
+document.addEventListener('click', (event) => {
+    // Verificamos si el clic fue en el overlay y no en el contenido del modal
+    if (userModal && event.target === userModal) {
+        closeModal();
+    }
+});

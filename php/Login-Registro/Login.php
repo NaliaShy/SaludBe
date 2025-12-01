@@ -5,6 +5,7 @@ require "../Conexion/Conexion.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // ... (código de validación de formulario) ...
     $correo = $_POST['correo'] ?? '';
     $contrasena = $_POST['contrasena'] ?? '';
 
@@ -22,24 +23,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($usuario) {
-
             if (password_verify($contrasena, $usuario['Us_contraseña'])) {
 
-                // ✅ Sesión correcta: usar los mismos nombres SIEMPRE
+                // ✅ Sesión correcta: guardar variables...
                 $_SESSION['us_id'] = $usuario['Us_id'];
                 $_SESSION['documento'] = $usuario['Us_documento'];
                 $_SESSION['rol_id'] = $usuario['Rol_id'];
 
-                if ($usuario['Rol_id'] == 1) {
-                    header("Location: ../../Html/Aprendiz/Descarga.php");
-                    exit();
-                } elseif ($usuario['Rol_id'] == 2) {
-                    header("Location: ../../Html/psicologo/descarga.php");
+                // ===========================================
+                // ✅ IMPRIMIR EL ID DE USUARIO (SOLO PRUEBA)
+
+                
+                // ===========================================
+                echo "<script>console.log('Usuario ID: " . $usuario['Us_id'] . "');</script>";
+                // ===========================================
+
+                $rutas_roles = [
+                    1 => "../../Html/Aprendiz/Descarga.php", 
+                    2 => "../../Html/psicologo/descarga.php" 
+                ];
+
+                $rol_actual = $usuario['Rol_id'];
+
+                if (isset($rutas_roles[$rol_actual])) {
+                    header("Location: " . $rutas_roles[$rol_actual]);
                     exit();
                 } else {
-                    echo "❌ Rol de usuario no reconocido.";
+                    echo "❌ Rol de usuario no reconocido ($rol_actual).";
                     header("Location: ../../Html/Login/Loginaprendiz.html");
+                    exit();
                 }
+
+
             } else {
                 echo "❌ Contraseña incorrecta.";
                 exit();
@@ -52,3 +67,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "❌ Error en la consulta: " . $e->getMessage();
     }
 }
+?>

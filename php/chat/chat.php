@@ -1,7 +1,18 @@
-<?php
-session_start();
 
-// Verificar si hay sesión activa
+<?php
+require_once 'C:\laragon\www\SaludBe\php\Conexion\Conexion.php';
+
+$db = new Conexion();
+$conn = $db->getConnect(); // <--- Creación de la conexión
+
+// 🚨 CÓDIGO DE DEPURACIÓN CRÍTICO 🚨
+if ($conn instanceof PDO) {
+    echo "<script>console.log('CONEXIÓN ÉXITO: \$conn es un objeto PDO válido.');</script>";
+} else {
+    // Si ves este mensaje, el fallo está DENTRO de la clase Conexion.php
+    die("FATAL: El método getConnect() no devolvió un objeto PDO. Revisar Conexion.php.");
+}
+// 3. Verificación de Sesión
 if (!isset($_SESSION['us_id'])) {
     echo "No hay sesión activa.";
     exit();
@@ -9,11 +20,8 @@ if (!isset($_SESSION['us_id'])) {
 
 // Guardamos el ID del usuario logueado
 $idUsuario = $_SESSION['us_id'];
-include '../Conexion/Conexion.php';
-$db = new Conexion();
-$conn = $db->getConnect();
 
-// Consultar datos del usuario logueado
+// 4. Ahora $conn debería ser reconocido
 $stmt = $conn->prepare("SELECT Us_id, Us_nombre, Rol_id FROM usuarios WHERE Us_id = :id");
 $stmt->bindParam(':id', $idUsuario);
 $stmt->execute();
@@ -24,53 +32,22 @@ if (!$usuario) {
     echo "Usuario no encontrado.";
     exit();
 }
-
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat SaludBE</title>
-    <link rel="stylesheet" href="/saludbe/css/repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/Aprendiz/chats_A.css">
-
-</head>
-
-<body>
-    <?php
-    if ($usuario['Rol_id'] == 1) {
-        include '../../php/Components/Sidebar_a.php';
-    } elseif ($usuario['Rol_id'] == 2) {
-        include '../../php/Components/Sidebar_p.php';
-    } else {
-        echo "❌ Rol de usuario no reconocido.";
-        header("Location: ../../Html/Login/Loginaprendiz.html");
-    }
-
-    ?>
-    <div class="chat-big-container">
-        <div class="selector-chats">
-            <h3>Usuarios</h3>
-            <ul id="lista-usuarios"></ul>
-        </div>
-        <div class="chat-container">
-            <div id="chat-messages"></div>
-            <form id="chat-form">
-                <input type="text" id="mensaje-input" placeholder="Escribe un mensaje..." autocomplete="off">
-                <button type="submit" id="enviar-btn">Enviar</button>
-            </form>
-        </div>
+<div class="chat-big-container" id="Chat" style="display: none;">
+    <div class="selector-chats">
+        <h3>Usuarios</h3>
+        <ul id="lista-usuarios"></ul>
     </div>
-
+    <div class="chat-container">
+        <div id="chat-messages"></div>
+        <form id="chat-form">
+            <input type="text" id="mensaje-input" placeholder="Escribe un mensaje..." autocomplete="off">
+            <button type="submit" id="enviar-btn">Enviar</button>
+        </form>
+    </div>
     <script>
         var usuarioLogueado = <?php echo $idUsuario; ?>;
     </script>
 
     <script src="../../js/Chat.js"></script>
-
-</body>
-
-</html>
+</div>

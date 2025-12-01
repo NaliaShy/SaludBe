@@ -70,7 +70,7 @@ function subirImagen(archivo) {
     let formData = new FormData();
     formData.append("imagen", archivo);
 
-    fetch("../../php/subir_carrusel.php", {
+    fetch("../../php/Carrusel/subir_carrusel.php", {
         method: "POST",
         body: formData
     })
@@ -89,7 +89,7 @@ function subirImagen(archivo) {
 // CARGAR HISTORIAL
 function cargarHistorial() {
 
-    fetch("../../php/historial_carrusel.php")
+    fetch("../../php/Carrusel/historial_carrusel.php")
     .then(r => r.json())
     .then(items => {
         historial.innerHTML = "";
@@ -119,7 +119,7 @@ function eliminarImagen(id) {
     let formData = new FormData();
     formData.append("id", id);
 
-    fetch("../../php/eliminar_carrusel.php", {
+    fetch("../../php/Carrusel/eliminar_carrusel.php", {
         method: "POST",
         body: formData
     })
@@ -143,7 +143,7 @@ function cambiarEstado(id, estadoActual) {
     formData.append("id", id);
     formData.append("estado", nuevoEstado);
 
-    fetch("../../php/cambiar_estado.php", {
+    fetch("../../php/Carrusel/cambiar_estado.php", {
         method: "POST",
         body: formData
     })

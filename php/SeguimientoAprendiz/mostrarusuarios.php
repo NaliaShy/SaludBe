@@ -1,10 +1,4 @@
 <?php
-include 'Conexion.php';
-
-// Crear conexión
-$db = new Conexion();
-// La variable de conexión es $conn, ya que así la definiste
-$conn = $db->getConnect(); 
 
 // 1. Obtener el término de búsqueda de manera segura
 $searchTerm = $_GET['search_term'] ?? '';
@@ -28,5 +22,4 @@ $stmt->bindParam(':rol_id', $rol_aprendiz, PDO::PARAM_INT); // Usamos el ID del 
 $stmt->execute(); 
 $aprendices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ... el resto de tu lógica para mostrar $aprendices
 ?>

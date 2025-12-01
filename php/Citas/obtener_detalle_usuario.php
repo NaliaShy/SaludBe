@@ -1,6 +1,6 @@
 <?php
 // CRUCIAL: Asegurarse de que 'conexion.php' no imprima nada (ni siquiera espacios) antes de este punto.
-include 'Conexion.php'; 
+include '../Conexion/Conexion.php'; 
 
 // CRUCIAL: Esta línea debe ser la primera cosa que se envía al navegador (sin espacios ni warnings antes).
 header('Content-Type: application/json'); 
