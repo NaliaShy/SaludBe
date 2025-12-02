@@ -1,38 +1,173 @@
- /* Reset básico */
- * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
- }
-
- body {
-   font-family: var(--font-sena);
-   background: #f9f9f9;
-   overflow-x: hidden;
- }
+/*====================================*/
+/*=========PaginaPrincipal============*/
+/*====================================*/
 
 
+#LogoSaludBe {
+    width: 150px;
+}
 
- /* Contenido principal centrado */
- .main-content {
-   height: calc(100vh - 60px);
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-   padding: 20px;
- }
+.Bienvenida-Perfil {
+    background: var(--Sena-Blanco);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    min-height: 200px;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+}
 
- .main-content h1 {
-   font-weight: bold;
-   margin-bottom: 20px;
-   font-size: 32px;
-   color: #222;
- }
+.acciones-psicologo {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
- .main-content img {
-   max-width: 300px;
-   width: 100%;
-   height: auto;
- }
+/*===========================*/
+/*=========CARRUSEL==========*/
+/*===========================*/
+
+.imagenes-carrusel {
+    min-width: 50%;
+
+}
+
+/* ------------------------------
+   CUADRO PARA SUBIR LA IMAGEN
+--------------------------------*/
+.upload-box {
+    width: 100%;
+    height: 200px;
+    border: 2px dashed var(--Sena-Azul);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    color: var(--Sena-gris);
+    background: var(--Sena-Blanco);
+    transition: .3s;
+}
+
+.upload-box.hover {
+    background: var(--Sena-Blanco);
+    border-color: var(--Sena-Azul);
+}
+
+/* ------------------------------
+   PREVIEW DE LA IMAGEN
+--------------------------------*/
+.preview-container {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+.preview-img {
+    width: 200px;
+    border-radius: 10px;
+    border: 2px solid var(--Sena-Azul);
+}
+
+/* ------------------------------
+   POPUP (EXITO / ERROR)
+--------------------------------*/
+.popup-notification {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 12px 18px;
+    background: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    border-radius: 8px;
+    display: none;
+    font-size: 15px;
+    z-index: 9999;
+    animation: fadeIn .3s forwards;
+}
+
+.popup-notification.error {
+    background: var(--Sena-Alerta);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------------
+   HISTORIAL (GRID DE IMÁGENES)
+--------------------------------*/
+.historial-container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+/* Cada tarjeta */
+.historial-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--Sena-Blanco);
+    background: var(--Sena-Blanco);
+    transition: 0.3s;
+}
+
+/* Imagen */
+.historial-item img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
+/* ------------------------------
+   BOTÓN ELIMINAR
+--------------------------------*/
+.delete-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background:var(--Sena-Alerta);
+    color: var(--Sena-Blanco);
+    border: none;
+    padding: 6px;
+    border-radius: 50%;
+    font-size: 14px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.delete-btn:hover {
+    background:var(--Sena-Alerta-Hover);
+}
+
+/* ------------------------------
+   BOTÓN ACTIVAR / DESACTIVAR
+--------------------------------*/
+.estado-btn {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    background: var(--Sena-Azul);
+    color: var(--Sena-Blanco);
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+    border-radius: 4px;
+    transition: .3s;
+}
+
+.estado-btn:hover {
+    background:var(--Sena-Azul);
+}
+
+

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <?php include '../../php/Components/Sidebar_p.php'; ?>
+  <?php include '../../php/Components/sidebar.php'; ?>
   <!-- Contenido principal -->
   <main>
     <section class="formulario">

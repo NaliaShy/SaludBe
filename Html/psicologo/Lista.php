@@ -13,8 +13,7 @@
 </head>
 
 <body>
-
-    <?php include '../../php/Components/Sidebar_p.php'; ?>
+  <?php include '../../php/Components/sidebar.php'; ?>
 
     <div class="container">
         <h2>Lista de Aprendiz</h2>
@@ -32,9 +31,9 @@
             </div>
         </form>
 
-        <?php 
+        <?php
         // Nota: Asumo que este archivo obtiene la lista de aprendices en la variable $aprendices
-        include '../../php/mostrarusuarios.php'; 
+        include '../../php/mostrarusuarios.php';
         ?>
 
         <div class="aprendiz-container">
@@ -81,10 +80,6 @@
     <!-- ------------------------------------------------------------------ -->
     <!-- LÓGICA JAVASCRIPT/AJAX -->
     <!-- ------------------------------------------------------------------ -->
-    <script src="../../js//Lista.js">
-        // Función para mostrar el modal y cargar los datos
-        
-    </script>
+<script src="../../js/Lista.js"></script>
 </body>
-
 </html>

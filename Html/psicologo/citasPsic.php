@@ -12,7 +12,7 @@
 
 <body>
 
-  <?php include '../../php/Components/Sidebar_p.php'; ?>
+  <?php include '../../php/Components/sidebar.php'; ?>
   <main>
     <h2 class="titulo">Aceptar Citas</h2>
 

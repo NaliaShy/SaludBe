@@ -70,9 +70,7 @@ try {
 </head>
 
 <body>
-    <?php 
-    include '../../php/Components/Sidebar_p.php'; 
-    ?>
+  <?php include '../../php/Components/sidebar.php'; ?>
     <?php 
     // NOTA: Corregí el include a notificaciones_p.php (asumiendo que 'p' es de psicólogo)
     include '../../php/Components/notificaciones_a.php'; 
