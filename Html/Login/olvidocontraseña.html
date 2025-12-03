@@ -13,13 +13,13 @@
 <body>
 
     <div class="registro-container">
-        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
-        <center>
-            <h1>Recupera tu cuenta</h1>
-        </center>
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" 
+             alt="Logo SENA" class="logo">
+
+        <center><h1>Recupera tu cuenta</h1></center>
         <br>
 
-        <form id="formCorreo" action="../../php/Login-Registro/Olvidocontraseña.php" method="POST">
+        <form id="formCorreo" method="POST">
             <label for="correo">Ingresa tu correo:</label>
             <input type="email" id="correo" name="correo" placeholder="example@example.com" required>
 
@@ -39,14 +39,15 @@
 
             let formData = new FormData(form);
 
-            let envio = await fetch("../../php/Login-Registro/Olvidocontraseña.php", {
+            // 🔥 RUTA CORREGIDA (3 niveles hacia atrás)
+            let envio = await fetch("../../../php/Login-Registro/Olvidocontraseña.php", {
                 method: "POST",
                 body: formData
             });
 
             let respuesta = await envio.text();
+            console.log("Respuesta del servidor:", respuesta);
 
-            // SI TODO ESTÁ OK
             if (respuesta.trim() === "ok") {
                 window.location.href = "Recuperacontraseña.html";
             } else {
@@ -56,5 +57,4 @@
     </script>
 
 </body>
-
 </html>

@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once "../conexion.php";
+require_once "../Conexion/Conexion.php";
+
 
 // Verificar que existe el correo en sesión
 if (!isset($_SESSION['reset_email'])) {
