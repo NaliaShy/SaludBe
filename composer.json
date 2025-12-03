@@ -1,0 +1,17 @@
+{
+    "name": "usuario/salud-be-1",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\SaludBe1\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "EdgarCastellanos.ABC",
+            "email": "edgarcastellanoniebles@gmail.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^7.0"
+    }
+}
