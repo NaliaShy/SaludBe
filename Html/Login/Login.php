@@ -19,7 +19,7 @@
             background: #e9fff0;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         canvas {
             position: fixed;
             inset: 0;
@@ -28,13 +28,14 @@
             display: block;
             z-index: 0;
         }
+
         /* Subimos el login */
-        
+
         .login-container {
             position: relative;
             z-index: 2;
         }
-        
+
         .bienvenida {
             position: absolute;
             top: 35px;
@@ -43,24 +44,27 @@
             z-index: 2;
             animation: flotar 3s ease-in-out infinite;
         }
-        
+
         .bienvenida h1 {
             font-size: 3em;
             color: #1f7b2b;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         @keyframes flotar {
+
             0%,
             100% {
                 transform: translateX(-50%) translateY(0);
             }
+
             50% {
                 transform: translateX(-50%) translateY(-10px);
             }
         }
+
         /* ---- Frases animadas (ambos lados) ---- */
-        
+
         .phrases {
             position: fixed;
             top: 55%;
@@ -70,15 +74,15 @@
             z-index: 5;
             pointer-events: none;
         }
-        
+
         .phrases.right {
             right: 80px;
         }
-        
+
         .phrases.left {
             left: 80px;
         }
-        
+
         .phrase-box {
             position: absolute;
             background-color: rgba(37, 143, 16, 0.9);
@@ -95,47 +99,49 @@
             font-size: 15px;
             pointer-events: auto;
         }
-        
+
         .left .phrase-box {
             transform: translateX(-120px) scale(0.9);
         }
-        
+
         .phrase1 {
             top: 0;
             animation-delay: 0.4s;
         }
-        
+
         .phrase2 {
             top: 130px;
             animation-delay: 0.9s;
         }
-        
+
         .phrase3 {
             top: 260px;
             animation-delay: 1.4s;
         }
-        
+
         @keyframes phraseSlide {
             to {
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
         }
-        
+
         .phrase-box:hover {
             animation: float 3s ease-in-out infinite;
         }
-        
+
         @keyframes float {
+
             0%,
             100% {
                 transform: translateY(0) scale(1.02);
             }
+
             50% {
                 transform: translateY(-10px) scale(1);
             }
         }
-        
+
         @media (max-width: 1000px) {
             .phrases {
                 display: none;
@@ -164,6 +170,17 @@
         <h2>Iniciar Sesión</h2>
 
         <form action="../../php/Login-Registro/Login.php" method="post">
+            <?php
+            if (isset($_SESSION['mensaje'])) { ?>
+                <div class="alerta <?php echo $_SESSION['tipo_mensaje']; ?>">
+                    <?php
+                    echo $_SESSION['mensaje'];
+                    unset($_SESSION['mensaje']);
+                    unset($_SESSION['tipo_mensaje']);
+                    ?>
+                    <button class="cerrar-alerta" onclick="this.parentElement.style.display='none';">&times;</button>
+                </div>
+            <?php } ?>
             <input type="email" name="correo" placeholder="Ingrese su correo" required>
             <input type="password" name="contrasena" placeholder="Ingrese su contraseña" required>
             <a href="olvidocontraseña.html" class="forgot">¿Olvidó su contraseña?</a>

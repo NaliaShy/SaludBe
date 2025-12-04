@@ -25,22 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($usuario) {
             if (password_verify($contrasena, $usuario['Us_contraseña'])) {
 
-                // ✅ Sesión correcta: guardar variables...
-                $_SESSION['us_id'] = $usuario['Us_id'];
+                // ✅ Sesión correcta: guardar variables
+                $_SESSION['Us_id'] = $usuario['Us_id'];
                 $_SESSION['documento'] = $usuario['Us_documento'];
-                $_SESSION['rol_id'] = $usuario['Rol_id'];
+                $_SESSION['Rol_id'] = $usuario['Rol_id'];
 
-                // ===========================================
-                // ✅ IMPRIMIR EL ID DE USUARIO (SOLO PRUEBA)
-
-                
-                // ===========================================
-                echo "<script>console.log('Usuario ID: " . $usuario['Us_id'] . "');</script>";
-                // ===========================================
 
                 $rutas_roles = [
-                    1 => "../../Html/Aprendiz/Descarga.php", 
-                    2 => "../../Html/psicologo/descarga.php" 
+                    1 => "../../Html/Aprendiz/Descarga.php",
+                    2 => "../../Html/psicologo/descarga.php"
                 ];
 
                 $rol_actual = $usuario['Rol_id'];
@@ -50,11 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     exit();
                 } else {
                     echo "❌ Rol de usuario no reconocido ($rol_actual).";
-                    header("Location: ../../Html/Login/Loginaprendiz.html");
+                    $_SESSION['mensaje'] = 'Hay algo mal';
+                    $_SESSION['tipo_mensaje'] = 'guardar';
                     exit();
                 }
-
-
             } else {
                 echo "❌ Contraseña incorrecta.";
                 exit();
@@ -67,4 +59,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "❌ Error en la consulta: " . $e->getMessage();
     }
 }
-?>

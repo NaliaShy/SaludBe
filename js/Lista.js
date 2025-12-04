@@ -12,8 +12,8 @@ const userModal = document.getElementById('userModal');
 function closeModal() {
     if (userModal) {
         // Oculta el modal
-        userModal.style.display = 'none'; 
-        
+        userModal.style.display = 'none';
+
         // Limpiar el contenido interno y restaurar el spinner de carga
         const modalBody = document.getElementById('modal-body-content');
         if (modalBody) {
@@ -45,11 +45,11 @@ function openModal(userId) {
 
     // 2. Llamada AJAX para obtener los detalles del usuario
     $.ajax({
-        url: '../../php/Citas/obtener_detalle_usuario.php', 
+        url: '../../php/Citas/obtener_detalle_usuario.php',
         type: 'GET',
         data: { Us_id: userId },
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             if (data && data.success) {
                 const user = data.user;
 
@@ -85,9 +85,9 @@ function openModal(userId) {
                         
                         <button 
                             class="btn-primary" 
-                            onclick="window.location.href='/SaludBe/Html/psicologo/calendario.php'"
+                            onclick="window.location.href='/SaludBe/Html/psicologo/seccions/calendario.php?id_aprendiz=${user.Us_id}'" // <-- ID AGREGADO
                         >
-                            📅 Citas
+    📅 Citas
                         </button>
                     </div>
                 `;
@@ -95,7 +95,7 @@ function openModal(userId) {
                 content.innerHTML = `<p class="error-message">❌ Error al cargar los datos: ${data.message || 'ID de usuario no encontrado.'}</p>`;
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             content.innerHTML = `<p class="error-message">❌ Error de conexión al servidor: ${status} - ${error}</p>`;
             console.error("AJAX Error:", status, error);
         }
@@ -110,7 +110,7 @@ function openModal(userId) {
  */
 function loadSeguimientos(aprendizId, nombreCompleto) {
     const content = document.getElementById('modal-body-content');
-    
+
     if (!content) return; // Si no hay content, salimos
 
     // Mostrar spinner de carga en el modal
@@ -129,7 +129,7 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
         type: 'GET',
         data: { id_aprendiz: aprendizId },
         dataType: 'json',
-        success: function(response) {
+        success: function (response) {
             if (response && response.success) {
                 const seguimientos = response.data;
                 let htmlContent = `
@@ -144,7 +144,7 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
                     htmlContent += '<p style="text-align: center; color: #888;">No se encontraron seguimientos registrados.</p>';
                 } else {
                     htmlContent += '<div class="seguimientos-list">';
-                    
+
                     seguimientos.forEach(s => {
                         const fechaCreacion = new Date(s.fecha_creacion).toLocaleString('es-ES');
                         const fechaCita = s.fecha_cita ? `${s.fecha_cita} (${s.hora_cita})` : 'No asociada';
@@ -160,17 +160,17 @@ function loadSeguimientos(aprendizId, nombreCompleto) {
                             </div>
                         `;
                     });
-                    
+
                     htmlContent += '</div>';
                 }
-                
+
                 content.innerHTML = htmlContent;
 
             } else {
                 content.innerHTML = `<p class="error-message">❌ Error al cargar seguimientos: ${response.error || 'Respuesta inválida del servidor.'}</p>`;
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             content.innerHTML = `<p class="error-message">❌ Error de conexión al servidor al cargar seguimientos: ${status} - ${error}</p>`;
             console.error("AJAX Seguimiento Error:", status, error);
         }

@@ -7,11 +7,7 @@ $db = new Conexion();
 $conn = $db->getConnect();
 
 
-//Variable para usar en todo
-
-$usuario_id = $_SESSION['us_id'];
-
-
+$usuario_id = $_SESSION['Us_id'];
 
 ?>
 

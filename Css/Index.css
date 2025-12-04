@@ -448,6 +448,7 @@ button:hover {
     padding-top: 60px;
     transition: left 0.3s ease;
     z-index: 3800;
+
 }
 
 .sidebar.active {
@@ -470,6 +471,7 @@ button:hover {
     font-size: 18px;
     text-decoration: none;
     transition: all 0.3s ease;
+        color: var(--Blanco);
 }
 
 .sidebar ul li a:hover {
@@ -522,8 +524,69 @@ button:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*====================================*/
-/*=========PaginaPrincipal============*/
+/*=========PaginaPrincipalPsicologo============*/
 /*====================================*/
 
 

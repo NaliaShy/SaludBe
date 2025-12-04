@@ -1,20 +1,45 @@
 <?php
-// 1. Verificación de sesión
-if (!isset($_SESSION['us_id'])) {
+session_start();
+echo "<h3>Diagnóstico de Sesión:</h3>";
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+
+if (!isset($_SESSION['Us_id'])) { 
     die("⚠️ No has iniciado sesión.");
 }
-
-// Usamos 'idPsicologo' para mayor claridad ya que este es el perfil del psicólogo
-$idPsicologo = $_SESSION['us_id'];
+$idPsicologo = $_SESSION['Us_id']; 
 $eventos = [];
+
+// =======================================================================
+// ⭐ NUEVA LÍNEA: CAPTURAR EL ID DEL APRENDIZ DE LA URL
+// =======================================================================
+$idAprendizFiltro = isset($_GET['id_aprendiz']) ? $_GET['id_aprendiz'] : null;
+
+
 $mensaje_lista = "Selecciona un día del calendario para ver las citas de esa fecha.";
+
+// Array inicial de parámetros (siempre incluye el ID del psicólogo al final)
+$parametros = [];
+$clausula_filtro_aprendiz = "";
+
+// =======================================================================
+// ⭐ NUEVA LÓGICA: FILTRAR POR APRENDIZ SI EL ID ESTÁ PRESENTE
+// =======================================================================
+if ($idAprendizFiltro) {
+    // Si se pasa un ID de aprendiz, agregamos una cláusula para filtrar por él.
+    $clausula_filtro_aprendiz = "AND c.Id_Usuario = ?";
+    // El ID del aprendiz se añade a los parámetros, pero el orden es importante para el SQL.
+    $mensaje_lista = "Mostrando citas para el Aprendiz ID: " . htmlspecialchars($idAprendizFiltro);
+}
+
 
 // **MODIFICACIÓN CLAVE DE LÓGICA:**
 // Si se proporciona una fecha, se filtra solo por esa fecha.
 if (isset($_GET['fecha'])) {
     $fecha = $_GET['fecha'];
 
-    // SQL para una FECHA ESPECÍFICA
+    // SQL para una FECHA ESPECÍFICA + FILTRO OPCIONAL DE APRENDIZ
     $sql = "SELECT 
             c.IdCita, 
             c.motivo, 
@@ -25,16 +50,20 @@ if (isset($_GET['fecha'])) {
             u.Us_apellios AS ApellidoCliente 
         FROM cita c
         JOIN usuarios u ON c.Id_Usuario = u.Us_id 
-        WHERE c.Fecha = ? AND c.Id_Psicologo = ?
+        WHERE c.Fecha = ? AND c.Id_Psicologo = ? " . $clausula_filtro_aprendiz . " 
         ORDER BY c.fecha ASC, c.hora ASC";
 
     $parametros = [$fecha, $idPsicologo];
-    $mensaje_lista = "Fecha seleccionada: " . htmlspecialchars($fecha);
+    if ($idAprendizFiltro) {
+        $parametros[] = $idAprendizFiltro; // Añadir el ID del aprendiz al final
+    }
+    
+    $mensaje_lista = $mensaje_lista . " - Fecha seleccionada: " . htmlspecialchars($fecha);
 } else {
     // **NUEVA LÓGICA: Mostrar todas las citas desde HOY**
     $fecha_hoy = date('Y-m-d'); // Obtener la fecha actual en formato YYYY-MM-DD
 
-    // **NUEVO SQL:** Filtra por fechas mayores o iguales a la de hoy
+    // **NUEVO SQL:** Filtra por fechas mayores o iguales a la de hoy + FILTRO OPCIONAL DE APRENDIZ
     $sql = "SELECT 
             c.IdCita, 
             c.motivo, 
@@ -45,11 +74,18 @@ if (isset($_GET['fecha'])) {
             u.Us_apellios AS ApellidoCliente 
         FROM cita c
         JOIN usuarios u ON c.Id_Usuario = u.Us_id 
-        WHERE c.Fecha >= ? AND c.Id_Psicologo = ?
+        WHERE c.Fecha >= ? AND c.Id_Psicologo = ? " . $clausula_filtro_aprendiz . "
         ORDER BY c.fecha ASC, c.hora ASC";
 
     $parametros = [$fecha_hoy, $idPsicologo];
-    $mensaje_lista = "Mostrando todas las citas pendientes desde HOY (" . $fecha_hoy . ")";
+    if ($idAprendizFiltro) {
+        $parametros[] = $idAprendizFiltro; // Añadir el ID del aprendiz al final
+    }
+    
+    // Si no había filtro de aprendiz, el mensaje inicial es más general
+    if (!$idAprendizFiltro) {
+        $mensaje_lista = "Mostrando todas las citas pendientes desde HOY (" . $fecha_hoy . ")";
+    }
 }
 
 // Ejecución de la consulta (unificada)
@@ -57,9 +93,12 @@ try {
     $db = new Conexion();
     $conexion = $db->getConnect();
 
+    // 💡 NOTA IMPORTANTE: Asegúrate de que tu clase 'Conexion' y la conexión PDO estén disponibles aquí.
+
     $stmt = $conexion->prepare($sql);
-    $stmt->execute($parametros);
+    $stmt->execute($parametros); // Ejecuta con los parámetros ya ordenados
     $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
     $eventos = ["error" => $e->getMessage()];
     $mensaje_lista = "Error de Base de Datos"; // Sobrescribir el mensaje si hay error
