@@ -186,7 +186,7 @@
             <a href="olvidocontraseña.html" class="forgot">¿Olvidó su contraseña?</a>
             <button type="submit" class="btn btn-login">Ingresar</button>
             <button type="button" class="btn-aprendiz" onclick="window.location.href='../Index.html'">Volver al inicio</button>
-            <div class="register-link">¿No tienes cuenta? <a href="Registrate.html">Regístrate</a></div>
+            <div class="register-link">¿No tienes cuenta? <a href="../../Html/Login/Registrate.html">Regístrate</a></div>
         </form>
     </div>
 

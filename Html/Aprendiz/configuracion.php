@@ -23,7 +23,7 @@
             <div id="general" class="section active">
             
               
-                <button class="config-btn" onclick="window.location.href='../Login/Loginaprendiz.html'" class="a">Cerrar Sesión</button>
+                <button class="config-btn" onclick="window.location.href='../Login/Login.php'" class="a">Cerrar Sesión</button>
                 <button class="config-btn danger" class="a">Eliminar Cuenta</button>
                 <button class="config-btn" style="margin-top: 20px;" onclick="window.location.href='../Aprendiz/PaginaPrincipal.html'" class="a">Volver</button>
             </div>
