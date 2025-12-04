@@ -36,35 +36,406 @@ body {
 
 /*sidebar*/
 
-/* ====== NAV SUPERIOR ====== */
+/*LAS TRES PAGINAS PRINCIPALES
+*/
+
+* {
+    font-family: var(--font-sena);
+}
+
 nav {
+    width: 100%;
+    height: 175px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px 5px 50px;
+    background-color: var(--Sena-Blanco);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
+    top: 0px;
+}
+
+.container {
+    margin: 200px 0 0 0;
+}
+
+.logo-index {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 50px;
+    align-items: center;
+    color: var(--Sena-verde);
+}
+
+#logo-index {
+    width: 100px;
+    margin: 15px 0 0 0;
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    text-decoration: none;
+    color: var(--Sena-verde);
+}
+
+.menu>a>li {
+    list-style: none;
+    padding: 0 30px 0 30px;
+    transition: 100ms;
+}
+
+.menu>a>li:hover {
+    transition: 100ms;
+    transform: scale(1.1, 1.1);
+    padding: 12px;
+    background-color: var(--Sena-Blanco);
+    color: var(--Sena-verde);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.Cuenta {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.Cuenta>button {
+    padding: 12px;
+    background-color: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: 100ms;
+}
+
+.Cuenta>button:hover {
+    transition: 100ms;
+    transform: scale(1.1, 1.1);
+    padding: 12px;
+    background-color: var(--Sena-Blanco);
+    color: var(--Sena-verde);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+
+/*CONTENIDO AQUÍ*/
+
+
+/*Container*/
+
+.container-index {
+    margin: 250px 100px 100px 100px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 100px;
+    flex-direction: column;
+}
+
+
+/*Gancho*/
+
+.gancho {
+    background-color: var(--transparencia-blanco);
+    border-radius: 20px;
+    gap: 30px;
+    padding: 20px;
+}
+
+button {
+    padding: 12px;
+    background-color: var(--Sena-verde);
+    color: var(--Sena-Blanco);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transition: 100ms;
+}
+
+button:hover {
+    transition: 100ms;
+    transform: scale(1.1, 1.1);
+    padding: 12px;
+    background-color: var(--Sena-Blanco);
+    color: var(--Sena-verde);
+    border-radius: 5px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.gancho-contenido {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+}
+
+.contenido {
+    display: flex;
+    flex-direction: column;
+    justify-content: justify;
+    gap: 20px;
+}
+
+
+/*ROLES*/
+
+.roles {
+    padding: 20px;
+    background: var(--transparencia-blanco);
+    border-radius: 20px;
+}
+
+.roles h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #00796b;
+}
+
+
+/* Contenedor fila */
+
+.rol {
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    z-index: 4000;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.menu-icon {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 28px;
-    cursor: pointer;
+.rol img {
+    width: 220px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
 }
 
-.logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 26px;
-    font-weight: bold;
+.rol-texto {
+    flex: 1;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.rol-texto h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #004d40;
+}
+
+
+/* Invertir orden */
+
+.invertida {
+    flex-direction: row-reverse;
+}
+
+
+/* Estilo para el contenido de ayuda */
+
+.ayuda-contenido {
+    max-width: 1700px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* Títulos */
+
+.ayuda-contenido h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #006633;
+    /* tono verde SENA */
+    border-left: 6px solid #00a859;
+    padding-left: 10px;
+}
+
+
+/* Listas ordenadas */
+
+.ayuda-contenido ol {
+    margin-left: 20px;
+    padding-left: 15px;
+}
+
+.ayuda-contenido ol li {
+    margin: 12px 0;
+    font-size: 1rem;
+    padding: 10px;
+    background: #f7fdf9;
+    border-left: 4px solid #00a859;
+    border-radius: 6px;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.ayuda-contenido ol li:hover {
+    background: #e6f9f0;
+    transform: translateX(5px);
+}
+
+
+/* Párrafos */
+
+.ayuda-contenido p {
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #444;
+}
+
+.ayuda-contenido strong {
+    color: #006633;
+}
+
+.ayuda-contenido a {
+    color: #00796b;
+    text-decoration: none;
+    border-bottom: 1px dashed #00796b;
+}
+
+
+/* ---- Misión y Visión SENA ---- */
+
+.sena-mv {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 28px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #223;
+}
+
+.sena-mv-title {
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+    color: #004d2a;
+    /* verde SENA oscuro */
+    display: inline-block;
+    border-left: 6px solid #00a859;
+    padding-left: 12px;
+}
+
+.sena-mv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 14px;
+}
+
+
+/* Card */
+
+.mv-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 6px 18px rgba(8, 20, 15, 0.06);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.mv-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(8, 20, 15, 0.09);
+}
+
+.mv-icon {
+    min-width: 56px;
+    min-height: 56px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(0, 168, 89, 0.08), rgba(0, 168, 89, 0.03));
+    color: #00a859;
+}
+
+.mv-card-title {
+    margin: 0 0 6px 0;
+    font-size: 1.05rem;
+    color: #006633;
+}
+
+.mv-card-text {
+    margin: 0;
+    color: #334;
+    line-height: 1.5;
+    font-size: 0.98rem;
+}
+
+
+/* Responsive: en pantallas pequeñas apilar */
+
+@media (max-width: 800px) {
+    .sena-mv-grid {
+        grid-template-columns: 1fr;
+    }
+    .sena-mv {
+        padding: 18px;
+        margin: 24px 16px;
+    }
+}
+
+
+/*Icono cuenta*/
+
+.perfil-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    /* espacio entre icono y texto */
+}
+
+.perfil-icono {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e6f9f0;
+    /* fondo clarito */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-icono svg {
+    width: 55%;
+    height: 55%;
+    fill: #00a859;
+    /* verde SENA */
+}
+
+.perfil-texto {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
 }
 
 /* ====== SIDEBAR ====== */
@@ -156,7 +527,7 @@ nav {
 /*====================================*/
 
 
-#LogoSaludBe {
+#LogoSaludBe, #logo-index {
     width: 150px;
 }
 
