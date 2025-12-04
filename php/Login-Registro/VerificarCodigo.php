@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../conexion.php";
+require_once "../Conexion/Conexion.php";  // ← RUTA CORREGIDA
 
 if (!isset($_SESSION['reset_email'])) {
     echo "sin_correo";
@@ -12,7 +12,7 @@ $email = $_SESSION['reset_email'];
 $conexion = new Conexion();
 $db = $conexion->getConnect();
 
-// Leer el código completo enviado por AJAX
+// Leer código enviado desde AJAX
 $codigo = $_POST['codigo'] ?? '';
 
 if (strlen($codigo) !== 6) {
@@ -20,7 +20,7 @@ if (strlen($codigo) !== 6) {
     exit;
 }
 
-// Buscar datos del usuario
+// Buscar token en BD
 $query = $db->prepare("
     SELECT Us_reset_token, Us_reset_expira 
     FROM usuarios 
@@ -40,11 +40,11 @@ if (strtotime($data['Us_reset_expira']) < time()) {
     exit;
 }
 
-// Código correcto?
+// Verificar código
 if ($codigo != $data['Us_reset_token']) {
     echo "codigo_incorrecto";
     exit;
 }
 
-// Todo correcto
+// Código correcto
 echo "ok";

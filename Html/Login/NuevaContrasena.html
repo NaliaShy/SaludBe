@@ -45,12 +45,14 @@
 
             mensaje.style.display = "none";
 
+            // Validar mínimo de caracteres
             if (pass1.value.length < 6) {
                 mensaje.innerText = "La contraseña debe tener al menos 6 caracteres.";
                 mensaje.style.display = "block";
                 return;
             }
 
+            // Validar que coincidan
             if (pass1.value !== pass2.value) {
                 mensaje.innerText = "Las contraseñas no coinciden.";
                 mensaje.style.display = "block";
@@ -60,21 +62,27 @@
             let data = new FormData();
             data.append("pass", pass1.value);
 
-            let envio = await fetch("../../php/Login-Registro/NuevaContrasena.php", {
+            // RUTA CORRECTA DEL PHP
+            let envio = await fetch("../../Php/Login-Registro/NuevaContrasena.php", {
                 method: "POST",
                 body: data
             });
 
-            let respuesta = await envio.text();
-            respuesta = respuesta.trim();
+            let respuesta = (await envio.text()).trim();
 
             if (respuesta === "ok") {
                 alert("Contraseña actualizada con éxito.");
                 window.location.href = "Login.html";
-            } else if (respuesta === "sin_correo") {
+            }
+            else if (respuesta === "sin_correo") {
                 mensaje.innerText = "Error: No hay correo asociado. Reinicia el proceso.";
                 mensaje.style.display = "block";
-            } else {
+            }
+            else if (respuesta === "error_bd") {
+                mensaje.innerText = "Error al actualizar la contraseña en la base de datos.";
+                mensaje.style.display = "block";
+            }
+            else {
                 mensaje.innerText = "Error inesperado: " + respuesta;
                 mensaje.style.display = "block";
             }

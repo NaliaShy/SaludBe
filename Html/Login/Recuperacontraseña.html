@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../../Css/Repetivos/root.css">
 
     <style>
-        /* ===== ESTILOS DEL MODAL ===== */
         .modal {
             display: none;
             position: fixed;
@@ -32,36 +31,9 @@
             animation: fadeIn 0.25s ease;
         }
 
-        .modal-contenido h2 {
-            margin-bottom: 10px;
-        }
-
-        .modal-contenido ol {
-            margin-left: 18px;
-            line-height: 1.6;
-        }
-
-        .cerrar-modal {
-            margin-top: 15px;
-            background: #1f7b2b;
-            color: #fff;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-        }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
@@ -69,22 +41,22 @@
 <body>
 
     <div class="container">
-        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo SENA" class="logo">
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40"
+             alt="Logo SENA" class="logo">
 
         <h1>Recupera tu contraseña</h1>
 
-        <!-- FORMULARIO REAL -->
         <form id="formCodigo">
 
             <p>A tu correo llegará un código de verificación, ¡ingrésalo!</p>
 
             <div class="input-codigo">
-                <input type="text" maxlength="1" class="codigo" name="codigo1" required>
-                <input type="text" maxlength="1" class="codigo" name="codigo2" required>
-                <input type="text" maxlength="1" class="codigo" name="codigo3" required>
-                <input type="text" maxlength="1" class="codigo" name="codigo4" required>
-                <input type="text" maxlength="1" class="codigo" name="codigo5" required>
-                <input type="text" maxlength="1" class="codigo" name="codigo6" required>
+                <input type="text" maxlength="1" class="codigo" required>
+                <input type="text" maxlength="1" class="codigo" required>
+                <input type="text" maxlength="1" class="codigo" required>
+                <input type="text" maxlength="1" class="codigo" required>
+                <input type="text" maxlength="1" class="codigo" required>
+                <input type="text" maxlength="1" class="codigo" required>
             </div>
 
             <p id="timer">Tu código vencerá en <span id="time">3:50</span> minutos</p>
@@ -100,27 +72,25 @@
         </form>
     </div>
 
-    <!-- ===== MODAL ===== -->
+    <!-- MODAL -->
     <div id="modalAyuda" class="modal">
         <div class="modal-contenido">
 
             <h2>¿Tienes problemas con el código?</h2>
 
             <ol>
-                <li><strong>Revisa tu bandeja de entrada.</strong> El correo puede tardar unos segundos.</li>
-                <li><strong>Mira Spam o Promociones.</strong></li>
-                <li><strong>Verifica tu correo.</strong></li>
-                <li><strong>Pide un nuevo código.</strong></li>
-                <li><strong>Espera 1 minuto.</strong></li>
-                <li><strong>Soporte:</strong> <a href="mailto:soporte@saludbe.com">soporte@saludbe.com</a></li>
+                <li>Revisa tu bandeja de entrada o spam.</li>
+                <li>Espera unos segundos.</li>
+                <li>Verifica que tu correo esté escrito correctamente.</li>
+                <li>Pide un nuevo código.</li>
+                <li>Espera un minuto antes de pedir otro.</li>
+                <li>Soporte: <a href="mailto:soporte@saludbe.com">soporte@saludbe.com</a></li>
             </ol>
 
             <button class="cerrar-modal" id="cerrarModalBtn">Cerrar</button>
         </div>
     </div>
 
-
-    <!-- ===== SCRIPT COMPLETO ===== -->
     <script>
         // TIMER
         let countdown = 230;
@@ -129,7 +99,6 @@
         function updateTimer() {
             let min = Math.floor(countdown / 60);
             let seg = countdown % 60;
-
             timerElement.textContent = `${min}:${seg < 10 ? "0" + seg : seg}`;
             countdown--;
 
@@ -159,30 +128,29 @@
 
         linkProblema.onclick = (e) => {
             e.preventDefault();
-            modal.style.display = "flex";
+            modal.style.display="flex";
         };
-
-        cerrarBtn.onclick = () => modal.style.display = "none";
-
-        window.onclick = (e) => {
-            if (e.target === modal)
-                modal.style.display = "none";
-        };
-
+        cerrarBtn.onclick = () => modal.style.display="none";
+        window.onclick = (e) => { if (e.target === modal) modal.style.display="none"; };
 
         // ===== ENVIAR CÓDIGO AL PHP =====
         document.getElementById("formCodigo").addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            // Construir los 6 dígitos
+            // Construir código
             const codigo =
-                inputs[0].value + inputs[1].value + inputs[2].value +
-                inputs[3].value + inputs[4].value + inputs[5].value;
+                inputs[0].value +
+                inputs[1].value +
+                inputs[2].value +
+                inputs[3].value +
+                inputs[4].value +
+                inputs[5].value;
 
             let formData = new FormData();
             formData.append("codigo", codigo);
 
-            let response = await fetch("../../php/Login-Registro/VerificarCodigo.php", {
+            // 🔥 RUTA FINAL CORRECTA (3 niveles atrás)
+            let response = await fetch("../../../php/Login-Registro/VerificarCodigo.php", {
                 method: "POST",
                 body: formData
             });
@@ -192,11 +160,11 @@
             if (result === "ok") {
                 window.location.href = "NuevaContrasena.html";
             } else if (result === "expirado") {
-                alert("El código ha expirado. Solicita uno nuevo.");
+                alert("El código ha expirado.");
             } else if (result === "codigo_incorrecto") {
-                alert("El código ingresado es incorrecto.");
+                alert("Código incorrecto.");
             } else {
-                alert("Error inesperado.");
+                alert("Error inesperado: " + result);
             }
         });
     </script>
