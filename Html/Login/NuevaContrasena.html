@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Contraseña</title>
+
+    <link rel="stylesheet" href="../../Css/Login/Recuperacontraseña.css">
+    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="https://www.sena.edu.co/Style%20Library/alayout/images/logoSena.png?rev=40" alt="Logo" class="logo">
+
+        <h1>Crear nueva contraseña</h1>
+
+        <div class="form">
+
+            <label for="pass1">Nueva contraseña:</label>
+            <input type="password" id="pass1" placeholder="Nueva contraseña" required>
+
+            <label for="pass2">Repetir contraseña:</label>
+            <input type="password" id="pass2" placeholder="Repite la contraseña" required>
+
+            <p id="mensaje" style="color:red; font-size:14px; display:none;"></p>
+
+            <button id="btnCambiar" class="btn-siguiente">Cambiar contraseña</button>
+
+            <button class="btn-volver" onclick="window.location.href='Login.html'">
+                Volver a inicio de sesión
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const pass1 = document.getElementById("pass1");
+        const pass2 = document.getElementById("pass2");
+        const mensaje = document.getElementById("mensaje");
+        const btn = document.getElementById("btnCambiar");
+
+        btn.addEventListener("click", async () => {
+
+            mensaje.style.display = "none";
+
+            if (pass1.value.length < 6) {
+                mensaje.innerText = "La contraseña debe tener al menos 6 caracteres.";
+                mensaje.style.display = "block";
+                return;
+            }
+
+            if (pass1.value !== pass2.value) {
+                mensaje.innerText = "Las contraseñas no coinciden.";
+                mensaje.style.display = "block";
+                return;
+            }
+
+            let data = new FormData();
+            data.append("pass", pass1.value);
+
+            let envio = await fetch("../../php/Login-Registro/NuevaContrasena.php", {
+                method: "POST",
+                body: data
+            });
+
+            let respuesta = await envio.text();
+            respuesta = respuesta.trim();
+
+            if (respuesta === "ok") {
+                alert("Contraseña actualizada con éxito.");
+                window.location.href = "Login.html";
+            } else if (respuesta === "sin_correo") {
+                mensaje.innerText = "Error: No hay correo asociado. Reinicia el proceso.";
+                mensaje.style.display = "block";
+            } else {
+                mensaje.innerText = "Error inesperado: " + respuesta;
+                mensaje.style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
