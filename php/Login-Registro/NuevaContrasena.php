@@ -2,8 +2,7 @@
 session_start();
 require_once "../Conexion/Conexion.php";
 
-
-// Verificar que existe el correo en sesión
+// Asegurarse que existe un correo en sesión
 if (!isset($_SESSION['reset_email'])) {
     echo "sin_correo";
     exit;
@@ -11,7 +10,7 @@ if (!isset($_SESSION['reset_email'])) {
 
 $email = $_SESSION['reset_email'];
 
-// Leer nueva contraseña
+// Recibir nueva contraseña
 $pass = $_POST['pass'] ?? '';
 
 if (empty($pass)) {
@@ -31,7 +30,7 @@ $db = $conexion->getConnect();
 // Encriptar contraseña
 $hash = password_hash($pass, PASSWORD_DEFAULT);
 
-// Actualizar en BD con la columna correcta (Us_contraseña)
+// Actualizar en BD
 $stmt = $db->prepare("
     UPDATE usuarios
     SET 

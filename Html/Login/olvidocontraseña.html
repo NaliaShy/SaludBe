@@ -39,11 +39,11 @@
 
             let formData = new FormData(form);
 
-            // 🔥 RUTA CORREGIDA (3 niveles hacia atrás)
             let envio = await fetch("../../../php/Login-Registro/Olvidocontraseña.php", {
-                method: "POST",
-                body: formData
-            });
+    method: "POST",
+    body: formData
+});
+
 
             let respuesta = await envio.text();
             console.log("Respuesta del servidor:", respuesta);
