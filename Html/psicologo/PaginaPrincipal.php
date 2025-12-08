@@ -38,7 +38,7 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
     <?php include '../../php/chat/chat.php'; ?>
     <?php include 'seccions/configuracion.php' ?>
 
-
+    <?php include '../../php/chat-bot/Chat.php' ?>
   </div>
 
 

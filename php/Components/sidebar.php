@@ -31,14 +31,13 @@ if ($rol_id_actual == 1) {
 
         if ($rol_id_actual == 1): // Rol 1: Aprendiz 
         ?>
-            <li><a href="../../Html/Aprendiz/PaginaPrincipal.php">Inicio</a></li>
-            <li><a href="../../Html/Aprendiz/solicitarCitaApr.php">Agendar citas</a></li>
-            <li><a href="../../Html/Aprendiz/Historial.php">Seguimiento</a></li>
-            <li><a href="../../Html/Aprendiz/calendario.php">Calendario</a></li>
-            <li><a href="../../php/chat/chat.php">Chat</a></li>
-            <li><a href="../../Html/Aprendiz/test.php">Test</a></li>
-            <li><a href="../../php/chat-bot/Chat.php">Chat Bot</a></li>
-            <li><a href="../../Html/Aprendiz/configuracion.php">Configuraciones</a></li>
+            <li><a onclick="mostrarSeccion('Aprendiz-PaginaPrincipal')">Inicio</a></li>
+            <li><a onclick="mostrarSeccion('Aprendiz-AgendarCita')">Agendar citas</a></li>
+            <li><a onclick="mostrarSeccion('Aprendiz-Seguimiento')">Seguimiento</a></li>
+            <li><a onclick="mostrarSeccion('Aprendiz-Calendario')">Calendario</a></li>
+            <li><a onclick="mostrarChat(); return false;">Chat</a></li>
+            <li><a onclick="mostrarSeccion('AprendizTest')">Test</a></li>
+            <li><a onclick="mostrarSeccion('Aprendiz-Configuracion')">Configuraciones</a></li>
 
 
         <?php elseif ($rol_id_actual == 2): // Rol 2: Psicólogo 

@@ -1,9 +1,5 @@
 
 <?php
-require_once 'C:\laragon\www\SaludBe\php\Conexion\Conexion.php';
-
-$db = new Conexion();
-$conn = $db->getConnect(); // <--- Creación de la conexión
 
 // 🚨 CÓDIGO DE DEPURACIÓN CRÍTICO 🚨
 if ($conn instanceof PDO) {

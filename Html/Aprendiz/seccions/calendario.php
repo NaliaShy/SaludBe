@@ -1,23 +1,20 @@
 <?php
-include '../../php/Conexion/Conexion.php';
+include_once '../../php/Conexion/Conexion.php';
 
-session_start();
 
 // ERROR CORREGIDO: Usar 'us_id' en lugar de 'id_usuario'
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     die("⚠️ No has iniciado sesión.");
 }
 
 // CORREGIDO: Usar 'us_id' para obtener el ID del usuario
-$idUsuario = $_SESSION['us_id'];
+$idUsuario = $_SESSION['Us_id'];
 
 
 $eventos = [];
 $fechas_con_citas = []; // Variable para almacenar todas las fechas con citas (para los puntos)
 
 try {
-    $db = new Conexion();
-    $conexion = $db->getConnect();
     
     // ----------------------------------------------------
     // LÓGICA 1: OBTENER TODAS LAS FECHAS CON CITA (para los puntos)
@@ -63,23 +60,7 @@ if (isset($_GET['fecha'])) {
     }
 }
 ?>
-
-
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SaludBE - Calendario</title>
-    <link rel="stylesheet" href="../../Css/Repetivos/root.css">
-    <link rel="stylesheet" href="../../Css/Aprendiz/Calendario.css">
-</head>
-
-<body>
-    <?php include '../../php/Components/Sidebar_a.php'; ?>
-
-    <div class="calendario-list">
+    <div class="calendario-list" id="Aprendiz-Calendario" style="display: none;">
         <div class="calendar-container">
             <div class="calendar-header">
                 <button id="prev-month">◀</button>

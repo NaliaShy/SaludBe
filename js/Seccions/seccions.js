@@ -7,7 +7,13 @@ function mostrarSeccion(id) {
         "Psicologo-CrearTest",
         "chat-bot",
         "Chat",
-        "Psicologo-Configuracion"
+        "Psicologo-Configuracion",
+        "Aprendiz-PaginaPrincipal",
+        "Aprendiz-AgendarCita",
+        "Aprendiz-Seguimiento",
+        "Aprendiz-Calendario",
+        "AprendizTest",
+        "Aprendiz-Configuracion"
     ];
 
     // Recorre TODAS las secciones para decidir si ocultarlas o mostrarlas
@@ -20,6 +26,8 @@ function mostrarSeccion(id) {
         }
     });
 }
+
+
 function mostrarChat() {
     // 🛑 CLAVE: Incluir TODOS los IDs de todas las secciones, incluido el ID del chat.
     const todosLosIDs = [
@@ -29,8 +37,14 @@ function mostrarChat() {
         "Psicologo-Calendario",
         "Psicologo-CrearTest",
         "chat-bot",
-        "Chat", // Asegúrate de que este es el ID del contenedor del chat
-        "Psicologo-Configuracion"
+        "Chat",
+        "Psicologo-Configuracion",
+        "Aprendiz-PaginaPrincipal",
+        "Aprendiz-AgendarCita",
+        "Aprendiz-Seguimiento",
+        "Aprendiz-Calendario",
+        "AprendizTest",
+        "Aprendiz-Configuracion"
     ];
 
     const idChat = "Chat";

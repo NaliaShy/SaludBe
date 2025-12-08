@@ -17,8 +17,8 @@ $conn = $db->getConnect();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página Principal</title>
-    
-  <link rel="stylesheet" href="../../Css/Index.css">
+
+    <link rel="stylesheet" href="../../Css/Index.css">
 
 
 </head>
@@ -30,9 +30,16 @@ $conn = $db->getConnect();
 
     <div class="main">
         <?php include '../../php/Components/carrusel.php'; ?>
+        <?php include 'seccions/solicitarCitaApr.php'; ?>
+        <?php include 'seccions/Historial.php'; ?>
+        <?php include 'seccions/test.php'; ?>
+        <?php include 'seccions/calendario.php'; ?>
+        <?php include 'seccions/configuracion.php' ?>
+        <?php include '../../php/chat-bot/Chat.php' ?>
+        <?php include '../../php/chat/chat.php'; ?>
     </div>
 
-
+    <script src="../../js/Seccions/seccions.js"></script>
 </body>
 <script>
     window.onload = function() {
