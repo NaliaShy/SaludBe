@@ -22,12 +22,12 @@
     session_start();
     include '../../php/Conexion/Conexion.php';
 
-    if (!isset($_SESSION['us_id'])) {
-      header("Location: login.php");
-      exit();
-    }
+    if (!isset($_SESSION['Us_id'])) {
+    header("Location: ../../Html/Login/Login.php");
+    exit();
+}
 
-    $idUsuario = $_SESSION['us_id']; // ✅ AQUÍ SÍ
+    $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
     $db = new Conexion();
     $conexion = $db->getConnect();
 

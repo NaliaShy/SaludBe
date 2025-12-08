@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -171,12 +174,14 @@
 
         <form action="../../php/Login-Registro/Login.php" method="post">
             <?php
-            if (isset($_SESSION['mensaje'])) { ?>
-                <div class="alerta <?php echo $_SESSION['tipo_mensaje']; ?>">
+            if (isset($_SESSION['Mensaje'])) { ?> 
+                <div class="alerta <?php echo $_SESSION['Estilo']; ?>">
                     <?php
-                    echo $_SESSION['mensaje'];
-                    unset($_SESSION['mensaje']);
-                    unset($_SESSION['tipo_mensaje']);
+                    // Usar 'Mensaje' con M mayúscula
+                    echo $_SESSION['Mensaje'];
+                    unset($_SESSION['Mensaje']);
+                    // Corregir a 'Estilo'
+                    unset($_SESSION['Estilo']); 
                     ?>
                     <button class="cerrar-alerta" onclick="this.parentElement.style.display='none';">&times;</button>
                 </div>

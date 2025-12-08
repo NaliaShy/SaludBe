@@ -7,7 +7,8 @@ $db = new Conexion();
 $conn = $db->getConnect();
 
 
-$usuario_id = $_SESSION['Us_id'];
+$idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
+
 
 ?>
 

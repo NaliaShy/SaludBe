@@ -6,10 +6,10 @@ $conexionObj = new Conexion();
 $conexion = $conexionObj->getConnect(); // Esto es un objeto PDO
 
 // 1. Verificar si el ID está en la sesión
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     die("No hay usuario en sesión.");
 }
-$usuario_id = $_SESSION['us_id'];
+$usuario_id = $_SESSION['Us_id'];
 
 // 2. Consulta con marcador de posición posicional (?)
 $sql = "SELECT Us_nombre, Us_apellios

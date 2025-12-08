@@ -13,7 +13,7 @@ if ($conn instanceof PDO) {
     die("FATAL: El método getConnect() no devolvió un objeto PDO. Revisar Conexion.php.");
 }
 // 3. Verificación de Sesión
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     echo "No hay sesión activa.";
     exit();
 }

@@ -1,6 +1,6 @@
 <?php
 require "../Conexion/Conexion.php";
-
+$URL_BASE = "http:///localhost/SaludBE/"; 
 // Iniciar sesión
 session_start();
 
@@ -9,8 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $correo = $_POST['correo'] ?? '';
     $contrasena = $_POST['contrasena'] ?? '';
 
+    // 🛑 CORRECCIÓN: Manejar datos faltantes con sesión y redirección
     if (empty($correo) || empty($contrasena)) {
-        die("⚠️ Faltan datos del formulario (correo o contraseña vacíos).");
+        $_SESSION['Mensaje'] = "⚠️ Por favor, ingresa tu correo y contraseña.";
+        $_SESSION['Estilo'] = "datos_faltantes"; 
+        header("Location: " . $URL_BASE . "Html/Login/Login.php"); 
+        exit();
     }
 
     $db = new Conexion();
@@ -32,30 +36,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
                 $rutas_roles = [
-                    1 => "../../Html/Aprendiz/Descarga.php",
-                    2 => "../../Html/psicologo/descarga.php"
+                    // Usar la URL absoluta completa
+                    1 => $URL_BASE . "Html/Aprendiz/Descarga.php",
+                    2 => $URL_BASE . "Html/psicologo/descarga.php"
                 ];
 
                 $rol_actual = $usuario['Rol_id'];
 
                 if (isset($rutas_roles[$rol_actual])) {
+                    // La redirección ahora es infalible porque usa la ruta completa
                     header("Location: " . $rutas_roles[$rol_actual]);
                     exit();
                 } else {
-                    echo "❌ Rol de usuario no reconocido ($rol_actual).";
-                    $_SESSION['mensaje'] = 'Hay algo mal';
-                    $_SESSION['tipo_mensaje'] = 'guardar';
+                    // Si el rol no está mapeado, redirige al login
+                    $_SESSION['Mensaje'] = "❌ Error: Tu rol de usuario (ID: " . $rol_actual . ") no tiene una ruta de destino configurada.";
+                    $_SESSION['Estilo'] = "error_rol";
+                    header("Location: " . $URL_BASE . "Html/Login/Login.php"); // USAR $URL_BASE
                     exit();
                 }
             } else {
-                echo "❌ Contraseña incorrecta.";
+
+                $_SESSION['Mensaje'] = "Contraseña incorrecta.";
+                $_SESSION['Estilo'] = "Cont_incorecta";
+                header("Location: " . $URL_BASE . "Html/Login/Login.php"); // 🛑 CORRECCIÓN
                 exit();
             }
         } else {
-            echo "❌ Usuario no encontrado con el correo: $correo";
+            $_SESSION['Mensaje'] = "Correo incorrecto.";
+            $_SESSION['Estilo'] = "Corre_incorecto";
+            header("Location: " . $URL_BASE . "Html/Login/Login.php"); // 🛑 CORRECCIÓN
             exit();
         }
     } catch (PDOException $e) {
         echo "❌ Error en la consulta: " . $e->getMessage();
     }
 }
+?>

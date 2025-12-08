@@ -1,7 +1,7 @@
 <?php
 
 // Verifica que la variable de rol exista antes de usarla
-$rol_id_actual = $_SESSION['rol_id'] ?? null;
+$rol_id_actual = $_SESSION['Rol_id'] ?? null;
 
 $clase_tema = '';
 if ($rol_id_actual == 1) {

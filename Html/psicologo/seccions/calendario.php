@@ -1,9 +1,4 @@
 <?php
-session_start();
-echo "<h3>Diagnóstico de Sesión:</h3>";
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
 
 if (!isset($_SESSION['Us_id'])) { 
     die("⚠️ No has iniciado sesión.");
