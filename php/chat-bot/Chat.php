@@ -73,5 +73,5 @@
 </div>
 <script type="module" src="js/ai-engine.js"></script>
 <script type="module" src="js/ui.js"></script>
-<script type="module" src="js/app.js"></script>
+<script type="module" src="js/chat.js"></script>
 
