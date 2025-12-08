@@ -1,5 +1,6 @@
 <?php
-require_once 'C:\laragon\www\SaludBe\php\Conexion\Conexion.php';
+require_once __DIR__ . "/../../php/Conexion/Conexion.php";
+
 // Crear conexión
 session_start();
 $db = new Conexion();
