@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (empty($correo) || empty($contrasena)) {
         $_SESSION['Mensaje'] = "⚠️ Por favor, ingresa tu correo y contraseña.";
         $_SESSION['Estilo'] = "datos_faltantes"; 
-        header("Location: " . $URL_BASE . "Html/Login/Login.php"); 
+        header("Location: " . $URL_BASE . "../Html/Login/Login.php"); 
         exit();
     }
 
@@ -37,8 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $rutas_roles = [
                     // Usar la URL absoluta completa
-                    1 => $URL_BASE . "Html/Aprendiz/Descarga.php",
-                    2 => $URL_BASE . "Html/psicologo/descarga.php"
+                    1 => $URL_BASE . "../Html/Aprendiz/Descarga.php",
+                    2 => $URL_BASE . "../Html/psicologo/descarga.php"
                 ];
 
                 $rol_actual = $usuario['Rol_id'];
@@ -51,20 +51,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     // Si el rol no está mapeado, redirige al login
                     $_SESSION['Mensaje'] = "❌ Error: Tu rol de usuario (ID: " . $rol_actual . ") no tiene una ruta de destino configurada.";
                     $_SESSION['Estilo'] = "error_rol";
-                    header("Location: " . $URL_BASE . "Html/Login/Login.php"); // USAR $URL_BASE
+                    header("Location: " . $URL_BASE . "../Html/Login/Login.php"); // USAR $URL_BASE
                     exit();
                 }
             } else {
 
                 $_SESSION['Mensaje'] = "Contraseña incorrecta.";
                 $_SESSION['Estilo'] = "Cont_incorecta";
-                header("Location: " . $URL_BASE . "Html/Login/Login.php"); // 🛑 CORRECCIÓN
+                header("Location: " . $URL_BASE . "../Html/Login/Login.php"); // 🛑 CORRECCIÓN
                 exit();
             }
         } else {
             $_SESSION['Mensaje'] = "Correo incorrecto.";
             $_SESSION['Estilo'] = "Corre_incorecto";
-            header("Location: " . $URL_BASE . "Html/Login/Login.php"); // 🛑 CORRECCIÓN
+            header("Location: " . $URL_BASE . "../Html/Login/Login.php"); // 🛑 CORRECCIÓN
             exit();
         }
     } catch (PDOException $e) {
