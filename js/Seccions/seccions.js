@@ -4,9 +4,10 @@ function mostrarSeccion(id) {
         "Psicologo-ListadoUsuarios",
         "Psicologo-Historial",
         "Psicologo-Calendario",
-        "Chat",
         "Psicologo-CrearTest",
-        "chat-bot"
+        "chat-bot",
+        "Chat",
+        "Psicologo-Configuracion"
     ];
 
     // Recorre TODAS las secciones para decidir si ocultarlas o mostrarlas
@@ -14,10 +15,38 @@ function mostrarSeccion(id) {
         const elemento = document.getElementById(secId);
         
         if (elemento) {
-            // Si el ID de la sección actual (secId) es igual al ID que se pasó (id),
-            // lo mostramos ("block" o "flex"). Si no, lo ocultamos ("none").
+            // Usa "block" para mostrar, "none" para ocultar
             elemento.style.display = (secId === id) ? "block" : "none";
         }
     });
 }
+function mostrarChat() {
+    // 🛑 CLAVE: Incluir TODOS los IDs de todas las secciones, incluido el ID del chat.
+    const todosLosIDs = [
+        "Psicologo-PaginaPrincipal",
+        "Psicologo-ListadoUsuarios",
+        "Psicologo-Historial",
+        "Psicologo-Calendario",
+        "Psicologo-CrearTest",
+        "chat-bot",
+        "Chat", // Asegúrate de que este es el ID del contenedor del chat
+        "Psicologo-Configuracion"
+    ];
 
+    const idChat = "Chat";
+
+    // Recorre TODAS las secciones
+    todosLosIDs.forEach(secId => {
+        const elemento = document.getElementById(secId);
+        
+        if (elemento) {
+            if (secId === idChat) {
+                // Si es el chat, usamos "" para respetar el estilo CSS (ej: flex)
+                elemento.style.display = ""; 
+            } else {
+                // Si no es el chat, lo ocultamos
+                elemento.style.display = "none";
+            }
+        }
+    });
+}

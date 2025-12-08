@@ -4,12 +4,12 @@ header('Content-Type: application/json');
 
 include '../Conexion/Conexion.php';
 
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     echo json_encode([]);
     exit();
 }
 
-$yo = $_SESSION['us_id'];
+$yo = $_SESSION['Us_id'];
 $otro = $_GET['us2'] ?? null;
 
 if (!$otro) {

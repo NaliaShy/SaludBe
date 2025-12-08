@@ -19,7 +19,7 @@ if (!isset($_SESSION['Us_id'])) {
 }
 
 // Guardamos el ID del usuario logueado
-$idUsuario = $_SESSION['us_id'];
+$idUsuario = $_SESSION['Us_id'];
 
 // 4. Ahora $conn debería ser reconocido
 $stmt = $conn->prepare("SELECT Us_id, Us_nombre, Rol_id FROM usuarios WHERE Us_id = :id");

@@ -5,10 +5,10 @@ $conexionObj = new Conexion();
 $conexion = $conexionObj->getConnect(); // Esto es un objeto PDO
 
 // 1. Verificar si el ID está en la sesión
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     die("No hay usuario en sesión.");
 }
-$usuario_id = $_SESSION['us_id'];
+$usuario_id = $_SESSION['Us_id'];
 
 // 2. Consulta con marcador de posición posicional (?)
 $sql = "SELECT Us_nombre, Us_apellios
@@ -64,19 +64,16 @@ if ($stmt) {
         <h1 class="logo">SaludBE</h1>
         <a href="../Aprendiz/PaginaPrincipal.php" class="skip">SALTAR</a>
     </div>
-    <div class="bienvenida">
-        <h2>Bienvenido(a), <?php echo htmlspecialchars($nombre); ?> <?php echo htmlspecialchars($apellido); ?> 👋</h2>
-    </div>
     <div class="phrase-box">
         <?php
 
 
-        if (!isset($_SESSION['us_id'])) {
+        if (!isset($_SESSION['Us_id'])) {
             header("Location: login.php");
             exit();
         }
 
-        $idUsuario = $_SESSION['us_id'];
+        $idUsuario = $_SESSION['Us_id'];
 
         $db = new Conexion();
         $conexion = $db->getConnect();

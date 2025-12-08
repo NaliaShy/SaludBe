@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Si num_document es numérico, podes castear a int. Aquí lo dejamos como string.
         $stmt->execute([$nombre, $apellios, $telefono, $correo, $contrasena_hash, $estado, $tipo_doc, $num_document]);
 
-        echo "<script>alert('Registro exitoso'); window.location.href='../../Html/Login/Login.html';</script>";
+        echo "<script>alert('Registro exitoso'); window.location.href='../../Html/Login/Login.php';</script>";
         exit;
     } catch (PDOException $e) {
         // En producción no muestres $e->getMessage() directamente

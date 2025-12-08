@@ -12,7 +12,7 @@ $stmt->execute();
 $imagenes = [];
 
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $imagenes[] = "../../../Uploads/carrusel/" . $row["imagen_nombre"];
+    $imagenes[] = "../../Uploads/carrusel/" . $row["imagen_nombre"];
 }
 
 echo json_encode($imagenes);

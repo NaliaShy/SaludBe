@@ -36,7 +36,7 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
     <?php include 'seccions/Historial.php' ?>
     <?php include 'seccions/calendario.php' ?>
     <?php include '../../php/chat/chat.php'; ?>
-
+    <?php include 'seccions/configuracion.php' ?>
 
 
   </div>

@@ -2,7 +2,7 @@
 session_start();
 
 // Validar sesión: debe existir us_id
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     header("Location: ../../Html/Login/Login.php");
     exit();
 }

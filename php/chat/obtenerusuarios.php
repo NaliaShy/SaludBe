@@ -8,8 +8,8 @@ try {
     $db = new Conexion();
     $conn = $db->getConnect();
 
-    $idUsuario = $_SESSION['us_id'];
-    $rol_id = $_SESSION['rol_id'];
+    $idUsuario = $_SESSION['Us_id'];
+    $rol_id = $_SESSION['Rol_id'];
 
     if ($rol_id == 1) {
         // Tomamos todos menos el usuario logueado

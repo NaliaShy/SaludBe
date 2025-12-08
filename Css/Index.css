@@ -29,7 +29,7 @@
 
 body {
     font-family: var(--font-sena);
-    background-color:var(--Sena-Blanco);
+    background-color: var(--Sena-Blanco);
     overflow-x: hidden;
     position: relative;
 }
@@ -396,6 +396,7 @@ button:hover {
     .sena-mv-grid {
         grid-template-columns: 1fr;
     }
+
     .sena-mv {
         padding: 18px;
         margin: 24px 16px;
@@ -471,7 +472,7 @@ button:hover {
     font-size: 18px;
     text-decoration: none;
     transition: all 0.3s ease;
-        color: var(--Blanco);
+    color: var(--Blanco);
 }
 
 .sidebar ul li a:hover {
@@ -590,7 +591,8 @@ button:hover {
 /*====================================*/
 
 
-#LogoSaludBe, #logo-index {
+#LogoSaludBe,
+#logo-index {
     width: 150px;
 }
 
@@ -723,7 +725,7 @@ button:hover {
     position: absolute;
     top: 5px;
     right: 5px;
-    background:var(--Sena-Alerta);
+    background: var(--Sena-Alerta);
     color: var(--Sena-Blanco);
     border: none;
     padding: 6px;
@@ -734,7 +736,7 @@ button:hover {
 }
 
 .delete-btn:hover {
-    background:var(--Sena-Alerta-Hover);
+    background: var(--Sena-Alerta-Hover);
 }
 
 /* ------------------------------
@@ -754,7 +756,7 @@ button:hover {
 }
 
 .estado-btn:hover {
-    background:var(--Sena-Azul);
+    background: var(--Sena-Azul);
 }
 
 
@@ -765,13 +767,13 @@ button:hover {
 /*====================================*/
 
 
-#Psicologo-ListadoUsuarios{
+#Psicologo-ListadoUsuarios {
     display: flex;
     padding: 20px;
     margin-left: 150px;
 }
 
-#listaAprendizTitulo{
+#listaAprendizTitulo {
     color: var(--Sena-verde);
     border-bottom: 2px solid var(--Sena-verde);
     padding-bottom: 10px;
@@ -890,6 +892,7 @@ button:hover {
         opacity: 0;
         transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -988,6 +991,7 @@ button:hover {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1012,88 +1016,88 @@ button:hover {
 
 /* ===== Contenedor ===== */
 #Psicologo-Historial {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* ===== Tarjeta Paciente ===== */
 .card {
-  background: #ecf0f1;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .patient-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .profile-icon {
-  font-size: 40px;
-  background: #2D8400;
-  color: white;
-  border-radius: 50%;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    font-size: 40px;
+    background: #2D8400;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .info-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 /* ===== Botones ===== */
 .btn {
-  background: #2D8400;
-  border: none;
-  padding: 10px 16px;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-left: 10px;
-  transition: 0.3s;
-  font-size: 15px;
+    background: #2D8400;
+    border: none;
+    padding: 10px 16px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s;
+    font-size: 15px;
 }
 
 .btn:hover {
-  background: #2D8400;
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: #2D8400;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== Observaciones ===== */
 .observacion-title {
-  font-weight: bold;
-  margin-bottom: 8px;
+    font-weight: bold;
+    margin-bottom: 8px;
 }
 
 .observacion-input {
-  width: 100%;
-  height: 120px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  resize: none;
-  transition: 0.2s;
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    transition: 0.2s;
 }
 
 .observacion-input:focus {
-  border-color: #2D8400;
-  box-shadow: 0 0 6px rgba(26, 188, 156, 0.4);
-  outline: none;
+    border-color: #2D8400;
+    box-shadow: 0 0 6px rgba(26, 188, 156, 0.4);
+    outline: none;
 }
 
 
@@ -1106,7 +1110,8 @@ button:hover {
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espacio entre secciones */
+    gap: 30px;
+    /* Espacio entre secciones */
 }
 
 .top-header {
@@ -1125,15 +1130,16 @@ button:hover {
 
 .content-grid {
     display: flex;
-    gap: 50px; 
+    gap: 50px;
     align-items: flex-start;
 }
 
 /* Contenedor del calendario */
 .calendar-container {
-    width: 45%; 
+    width: 45%;
     flex-shrink: 0;
-    padding: 20px; /* Estilo extraído de .calendar-box para centrar en el HTML */
+    padding: 20px;
+    /* Estilo extraído de .calendar-box para centrar en el HTML */
     border-radius: 10px;
     background-color: var(--Sena-Blanco);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1207,7 +1213,7 @@ button:hover {
 /* ================================================= */
 
 .list {
-    width: 55%; 
+    width: 55%;
     flex-grow: 1;
     padding: 20px;
     background-color: var(--Sena-Azul);
@@ -1283,18 +1289,19 @@ button:hover {
 }
 
 .estado-pendiente {
-    background-color: #fffbe6; 
+    background-color: #fffbe6;
     color: var(--Sena-Alerta);
     border: 1px solid var(--Sena-Alerta);
 }
 
 .estado-aceptada {
-    background-color: #c8e6c9; 
+    background-color: #c8e6c9;
     color: var(--Sena-verde);
     border: 1px solid var(--Sena-verde);
 }
 
-.aceptar-cita-form { /* Usamos la clase del form */
+.aceptar-cita-form {
+    /* Usamos la clase del form */
     margin: 0;
 }
 
@@ -1410,23 +1417,24 @@ button:hover {
 .chat-big-container {
     display: flex;
     /* Ocupa el 100% de la altura disponible menos la barra de navegación */
-    height: calc(100vh - 60px); 
+    height: 825px;
     /* 🛑 CLAVE 1: Mover al lado del sidebar principal 🛑 */
-    margin-left: 250px; 
+    margin-left: 50px;
     /* Eliminar cualquier posicionamiento fijo */
-    position: relative; 
-    
-    background: var(--Fondo-Claro, #F8F9FA); 
+    position: relative;
+
+    background: var(--Fondo-Claro, #F8F9FA);
     /* Quitamos border-radius para que se integre al layout */
-    border-radius: 0; 
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: none; /* Quitamos la sombra flotante */
+    box-shadow: none;
+    /* Quitamos la sombra flotante */
 }
 
 /* 3. SIDEBAR DE CHATS (selector-chats) - Lista de Usuarios */
 .selector-chats {
     width: 280px;
-    background: var(--Gris-Sidebar, #F0F0F0); 
+    background: var(--Gris-Sidebar, #F0F0F0);
     color: #333;
     border-right: 1px solid #ddd;
     padding: 0;
@@ -1439,7 +1447,7 @@ button:hover {
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: var(--Sena-verde, #2D8400); 
+    color: var(--Sena-verde, #2D8400);
     border-bottom: 1px solid #ccc;
 }
 
@@ -1454,25 +1462,25 @@ button:hover {
     border-bottom: 1px solid #eee;
     cursor: pointer;
     transition: background-color 0.2s;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
-    color: #333; 
+    color: #333;
     font-weight: 500;
 }
 
 .selector-chats ul li.activo,
 .selector-chats ul li:hover {
-    background: var(--Sena-Azul-Claro, #D6E8FF); 
-    border-left: 4px solid var(--Sena-verde, #2D8400); 
-    padding-left: 16px; 
+    background: var(--Sena-Azul-Claro, #D6E8FF);
+    border-left: 4px solid var(--Sena-verde, #2D8400);
+    padding-left: 16px;
 }
 
 /* 4. CHAT PRINCIPAL (chat-container) - Área de Conversación */
 .chat-container {
     /* 🛑 CLAVE 2: Ocupa el espacio restante del padre flex 🛑 */
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     background: var(--Blanco, #ffffff);
@@ -1498,7 +1506,7 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    background: var(--Fondo-Chat-Body, #E5DDD5); 
+    background: var(--Fondo-Chat-Body, #E5DDD5);
 }
 
 /* ================================================= */
@@ -1517,7 +1525,7 @@ button:hover {
 
 /* Mensajes RECIBIDOS (otro) */
 .mensaje.otro {
-    background-color: var(--Blanco, #ffffff); 
+    background-color: var(--Blanco, #ffffff);
     color: #333;
     align-self: flex-start;
     border-radius: 0 10px 10px 10px;
@@ -1525,8 +1533,8 @@ button:hover {
 
 /* Mensajes ENVIADOS (mio) */
 .mensaje.mio {
-    background-color: #dcf8c6; 
-    color: #333; 
+    background-color: #dcf8c6;
+    color: #333;
     align-self: flex-end;
     border-radius: 10px 0 10px 10px;
 }
@@ -1546,7 +1554,7 @@ button:hover {
 
 #chat-form {
     padding: 10px 20px;
-    background: var(--Gris-Sidebar, #F0F0F0); 
+    background: var(--Gris-Sidebar, #F0F0F0);
     border-top: 1px solid #ddd;
     display: flex;
     gap: 10px;
@@ -1557,7 +1565,7 @@ button:hover {
     flex: 1;
     padding: 10px 15px;
     border: none;
-    border-radius: 20px; 
+    border-radius: 20px;
     background: var(--Blanco, #ffffff);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     font-size: 16px;
@@ -1573,7 +1581,7 @@ button:hover {
     height: 45px;
     border-radius: 50%;
     border: none;
-    background: var(--Sena-verde, #2D8400); 
+    background: var(--Sena-verde, #2D8400);
     color: white;
     font-size: 18px;
     display: flex;
@@ -1585,4 +1593,505 @@ button:hover {
 
 #enviar-btn:hover {
     background: var(--Sena-Verde-Hover, #226700);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*====================================================ConfiguracionPsicocologo==========================================*/
+
+.config-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 16px;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    background: #eee;
+    border-radius: 8px 8px 0 0;
+    margin-right: 4px;
+    transition: background 0.2s;
+}
+
+.tab.active {
+    background: #fff;
+    border-bottom: 2px solid #007bff;
+    font-weight: bold;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.config-btn {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.config-btn.danger {
+    background: #dc3545;
+}
+
+.config-btn.secondary {
+    background: #6c757d;
+}
+
+label {
+    display: block;
+    margin: 10px 0 4px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*===================================================================================================================================================================================================================================================================*/
+/* Contenedor general */
+.carousel-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    height: auto;
+}
+
+/* Caja principal */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    /* Aumentado a 1400px para un carrusel más ancho */
+    max-width: 1400px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 254, 254, 0.25);
+    background: #ffffff;
+    background-repeat: no-repeat;
+}
+
+/* Área del carrusel */
+.carousel {
+    width: 100%;
+    height: 400px;
+    /* ajusta aquí si quieres más alto */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Slides como fondos, sin zoom exagerado */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    /* sin recortar */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Botones */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--Sena-Azul);
+    color: var(--Sena-Azul-Hover);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 1.6rem;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 0.15px;
+}
+
+.next {
+    right: 0.15px;
+}
+
+/* Puntitos */
+.dots-container {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+
+.dot.active {
+    background: var(--Sena-Azul);
 }

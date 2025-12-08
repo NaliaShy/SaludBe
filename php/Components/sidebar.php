@@ -51,7 +51,7 @@ if ($rol_id_actual == 1) {
                     Historial Clinico</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-Calendario')">
                     Calendario</a></li>
-            <li><a onclick="mostrarSeccion('Chat')">Chat</a></li>
+            <li><a onclick="mostrarChat(); return false;">Chat</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-CrearTest')">Crear test</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-ResultTest')">Resultado Test</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-Configuracion')"> Configuración</a></li>
