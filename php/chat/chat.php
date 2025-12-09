@@ -1,13 +1,9 @@
 
 <?php
+$db = new Conexion();
+// La variable de conexión es $conn, ya que así la definiste
+$conn = $db->getConnect();
 
-// 🚨 CÓDIGO DE DEPURACIÓN CRÍTICO 🚨
-if ($conn instanceof PDO) {
-    echo "<script>console.log('CONEXIÓN ÉXITO: \$conn es un objeto PDO válido.');</script>";
-} else {
-    // Si ves este mensaje, el fallo está DENTRO de la clase Conexion.php
-    die("FATAL: El método getConnect() no devolvió un objeto PDO. Revisar Conexion.php.");
-}
 // 3. Verificación de Sesión
 if (!isset($_SESSION['Us_id'])) {
     echo "No hay sesión activa.";
