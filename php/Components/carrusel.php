@@ -1,8 +1,7 @@
 <?php
 // CARGA LA CONEXIÓN SIN IMPORTAR SI ES XAMPP O LARAGON
-require_once __DIR__ . "/../../../php/Conexion/Conexion.php";
 
-session_start();
+
 
 // Crear conexión
 $conexion = new Conexion();
@@ -55,7 +54,7 @@ if ($idUsuario) {
             <div class="carousel" id="slides-container">
                 <?php foreach ($imagenes as $img): ?>
                     <div class="slide">
-                        <img src="../../../Uploads/carrusel/<?php echo $img['imagen_nombre']; ?>" alt="Imagen Carrusel">
+                        <img src="../../Uploads/carrusel/<?php echo $img['imagen_nombre']; ?>" alt="Imagen Carrusel">
                     </div>
                 <?php endforeach; ?>
             </div>

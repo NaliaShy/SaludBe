@@ -2,7 +2,7 @@
 // Script para actualizar el estado de una cita de 'Pendiente' a 'Aceptada'
 // ¡IMPORTANTE! Este script ahora devuelve una respuesta JSON.
 
-include '../Conixion/Conexion.php'; // Ajusta la ruta a tu archivo de conexión
+include '../Conexion/Conexion.php'; // Ajusta la ruta a tu archivo de conexión
 session_start();
 
 // 1. Establecer el encabezado de respuesta a JSON
@@ -20,7 +20,7 @@ if (!isset($_POST['idCita'])) {
     exit();
 }
 
-$idPsicologo = $_SESSION['us_id'];
+$idPsicologo = $_SESSION['Us_id'];
 $idCita = $_POST['idCita'];
 
 try {

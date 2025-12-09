@@ -111,7 +111,6 @@ if (isset($_GET['fecha'])) {
         </div>
     </div>
 
-    <?php include '../../php/Components/notificaciones_a.php'; ?>
     
     <!-- PASO FALTANTE: 
         Inyectar la lista de fechas desde PHP a JavaScript. 
@@ -123,6 +122,3 @@ if (isset($_GET['fecha'])) {
     </script>
 
     <script src="../../js/Calendario.js"></script>
-</body>
-
-</html>
