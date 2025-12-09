@@ -47,7 +47,6 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
   <script src="../../js/upload_carrusel.js"></script>
   <script src="../../js/Seccions/seccions.js"></script>
   <script src="../../js/Calendario.js"></script>
-  <script src="../../js/jquery-3.6.0.min.js"></script>
   <script src="../../js/chat.js"></script>
 
 

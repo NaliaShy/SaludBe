@@ -15,13 +15,13 @@ if (!isset($_SESSION['Us_id'])) {
 }
 
 // 3. Verificar que se haya enviado el ID de la cita
-if (!isset($_POST['idCita'])) {
+if (!isset($_POST['IdCita'])) {
     echo json_encode(['status' => 'error', 'message' => '❌ ID de Cita no proporcionado.']);
     exit();
 }
 
 $idPsicologo = $_SESSION['Us_id'];
-$idCita = $_POST['idCita'];
+$idCita = $_POST['IdCita'];
 
 try {
     $db = new Conexion();

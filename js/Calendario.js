@@ -136,7 +136,7 @@ function aceptarCitaAjax(event, form) {
     event.preventDefault(); 
     
     // Obtener los datos del formulario
-    const idCita = form.querySelector('input[name="idCita"]').value;
+    const IdCita = form.querySelector('input[name="idCita"]').value;
     
     // 🔥 CAMBIO CRUCIAL: USAR EL NOMBRE CORRECTO DEL INPUT OCULTO DEL FORMULARIO
     const fechaCita = form.querySelector('input[name="fecha_cita"]').value; // ¡Corregido!
@@ -149,7 +149,7 @@ function aceptarCitaAjax(event, form) {
     $.ajax({
         url: '../../php/Citas/aceptarCita.php', // El script que devuelve JSON
         type: 'POST',
-        data: { idCita: idCita },
+        data: { idCita: IdCita },
         dataType: 'json',
         success: function(response) {
             // 3. Manejar la respuesta

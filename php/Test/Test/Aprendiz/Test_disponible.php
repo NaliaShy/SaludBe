@@ -1,14 +1,17 @@
 <?php
 session_start();
-include "../Conexion/conexion.php";
+include "../../../Conexion/Conexion.php";
 
+$db = new Conexion();
+
+$conn = $db->getConnect();
 // Verificar que sea aprendiz
-if ($_SESSION['role'] != 'aprendiz') {
+if ($_SESSION['Rol_id'] !=1) {
     header("Location: login.php");
     exit();
 }
 
-$tests = $conexion->getConnect("SELECT * FROM tests ORDER BY fecha DESC");
+$tests = $conn->prepare("SELECT * FROM tests ORDER BY fecha DESC");
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
