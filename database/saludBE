@@ -1,0 +1,384 @@
+/*
+SQLyog Community v13.3.1 (64 bit)
+MySQL - 10.4.32-MariaDB : Database - saludbe
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`saludbe` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+
+USE `saludbe`;
+
+/*Table structure for table `carrusel` */
+
+DROP TABLE IF EXISTS `carrusel`;
+
+CREATE TABLE `carrusel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `imagen_nombre` varchar(255) NOT NULL,
+  `estado` enum('activo','inactivo') DEFAULT 'activo',
+  `fecha_subida` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `carrusel` */
+
+/*Table structure for table `chatbot` */
+
+DROP TABLE IF EXISTS `chatbot`;
+
+CREATE TABLE `chatbot` (
+  `Cha_id` int(11) NOT NULL,
+  `Cha_mensaje_usuarios` text NOT NULL,
+  `Cha_respuesta_rapida` text NOT NULL,
+  `Cha_fecha` datetime NOT NULL,
+  `lin_id` int(11) NOT NULL,
+  PRIMARY KEY (`Cha_id`),
+  KEY `FK_CHATBOT_LINK` (`lin_id`),
+  CONSTRAINT `FK_CHATBOT_LINK` FOREIGN KEY (`lin_id`) REFERENCES `linkemergencia` (`lin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `chatbot` */
+
+/*Table structure for table `cita` */
+
+DROP TABLE IF EXISTS `cita`;
+
+CREATE TABLE `cita` (
+  `IdCita` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` date NOT NULL,
+  `Hora` time NOT NULL,
+  `Estado` varchar(50) DEFAULT NULL,
+  `Motivo` varchar(300) DEFAULT NULL,
+  `Id_Usuario` int(11) NOT NULL,
+  `Id_psicologo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`IdCita`),
+  KEY `Id_Usuario` (`Id_Usuario`),
+  KEY `Id_psicologo_idx` (`Id_psicologo`),
+  CONSTRAINT `Id_Usuario` FOREIGN KEY (`Id_Usuario`) REFERENCES `usuarios` (`Us_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `Id_psicologo` FOREIGN KEY (`Id_psicologo`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `cita` */
+
+insert  into `cita`(`IdCita`,`Fecha`,`Hora`,`Estado`,`Motivo`,`Id_Usuario`,`Id_psicologo`) values 
+(1,'2025-11-01','12:00:00','activa','sospechas',2,1),
+(2,'2025-12-15','18:00:00','activa','suicidio',7,1),
+(3,'2025-12-15','10:30:00','Pendiente','Consulta médica prueba',7,1),
+(4,'2025-12-15','10:30:00','Pendiente','Consulta médica prueba',7,1),
+(5,'2025-12-16','14:00:00','Confirmada','Revisión general',7,1),
+(6,'2025-12-18','09:00:00','Pendiente','Vacunación',7,1),
+(9,'2025-11-15','14:10:32','Pendiente','Motivo: idk',9,9),
+(10,'2025-11-22','14:12:12','Pendiente','Motivo: Depresion',10,9),
+(11,'2025-11-15','14:19:37','Pendiente','Motivo: p',10,9),
+(12,'2025-11-03','14:19:58','Pendiente','Motivo: q',10,9),
+(13,'2025-11-15','14:37:51','Pendiente','Motivo: prueba',10,9),
+(14,'2025-11-20','14:38:45','Pendiente','Motivo: hola',10,9),
+(15,'2025-11-21','08:28:07','Pendiente','Motivo: Hola ',2,9),
+(16,'2025-11-21','08:30:31','Pendiente','Motivo: hola',2,9),
+(17,'2025-11-28','11:06:30','Pendiente','Motivo: Hola',2,9);
+
+/*Table structure for table `configuracion` */
+
+DROP TABLE IF EXISTS `configuracion`;
+
+CREATE TABLE `configuracion` (
+  `Con_id` int(11) NOT NULL,
+  `Con_tema` varchar(100) NOT NULL,
+  `Con_notificaciones_activas` tinyint(1) NOT NULL,
+  `Us_id` int(11) NOT NULL,
+  PRIMARY KEY (`Con_id`),
+  KEY `FK_CONFIGURACION_USUARIO` (`Us_id`),
+  CONSTRAINT `FK_CONFIGURACION_USUARIO` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `configuracion` */
+
+/*Table structure for table `frase_motivacional` */
+
+DROP TABLE IF EXISTS `frase_motivacional`;
+
+CREATE TABLE `frase_motivacional` (
+  `Fs_id` int(11) NOT NULL,
+  `Fs_contenido` text NOT NULL,
+  `Fs_fecha_creacion` date DEFAULT NULL,
+  `Us_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Fs_id`),
+  KEY `FOREING KEYS` (`Us_id`),
+  CONSTRAINT `FOREING KEYS` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `frase_motivacional` */
+
+/*Table structure for table `linkemergencia` */
+
+DROP TABLE IF EXISTS `linkemergencia`;
+
+CREATE TABLE `linkemergencia` (
+  `lin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `PalabraClave` varchar(100) NOT NULL,
+  `UrlAyuda` varchar(255) NOT NULL,
+  PRIMARY KEY (`lin_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `linkemergencia` */
+
+/*Table structure for table `mensaje` */
+
+DROP TABLE IF EXISTS `mensaje`;
+
+CREATE TABLE `mensaje` (
+  `Men_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Men_contenido` text NOT NULL,
+  `Men_fecha_envio` datetime NOT NULL,
+  `Us_id` int(11) NOT NULL,
+  `destinatario_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Men_id`),
+  KEY `FK_MENSAJE_USUARIOS` (`Us_id`),
+  CONSTRAINT `FK_MENSAJE_USUARIOS` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `mensaje` */
+
+insert  into `mensaje`(`Men_id`,`Men_contenido`,`Men_fecha_envio`,`Us_id`,`destinatario_id`) values 
+(7,'Hola','2025-11-06 19:32:55',2,NULL),
+(8,'porfin','2025-11-06 19:34:12',2,NULL),
+(9,'hola','2025-11-06 19:41:32',2,NULL),
+(10,'hola','2025-11-06 19:44:36',2,NULL),
+(11,'hola','2025-11-06 20:11:45',8,NULL),
+(12,'hola','2025-11-06 20:17:05',8,NULL),
+(13,'hola','2025-11-06 20:34:57',8,5),
+(14,'hola','2025-11-06 20:35:26',8,2),
+(15,'hola','2025-11-06 20:35:58',2,8),
+(16,'hola','2025-11-06 20:41:57',2,3),
+(17,'Muchas gracias','2025-11-06 21:03:38',2,8),
+(18,'gracias','2025-11-06 21:07:21',2,8),
+(19,'.','2025-11-06 21:07:27',2,8),
+(20,'Hola','2025-11-13 14:11:44',10,9),
+(21,'Hola','2025-11-13 14:44:02',10,9),
+(22,'Hola','2025-11-19 07:52:23',2,9),
+(23,'hola','2025-11-20 08:30:46',2,1);
+
+/*Table structure for table `notificacion` */
+
+DROP TABLE IF EXISTS `notificacion`;
+
+CREATE TABLE `notificacion` (
+  `No_id` int(11) NOT NULL AUTO_INCREMENT,
+  `No_mensaje` varchar(300) DEFAULT NULL,
+  `No_fecha_envio` date DEFAULT NULL,
+  `No_leido` tinyint(1) DEFAULT 0,
+  `Us_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`No_id`),
+  KEY `fk_notificacion_usuario` (`Us_id`),
+  CONSTRAINT `fk_notificacion_usuario` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `notificacion` */
+
+/*Table structure for table `preguntas` */
+
+DROP TABLE IF EXISTS `preguntas`;
+
+CREATE TABLE `preguntas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `test_id` int(11) NOT NULL,
+  `texto_pregunta` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `test_id` (`test_id`),
+  CONSTRAINT `preguntas_ibfk_1` FOREIGN KEY (`test_id`) REFERENCES `tests` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `preguntas` */
+
+/*Table structure for table `reporte` */
+
+DROP TABLE IF EXISTS `reporte`;
+
+CREATE TABLE `reporte` (
+  `id_reporte` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  `estado` enum('pendiente','en proceso','resuelto') DEFAULT 'pendiente',
+  PRIMARY KEY (`id_reporte`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `reporte_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `reporte` */
+
+/*Table structure for table `respuestas_aprendiz` */
+
+DROP TABLE IF EXISTS `respuestas_aprendiz`;
+
+CREATE TABLE `respuestas_aprendiz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `aprendiz_id` int(11) NOT NULL,
+  `test_id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `respuesta_valor` int(11) NOT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `respuestas_aprendiz` */
+
+/*Table structure for table `resultado_test` */
+
+DROP TABLE IF EXISTS `resultado_test`;
+
+CREATE TABLE `resultado_test` (
+  `Re_id` int(11) NOT NULL,
+  `Re_resultado` varchar(100) NOT NULL,
+  `Re_fecha` date NOT NULL,
+  `Tes_id` int(11) NOT NULL,
+  `Us_id` int(11) NOT NULL,
+  PRIMARY KEY (`Re_id`),
+  KEY `FK_Resultados_usuarios` (`Us_id`),
+  KEY `FK_Resultados_test` (`Tes_id`),
+  CONSTRAINT `FK_Resultados_test` FOREIGN KEY (`Tes_id`) REFERENCES `test` (`Tes_id`),
+  CONSTRAINT `FK_Resultados_usuarios` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `resultado_test` */
+
+/*Table structure for table `rol_usuario` */
+
+DROP TABLE IF EXISTS `rol_usuario`;
+
+CREATE TABLE `rol_usuario` (
+  `Rol_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Rol_nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`Rol_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `rol_usuario` */
+
+insert  into `rol_usuario`(`Rol_id`,`Rol_nombre`) values 
+(1,'Aprendiz'),
+(2,'Psicologo'),
+(3,'Administrador');
+
+/*Table structure for table `seguimiento` */
+
+DROP TABLE IF EXISTS `seguimiento`;
+
+CREATE TABLE `seguimiento` (
+  `id_seguimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `id_cita` int(11) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha_creacion` datetime DEFAULT current_timestamp(),
+  `fecha_actualizacion` datetime DEFAULT NULL ON UPDATE current_timestamp(),
+  `estado_seg` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id_seguimiento`),
+  KEY `id_cita` (`id_cita`),
+  CONSTRAINT `seguimiento_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `cita` (`IdCita`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `seguimiento` */
+
+insert  into `seguimiento`(`id_seguimiento`,`id_cita`,`descripcion`,`fecha_creacion`,`fecha_actualizacion`,`estado_seg`) values 
+(1,15,'idk','2025-11-22 07:20:54','2025-11-22 08:10:34',1);
+
+/*Table structure for table `test` */
+
+DROP TABLE IF EXISTS `test`;
+
+CREATE TABLE `test` (
+  `Tes_id` int(11) NOT NULL,
+  `Tes_titulo` varchar(150) NOT NULL,
+  `Tes_descripcion` text DEFAULT NULL,
+  `Tes_fecha_creacion` date NOT NULL,
+  `Us_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Tes_id`),
+  KEY `FK_test_usuarios` (`Us_id`),
+  CONSTRAINT `FK_test_usuarios` FOREIGN KEY (`Us_id`) REFERENCES `usuarios` (`Us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `test` */
+
+/*Table structure for table `tests` */
+
+DROP TABLE IF EXISTS `tests`;
+
+CREATE TABLE `tests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) NOT NULL,
+  `creado_por` int(11) NOT NULL,
+  `fecha` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `tests` */
+
+/*Table structure for table `tipo_usuarios` */
+
+DROP TABLE IF EXISTS `tipo_usuarios`;
+
+CREATE TABLE `tipo_usuarios` (
+  `Ti_id` int(11) NOT NULL,
+  `Ti_rol` varchar(50) NOT NULL,
+  PRIMARY KEY (`Ti_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `tipo_usuarios` */
+
+insert  into `tipo_usuarios`(`Ti_id`,`Ti_rol`) values 
+(1,'Cédula de ciudadanía'),
+(2,'Tarjeta de identidad'),
+(3,'Cédula de extranjería'),
+(4,'Pasaporte');
+
+/*Table structure for table `usuarios` */
+
+DROP TABLE IF EXISTS `usuarios`;
+
+CREATE TABLE `usuarios` (
+  `Us_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Us_nombre` varchar(50) NOT NULL,
+  `Us_apellios` varchar(50) NOT NULL,
+  `Us_telefono` varchar(20) DEFAULT NULL,
+  `Us_correo` varchar(80) NOT NULL,
+  `Us_contraseña` varchar(255) NOT NULL,
+  `Us_reset_token` varchar(255) DEFAULT NULL,
+  `Us_reset_expira` datetime DEFAULT NULL,
+  `Us_estado` varchar(20) DEFAULT NULL,
+  `Us_fecha_registro` date DEFAULT NULL,
+  `Ti_id` int(11) DEFAULT NULL,
+  `Us_documento` int(11) NOT NULL,
+  `Rol_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Us_id`),
+  KEY `FOREIGN KEYS` (`Ti_id`),
+  KEY `Rol_id_idx` (`Rol_id`),
+  CONSTRAINT `FOREIGN KEYS` FOREIGN KEY (`Ti_id`) REFERENCES `tipo_usuarios` (`Ti_id`),
+  CONSTRAINT `Rol_id` FOREIGN KEY (`Rol_id`) REFERENCES `rol_usuario` (`Rol_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+/*Data for the table `usuarios` */
+
+insert  into `usuarios`(`Us_id`,`Us_nombre`,`Us_apellios`,`Us_telefono`,`Us_correo`,`Us_contraseña`,`Us_reset_token`,`Us_reset_expira`,`Us_estado`,`Us_fecha_registro`,`Ti_id`,`Us_documento`,`Rol_id`) values 
+(1,'nora','nora','123','n@gmail.com','$2y$10$IB/HB8OlNi9F/PfFkcnCKOHmg2.uvxDVxDcvFqKUIE3Vh4pAXbGKW',NULL,NULL,'activo',NULL,1,123456,2),
+(2,'Natalia','Lizarazo Silva','3053853187','nat@gmail.com','$2y$10$IB/HB8OlNi9F/PfFkcnCKOHmg2.uvxDVxDcvFqKUIE3Vh4pAXbGKW',NULL,NULL,'activo',NULL,2,0,1),
+(3,'nat','sde','124356','shadg@gmail.com','$2y$10$/mRkIWAGuNMxKhK2tLjSjelBmD9ASDlz3L24WZdzuSRseSrlgbqGO',NULL,NULL,'activo',NULL,2,123456,1),
+(4,'sfe','adf','12345','123@gmail.com','$2y$10$9TbDDi/JvKmtWcig5yEixe8yVt86suiSufwv43PQT4F2nnoGvsLT2',NULL,NULL,'activo',NULL,2,12345678,1),
+(5,'Natalia','Lizarazo Silva','3053853187','nat1@gmail.com','$2y$10$plyZUV66KqvQbBGH99ZfCuW/lvbcTYn7Q2hlJg4IFrzbngfw/IKYa',NULL,NULL,'activo',NULL,2,1043677265,1),
+(6,'edgar','edgar','1234567','edgar@gmail.com','$2y$10$7sXP/VYju41YEgjZjAmEfu07VQbrj5raAkcs.BELyQbKLzeGSQblK',NULL,NULL,'activo',NULL,2,12345678,1),
+(7,'rdfgt','sersfd','12345678','d@gmail.com','$2y$10$4BJzdPU85KiWRkyaXjxAYOTyUU6Al4rXw4c0qtrzwCTCHXgCccdx2',NULL,NULL,'activo',NULL,1,12345678,1),
+(9,'Tatiana','Cueto','1234567','T@gmail.com','$2y$10$IB/HB8OlNi9F/PfFkcnCKOHmg2.uvxDVxDcvFqKUIE3Vh4pAXbGKW',NULL,NULL,'activo',NULL,1,123456789,2),
+(10,'sadafd','asf','123456','1@gmail.com','$2y$10$u/ZJvgM8lwC4SedknF8KOezxYKqknIZ9T7U40OebYeaethq3lNDh2',NULL,NULL,'activo',NULL,3,12354678,1),
+(11,'awsd','sfd','852','2@gmail.com','$2y$10$Mq6CMOYrzLhdfsQCHwP4e.zHHsCCYnj0gbU8eAYv/rKQMflQi6mTi',NULL,NULL,'activo',NULL,2,12354,1),
+(12,'edgar','castellanos','3147543589','castellanosrealedgar@gmail.com','$2y$10$cO14yAC9xqXgo84bDGzOf.8jLz6Q4Bkj/r43s73sbrIFkpKgpOn7S',NULL,NULL,'activo',NULL,2,1041344434,1);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
