@@ -36,9 +36,9 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
     <?php include 'seccions/Lista.php' ?>
     <?php include 'seccions/Historial.php' ?>
     <?php include 'seccions/calendario.php' ?>
-    <?php include '../../php/chat/chat.php'; ?>
-    <?php include 'seccions/configuracion.php' ?>
 
+    <?php include 'seccions/configuracion.php' ?>
+    <?php include '../../php/chat/chat.php'; ?>
     <?php include '../../php/chat-bot/Chat.php' ?>
   </div>
 
@@ -46,6 +46,9 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
 
   <script src="../../js/upload_carrusel.js"></script>
   <script src="../../js/Seccions/seccions.js"></script>
+  <script src="../../js/Calendario.js"></script>
+  <script src="../../js/jquery-3.6.0.min.js"></script>
+  <script src="../../js/chat.js"></script>
 
 
 </body>

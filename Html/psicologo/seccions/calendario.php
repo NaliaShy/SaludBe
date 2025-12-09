@@ -172,7 +172,7 @@ try {
             }
             ?>
         </ul>
-    </div>
+    </div>
 </div>
 
 <?php 
@@ -197,4 +197,3 @@ $jsonFechas = json_encode($fechasConCitas);
     console.log("[PHP DEBUG] Fechas inyectadas:", fechasConCitas); // Para verificar en la consola
 </script>
 
-<script src="../../js/Calendario.js"></script>

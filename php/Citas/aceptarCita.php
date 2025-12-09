@@ -2,14 +2,14 @@
 // Script para actualizar el estado de una cita de 'Pendiente' a 'Aceptada'
 // ¡IMPORTANTE! Este script ahora devuelve una respuesta JSON.
 
-include '../Conexion/Conexion.php'; // Ajusta la ruta a tu archivo de conexión
+include_once '../Conexion/Conexion.php'; // Ajusta la ruta a tu archivo de conexión
 session_start();
 
 // 1. Establecer el encabezado de respuesta a JSON
 header('Content-Type: application/json');
 
 // 2. Verificar sesión del psicólogo
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     echo json_encode(['status' => 'error', 'message' => '⚠️ Sesión no iniciada.']);
     exit();
 }
@@ -45,9 +45,9 @@ try {
     }
     
 } catch (PDOException $e) {
-    // Manejo de errores de base de datos
+
     error_log("Error al aceptar cita: " . $e->getMessage());
-    echo json_encode(['status' => 'error', 'message' => '❌ Error de base de datos: ' . $e->getMessage()]);
+    echo json_encode(['status' => 'error', 'message' => '❌ Error de ya basta base de datos: ' . $e->getMessage()]);
 }
 
 $conexion = null; // Cierra la conexión
