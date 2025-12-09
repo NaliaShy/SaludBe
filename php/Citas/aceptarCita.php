@@ -45,9 +45,9 @@ try {
     }
     
 } catch (PDOException $e) {
-    // Manejo de errores de base de datos
+
     error_log("Error al aceptar cita: " . $e->getMessage());
-    echo json_encode(['status' => 'error', 'message' => '❌ Error de base de datos: ' . $e->getMessage()]);
+    echo json_encode(['status' => 'error', 'message' => '❌ Error de ya basta base de datos: ' . $e->getMessage()]);
 }
 
 $conexion = null; // Cierra la conexión

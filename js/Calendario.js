@@ -147,7 +147,7 @@ function aceptarCitaAjax(event, form) {
 
     // 2. Llamada AJAX al script PHP
     $.ajax({
-        url: '../../php/Psicologo/Citas/aceptarCita.php', // El script que devuelve JSON
+        url: '../../php/Citas/aceptarCita.php', // El script que devuelve JSON
         type: 'POST',
         data: { idCita: idCita },
         dataType: 'json',
