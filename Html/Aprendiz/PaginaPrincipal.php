@@ -30,6 +30,8 @@ $conn = $db->getConnect();
     </div>
 
     <div class="main">
+        <?php include '../../php/chat/chat.php';
+        ?>
         <?php include '../../php/Components/carrusel.php'; ?>
         <?php include 'seccions/solicitarCitaApr.php'; ?>
         <?php include 'seccions/Historial.php'; ?>
@@ -37,7 +39,7 @@ $conn = $db->getConnect();
         <?php include 'seccions/calendario.php'; ?>
         <?php include 'seccions/configuracion.php' ?>
         <?php include '../../php/chat-bot/Chat.php' ?>
-        <?php include '../../php/chat/chat.php'; ?>
+
     </div>
 
     <script src="../../js/Seccions/seccions.js"></script>

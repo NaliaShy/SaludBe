@@ -1,16 +1,17 @@
 <?php
 
-// 1. Requerir el archivo de conexión
-require_once('../../Conexion.php'); 
+include_once '../Conexion/Conexion.php';
 
-// 2. Obtener IDs
 session_start();
+$db = new Conexion();
+// La variable de conexión es $conn, ya que así la definiste
+$conn = $db->getConnect();
 
 // ID del Aprendiz consultado (Viene del JavaScript como 'id_aprendiz')
 $idAprendiz = $_GET['id_aprendiz'] ?? null; 
 
 // Opcional: ID del Psicólogo que tiene la sesión iniciada
-$idPsicologoSesion = $_SESSION['us_id'] ?? null; // Intentando usar: 'Us_id'
+$idPsicologoSesion = $_SESSION['Us_id'] ?? null; // Intentando usar: 'Us_id'
 
 // Verificar que se haya proporcionado el ID del Aprendiz (evita el 400 Bad Request)
 if (!$idAprendiz) {
@@ -20,9 +21,7 @@ if (!$idAprendiz) {
 }
 
 try {
-    // Inicializar la conexión
-    $conexion = new Conexion();
-    $conectar = $conexion->getConnect(); 
+   
 
     // 3. Consulta SQL (la versión que proporcionaste)
     $sql = "
@@ -51,7 +50,7 @@ try {
     ];
     
     // Ejecutar con el array de parámetros completo
-    $stmt = $conectar->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->execute($params); 
     
     $seguimientos = $stmt->fetchAll(PDO::FETCH_ASSOC);

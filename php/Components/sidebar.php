@@ -35,7 +35,7 @@ if ($rol_id_actual == 1) {
             <li><a onclick="mostrarSeccion('Aprendiz-AgendarCita')">Agendar citas</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Seguimiento')">Seguimiento</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Calendario')">Calendario</a></li>
-            <li><a onclick="mostrarChat(); return false;">Chat</a></li>
+
             <li><a onclick="mostrarSeccion('AprendizTest')">Test</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Configuracion')">Configuraciones</a></li>
 
@@ -50,13 +50,14 @@ if ($rol_id_actual == 1) {
                     Historial Clinico</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-Calendario')">
                     Calendario</a></li>
-            <li><a onclick="mostrarChat(); return false;">Chat</a></li>
+
             <li><a onclick="mostrarSeccion('Psicologo-CrearTest')">Crear test</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-ResultTest')">Resultado Test</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-Configuracion')"> Configuración</a></li>
         <?php endif; ?>
 
         <?php if ($rol_id_actual): ?>
+            <li><a onclick="mostrarChat(); return false;">Chat</a></li>
             <li><a onclick="mostrarSeccion('chat-bot')">ChatBot</a></li>
             <li><a href="../../Html/Index.html">Cerrar Sesión</a></li>
         <?php endif; ?>

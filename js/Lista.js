@@ -83,12 +83,7 @@ function openModal(userId) {
                             📋 Ver Seguimientos (Modal)
                         </button>
                         
-                        <button 
-                            class="btn-primary" 
-                            onclick="window.location.href='/SaludBe/Html/psicologo/seccions/calendario.php?id_aprendiz=${user.Us_id}'" // <-- ID AGREGADO
-                        >
-    📅 Citas
-                        </button>
+                        
                     </div>
                 `;
             } else {

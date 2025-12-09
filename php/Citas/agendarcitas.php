@@ -13,14 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 
 // 4. VERIFICAR AUTENTICACIÓN DEL APRENDIZ
 // Se usa $_SESSION['us_id'] que es la variable correcta según tu login
-if (!isset($_SESSION['us_id'])) {
+if (!isset($_SESSION['Us_id'])) {
     $_SESSION['notificacion_error'] = "❌ No se puede agendar la cita: no has iniciado sesión.";
-    header("Location: ../Html/Login/Loginaprendiz.html"); 
+    header("Location: ../Html/Login/Login.php"); 
     exit("Acceso no autorizado.");
 }
 
 // Obtener el ID del aprendiz logueado desde la sesión (us_id)
-$aprendiz_id = $_SESSION['us_id'];
+$aprendiz_id = $_SESSION['Us_id'];
 
 // 5. RECOGER Y SANEAR DATOS DEL FORMULARIO
 $fecha = $_POST['fecha'] ?? null;
