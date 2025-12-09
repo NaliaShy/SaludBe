@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "conexion.php";
+include "../Conexion/conexion.php";
 
 // Verificar que sea aprendiz
 if ($_SESSION['role'] != 'aprendiz') {
@@ -8,7 +8,7 @@ if ($_SESSION['role'] != 'aprendiz') {
     exit();
 }
 
-$tests = $conexion->query("SELECT * FROM tests ORDER BY fecha DESC");
+$tests = $conexion->getConnect("SELECT * FROM tests ORDER BY fecha DESC");
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">

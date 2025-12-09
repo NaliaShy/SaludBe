@@ -36,7 +36,7 @@ if ($rol_id_actual == 1) {
             <li><a onclick="mostrarSeccion('Aprendiz-Seguimiento')">Seguimiento</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Calendario')">Calendario</a></li>
 
-            <li><a onclick="mostrarSeccion('AprendizTest')">Test</a></li>
+            <li><a >Test</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Configuracion')">Configuraciones</a></li>
 
 
