@@ -132,14 +132,17 @@ let fechaActualSeleccionada = new URLSearchParams(window.location.search).get('f
  * @param {HTMLFormElement} form - El formulario que se está enviando.
  */
 function aceptarCitaAjax(event, form) {
-    // 1. Prevenir el envío normal del formulario (para evitar la redirección)
-    event.preventDefault(); 
-    
+    // 1. Prevenir el envío normal del formulario
+    event.preventDefault();
+
     // Obtener los datos del formulario
-    const IdCita = form.querySelector('input[name="idCita"]').value;
-    
-    // 🔥 CAMBIO CRUCIAL: USAR EL NOMBRE CORRECTO DEL INPUT OCULTO DEL FORMULARIO
-    const fechaCita = form.querySelector('input[name="fecha_cita"]').value; // ¡Corregido!
+    const idCita = form.querySelector('input[name="idCita"]').value;
+
+    // 🔥 NUEVA LÍNEA DE DEBUG 🔥
+    console.log("ID Cita a enviar:", idCita); // Verifica el valor en la consola
+
+    // Obtener la fecha de la cita (puede ser útil después)
+    const fechaCita = form.querySelector('input[name="fecha_cita"]').value;
 
     // Deshabilitar el botón y mostrar un mensaje temporal
     const boton = form.querySelector('.btn-aceptar');
@@ -149,20 +152,20 @@ function aceptarCitaAjax(event, form) {
     $.ajax({
         url: '../../php/Citas/aceptarCita.php', // El script que devuelve JSON
         type: 'POST',
-        data: { idCita: IdCita },
+        data: { idCita: idCita }, // Clave correcta
         dataType: 'json',
-        success: function(response) {
+        // ... (resto del código)
+        success: function (response) {
             // 3. Manejar la respuesta
             let mensaje = response.message;
             if (response.status === 'success') {
                 mostrarNotificacion(mensaje, 'success'); // Asumiendo que tienes una función de notificación
                 // Actualizar la lista de citas para reflejar el cambio
-                refrescarListaCitas(fechaCita);
             } else if (response.status === 'warning') {
                 mostrarNotificacion(mensaje, 'warning');
                 // Re-habilitar botón si es solo una advertencia (p.ej., ya aceptada)
                 boton.textContent = $textoOriginal;
-                boton.disabled = false; 
+                boton.disabled = false;
             } else {
                 mostrarNotificacion(mensaje, 'error');
                 // Re-habilitar botón en caso de error
@@ -170,7 +173,7 @@ function aceptarCitaAjax(event, form) {
                 boton.disabled = false;
             }
         },
-        error: function(xhr, status, error) {
+        error: function (xhr, status, error) {
             mostrarNotificacion('❌ Error de conexión al servidor que paso aqui ve?.', 'error');
             console.error("AJAX Error:", status, error);
             // Re-habilitar botón en caso de error
@@ -190,13 +193,13 @@ function refrescarListaCitas(fecha) {
     // Simplemente recargamos la página con el parámetro 'fecha'
     // Esto fuerza a PHP a regenerar solo la lista de citas para esa fecha, 
     // manteniendo la vista actual.
-    
+
     // Si la página se carga sin parámetro 'fecha' (mostrando citas futuras), 
     // recargamos sin parámetro 'fecha' para mantener esa vista.
     const url = fecha ? `calendarioPsicologo.php?fecha=${fecha}` : 'calendarioPsicologo.php';
-    
+
     // Usamos window.location.replace() para evitar que el usuario vuelva atrás al POST.
-    window.location.replace(url); 
+    window.location.replace(url);
 }
 
 

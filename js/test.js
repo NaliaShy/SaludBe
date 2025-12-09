@@ -13,7 +13,7 @@ const crearTestBtn = document.getElementById("crearTestBtn");
 const testInfo = {
     "Test de ansiedad social": {
         descripcion: "Evalúa síntomas relacionados con ansiedad social e interacción con otros.",
-        ruta: "../../php/crear_test.php?tipo=ansiedad"
+        ruta: "../../php/Test/Test/test_antiguo/crear_test.php?tipo=ansiedad"
     },
     "Test de adicción al internet": {
         descripcion: "Mide el nivel de uso problemático del internet.",

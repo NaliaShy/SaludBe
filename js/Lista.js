@@ -66,25 +66,32 @@ function openModal(userId) {
                         <p><strong>Tipo de Documento:</strong> ${user.Tipo_documento}</p>
                         <p><strong>Rol:</strong> ${user.Rol_nombre}</p>
                         <p><strong>Teléfono:</strong> ${user.Us_telefono || 'N/A'}</p>
-                        <p><strong>Seguimiento:</strong> ${user.descripcion || 'N/A'}</p>
-                    </div>
-                    <div class="user-detail-actions">
+                       <p><strong>Seguimiento:</strong> ${user.descripcion || 'N/A'}</p>
+          </div>
+          <div class="user-detail-actions">
+            
                         <button 
-                            class="btn-secondary" 
-                            onclick="window.open('../../php/psicologo/imprimir_seguimientos.php?id_aprendiz=${user.Us_id}', '_blank')"
-                        >
-                            🖨️ Imprimir Historial
-                        </button>
+              class="btn-primary" 
+              onclick="addSeguimientoForm(${user.Us_id}, '${user.Us_nombre} ${user.Us_apellios}')"
+            >
+              ✍️ Añadir Seguimiento
+            </button>
 
-                        <button 
+           <button 
                             class="btn-info" 
                             onclick="loadSeguimientos(${user.Us_id}, '${user.Us_nombre} ${user.Us_apellios}')"
                         >
-                            📋 Ver Seguimientos (Modal)
+                            📋 Ver Seguimientos
                         </button>
-                        
-                        
-                    </div>
+
+
+<a href="../../Js/descargar.php?id_aprendiz=${user.Us_id}" target="_blank">
+    <button class="btn-info" style="margin-top: 10px;">
+        ⬇️ Descargar Historial CSV
+    </button>
+</a>
+
+
                 `;
             } else {
                 content.innerHTML = `<p class="error-message">❌ Error al cargar los datos: ${data.message || 'ID de usuario no encontrado.'}</p>`;

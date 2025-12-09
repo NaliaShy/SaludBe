@@ -33,7 +33,7 @@ if ($rol_id_actual == 1) {
         ?>
             <li><a onclick="mostrarSeccion('Aprendiz-PaginaPrincipal')">Inicio</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-AgendarCita')">Agendar citas</a></li>
-            <li><a onclick="mostrarSeccion('Aprendiz-Seguimiento')">Seguimiento</a></li>
+            <li><a href="../../../SaludBe/php/SeguimientoAprendiz/descargar_seguimiento.php">Seguimiento</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Calendario')">Calendario</a></li>
 
             <li><a href="/../SaludBe/Html/Aprendiz/seccions/test.php">Test</a></li>
@@ -46,8 +46,6 @@ if ($rol_id_actual == 1) {
                     Inicio</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-ListadoUsuarios')"> Lista De
                     Pacientes</a></li>
-            <li><a onclick="mostrarSeccion('Psicologo-Historial')">
-                    Historial Clinico</a></li>
             <li><a onclick="mostrarSeccion('Psicologo-Calendario')">
                     Calendario</a></li>
 

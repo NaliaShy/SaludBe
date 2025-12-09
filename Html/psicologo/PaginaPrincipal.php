@@ -34,7 +34,8 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
   <div class="main">
     <?php include '../../php/Components/añadirImagenes.php'; ?>
     <?php include 'seccions/Lista.php' ?>
-    <?php include 'seccions/Historial.php' ?>
+
+    <?php include 'seccions/test.php' ?>
     <?php include 'seccions/calendario.php' ?>
 
     <?php include 'seccions/configuracion.php' ?>
@@ -46,8 +47,10 @@ $idUsuario = $_SESSION['Us_id']; // ✅ AQUÍ SÍ
 
   <script src="../../js/upload_carrusel.js"></script>
   <script src="../../js/Seccions/seccions.js"></script>
+  <script src="../../js/test.js"></script>
   <script src="../../js/Calendario.js"></script>
   <script src="../../js/chat.js"></script>
+  <script src="../../js/Guardar_seguimiento.js"></script>
 
 
 </body>

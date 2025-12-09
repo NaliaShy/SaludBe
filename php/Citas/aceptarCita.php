@@ -15,13 +15,13 @@ if (!isset($_SESSION['Us_id'])) {
 }
 
 // 3. Verificar que se haya enviado el ID de la cita
-if (!isset($_POST['IdCita'])) {
+if (!isset($_POST['idCita'])) {
     echo json_encode(['status' => 'error', 'message' => '❌ ID de Cita no proporcionado.']);
     exit();
 }
 
 $idPsicologo = $_SESSION['Us_id'];
-$idCita = $_POST['IdCita'];
+$idCita = $_POST['idCita'];
 
 try {
     $db = new Conexion();
@@ -30,7 +30,7 @@ try {
     // Preparar la consulta para actualizar el estado de la cita
     $sql = "UPDATE cita 
             SET estado = 'Aceptada' 
-            WHERE Id_Cita = ? AND Id_Psicologo = ? AND estado = 'Pendiente'"; 
+            WHERE IdCita = ? AND Id_Psicologo = ? AND estado = 'Pendiente'"; 
     
     $stmt = $conexion->prepare($sql);
     $stmt->execute([$idCita, $idPsicologo]);
