@@ -3,7 +3,7 @@ let currentYear = new Date().getFullYear();
 
 const monthYearElement = document.getElementById("month-year");
 const calendarGrid = document.getElementById("calendar");
-
+$textoOriginal = String;
 // Obtenemos la fecha de hoy para poder marcarla
 const today = new Date();
 const todayDate = today.getDate();
@@ -161,20 +161,20 @@ function aceptarCitaAjax(event, form) {
             } else if (response.status === 'warning') {
                 mostrarNotificacion(mensaje, 'warning');
                 // Re-habilitar botón si es solo una advertencia (p.ej., ya aceptada)
-                boton.textContent = textoOriginal;
+                boton.textContent = $textoOriginal;
                 boton.disabled = false; 
             } else {
                 mostrarNotificacion(mensaje, 'error');
                 // Re-habilitar botón en caso de error
-                boton.textContent = textoOriginal;
+                boton.textContent = $textoOriginal;
                 boton.disabled = false;
             }
         },
         error: function(xhr, status, error) {
-            mostrarNotificacion('❌ Error de conexión al servidor.', 'error');
+            mostrarNotificacion('❌ Error de conexión al servidor que paso aqui ve?.', 'error');
             console.error("AJAX Error:", status, error);
             // Re-habilitar botón en caso de error
-            boton.textContent = textoOriginal;
+            boton.textContent = $textoOriginal;
             boton.disabled = false;
         }
     });

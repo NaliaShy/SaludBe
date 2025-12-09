@@ -1,8 +1,10 @@
 
 <?php
+
 $db = new Conexion();
 // La variable de conexión es $conn, ya que así la definiste
 $conn = $db->getConnect();
+
 
 // 3. Verificación de Sesión
 if (!isset($_SESSION['Us_id'])) {
@@ -40,6 +42,4 @@ if (!$usuario) {
     <script>
         var usuarioLogueado = <?php echo $idUsuario; ?>;
     </script>
-
-    <script src="../../js/Chat.js"></script>
 </div>
