@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $mensaje = $_POST['mensaje'] ?? null;
-$us_id = $_POST['us_id'] ?? null;
+$us_id = $_POST['Us_id'] ?? null;
 $destinatario_id = $_POST['destinatario_id'] ?? null;
 
 if (!$mensaje || !$us_id || !$destinatario_id) {
@@ -26,11 +26,11 @@ try {
 
     $stmt = $conn->prepare("
     INSERT INTO mensaje (Men_contenido, Men_fecha_envio, Us_id, destinatario_id)
-    VALUES (:mensaje, NOW(), :us_id, :destinatario_id)
+    VALUES (:mensaje, NOW(), :Us_id, :destinatario_id)
 ");
 
     $stmt->bindParam(':mensaje', $mensaje);
-    $stmt->bindParam(':us_id', $us_id);
+    $stmt->bindParam(':Us_id', $us_id);
     $stmt->bindParam(':destinatario_id', $_POST['destinatario_id']);
     $stmt->execute();;
 
