@@ -30,15 +30,14 @@ $conn = $db->getConnect();
     </div>
 
     <div class="main">
-        <?php include '../../php/chat/chat.php';
-        ?>
+         <?php include '../../php/chat/chat.php'; ?>
+      
         <?php include '../../php/Components/carrusel.php'; ?>
         <?php include 'seccions/solicitarCitaApr.php'; ?>
         <?php include 'seccions/Historial.php'; ?>
-        <?php include 'seccions/test.php'; ?>
         <?php include 'seccions/calendario.php'; ?>
         <?php include 'seccions/configuracion.php' ?>
-        <?php include '../../php/chat-bot/Chat.php' ?>
+        <?php include '../../php/chat-bot/Chat-bot.php' ?>
 
     </div>
 
