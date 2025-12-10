@@ -42,6 +42,7 @@ $conn = $db->getConnect();
     </div>
 
     <script src="../../js/Seccions/seccions.js"></script>
+    <script src="../../js/chat.js"></script>
 </body>
 <script>
     window.onload = function() {
