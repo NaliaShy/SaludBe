@@ -36,7 +36,7 @@ if ($rol_id_actual == 1) {
             <li><a href="../../../SaludBe/php/SeguimientoAprendiz/descargar_seguimiento.php">Seguimiento</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Calendario')">Calendario</a></li>
 
-            <li><a href="/../SaludBe/Html/Aprendiz/seccions/test.php">Test</a></li>
+            <li><a href="/../SaludBe/Html/Aprendiz/seccions/aprendiz_test.php">Test</a></li>
             <li><a onclick="mostrarSeccion('Aprendiz-Configuracion')">Configuraciones</a></li>
 
 
