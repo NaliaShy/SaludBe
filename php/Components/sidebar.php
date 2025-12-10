@@ -56,7 +56,7 @@ if ($rol_id_actual == 1) {
 
         <?php if ($rol_id_actual): ?>
             <li><a onclick="mostrarChat(); return false;">Chat</a></li>
-            <li><a onclick="mostrarSeccion('chat-bot')">ChatBot</a></li>
+            <li><a onclick="mostrarSeccion('../../php/chat-bot/Chat-bot.php')">ChatBot</a></li>
             <li><a href="../../Html/Index.html">Cerrar Sesión</a></li>
         <?php endif; ?>
     </ul>
